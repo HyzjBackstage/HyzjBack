@@ -28,9 +28,9 @@ public class LoginFilter implements Filter {
         boolean ss = requestURI.contains("**/index**");
         System.out.println("8082:"+ss);
         //访问除login.jsp（登录页面）和验证码servlet之外的jsp/servlet都要进行验证
-        if (    "/".equals(requestURI)
+        if (    requestURI.contains("/")
                 && !requestURI.contains("login.html")
-                && !requestURI.contains("/index")
+                && "/index".contains(requestURI)
                 ) {
             HttpSession session = req.getSession();
             //判断session中是否有用户信息，如果没有则重定向到登录页面
