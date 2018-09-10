@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>镜片管理</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../static/css/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/demo/webuploader-demo.min.css">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+    <link href="plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet">
+    <link href="plugins/bootstrap-mutiselect/css/bootstrap-multiselect.css" rel="stylesheet">
+    <link href="plugins/css/components.min.css" rel="stylesheet">
+    <link href="plugins/css/plugins.min.css" rel="stylesheet">
+    <link href="plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet">
+
+    <style>
+        .btn-default {
+            background-color: white;
+            color: black;
+        }
+
+        .btn-default:hover {
+
+            background-color: #F7F7F7;
+            color: black;
+        }
+
+        .input-group-addon {
+            height: 35px;
+        }
+
+        a > label {
+            margin-left: 55px;
+            padding-left: 70px;
+        }
+
+        input[type=checkbox] {
+            left: 14px;
+        }
+    </style>
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row" id="page_eyeglass_list">
+        <div class="col-sm-12 col-md-12 ">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>商品信息</h5>
+                    <div class="ibox-tools">
+                        <a id="btn-add-a">
+                            <i class="fa fa-plus"></i>&nbsp;&nbsp;添加
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
+                        <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>品牌</th>
+                            <th>年份</th>
+                            <th >价格</th>
+                            <th data-hide="all">编号</th>
+                            <th data-hide="all">功能</th>
+                            <th data-hide="all">设计样式</th>
+                            <th data-hide="all">图片</th>
+                            <th data-hide="all">镜片详情</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbd">
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="11">
+                                <ul class="pagination pull-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" id="page_eyeglass_add"  style="display: none;">
+        <div class="col-sm-12 col-md-12 ">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 id="eyeglass_title">镜片信息添加</h5>
+                    <div class="ibox-tools">
+
+                        <a  id="btn-back-a">
+                            <i class="glyphicon glyphicon-share"></i>&nbsp;&nbsp;返回
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="eyeglass_add">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">编号：</label>
+                            <div class="col-sm-8">
+                                <input id="add_eyeglass" name="eyeglass" class="form-control" type="text">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">名称：</label>
+                            <div class="col-sm-8">
+                                <input id="add_name" name="add_name" class="form-control" type="text">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">功能：</label>
+                            <div class="col-sm-8">
+                                <select id="add_efficacy" name="efficacy" class="form-control">
+                                    <option value="2">哈哈哈</option>
+                                    <option value="老花镜">老花镜</option>
+                                </select>
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">品牌：</label>
+                            <div class="col-sm-8">
+                                <select id="add_brand" name="brand" class="form-control">
+                                    <option value="2">白酒</option>
+                                    <option value="老花镜">红酒</option>
+                                </select>
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">价格：</label>
+                            <div class="col-sm-8">
+                                <input id="add_price" name="price" class="form-control" type="text">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">酒图片：</label>
+                            <div class="col-sm-8">
+                                <div class="col-sm-12" id="atts_list">
+                                    <!--<div class="col-sm-12">
+                                        <div class="col-sm-8">
+                                            <input name="fileName" value="1.png" readonly style="background-color: white;border: none;outline: none;" class="form-control" type="text">
+                                        </div>
+                                        <div class="col-sm-4" style="padding-top: 3px;" id="photo_remove_show">
+                                            <a  style="float: right;"   class="file-deletes" ><i class="fa fa-times-circle"></i></a>
+                                        </div>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="col-sm-8  col-sm-offset-3">
+                                <div id="uploader" class="wu-example">
+                                    <div class="queueList">
+                                        <div id="dndArea" class="placeholder">
+                                            <div id="filePicker"></div>
+                                            <p>或将照片拖到这里，单次最多可选300张</p>
+                                        </div>
+                                    </div>
+                                    <div class="statusBar" style="display:none;">
+                                        <div class="progress">
+                                            <span class="text">0%</span>
+                                            <span class="percentage"></span>
+                                        </div>
+                                        <div class="info"></div>
+                                        <div class="btns">
+                                            <div id="filePicker2"></div>
+                                            <div class="uploadBtn">开始上传</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                            <label>酒详情：</label>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div  class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
+                                    <img id="edit_img" src="" alt="图片未上传"  />
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 96px; max-height: 96px;"> </div>
+                                <div>
+                                <span class="btn default btn-file">
+                                    <span class="fileinput-new">选择酒详情图片</span>
+                                    <span class="fileinput-exists"> 修改 </span>
+                                    <input type="file" id="edit_file" name="detailfile"> </span>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> 移除 </a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <a class="btn btn-primary" id="btn_add_save">提交</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="spiner-example" id="loading-eyeglass" style="display: none">
+    <div class="sk-spinner sk-spinner-wave">
+        <div class="sk-rect1"></div>
+        <div class="sk-rect2"></div>
+        <div class="sk-rect3"></div>
+        <div class="sk-rect4"></div>
+        <div class="sk-rect5"></div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.5"></script>
+<script src="js/content.min.js?v=1.0.0"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+<script src="plugins/bootstrap-mutiselect/js/bootstrap-multiselect.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<script src="js/demo/form-validate-demo.min.js"></script>
+<script src="js/plugins/footable/footable.all.min.js"></script>
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+
+<!--js-->
+<script src="custom-js/eyeglass.js"></script>
+
+<script src="plugins/bootstrap-mutiselect/custom/components-bootstrap-multiselect.js"></script>
+
+<script type="text/javascript">
+    var BASE_URL = 'js/plugins/webuploader';
+</script>
+<!--图片上传插件-->
+<script src="js/plugins/webuploader/webuploader.min.js"></script>
+<!--<script src="js/demo/webuploader-demo.min.js"></script>-->
+
+</body>
+
+</html>

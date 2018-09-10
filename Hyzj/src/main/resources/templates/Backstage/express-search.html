@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>树形视图</title>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/jsTree/style.min.css" rel="stylesheet">
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 id="express_title">快递查询</h5>
+                </div>
+
+                <div class="spiner-example" id="loading-express" style="display: none">
+                    <div class="sk-spinner sk-spinner-wave">
+                        <div class="sk-rect1"></div>
+                        <div class="sk-rect2"></div>
+                        <div class="sk-rect3"></div>
+                        <div class="sk-rect4"></div>
+                        <div class="sk-rect5"></div>
+                    </div>
+                </div>
+
+                <div class="ibox-content" style="min-height: 450px;">
+
+                    <form class="form-horizontal m-t" id="commentForm">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" >订单编号:</label>
+                            <div class="col-sm-6">
+                                <input id="order_code" name="name" minlength="2" type="text" class="form-control" required="" aria-required="true">
+                            </div>
+                            <div class="col-sm-3 text-left" ><a id="btn_search" class="btn btn-primary">查找</a></div>
+                        </div>
+
+
+                    </form>
+                    <div class="col-sm-12" id="express-warning" style="text-align: center;color: red;" >
+
+
+                    </div>
+                    <div class="col-sm-12" id="express-info" >
+
+
+                    </div>
+                    <div class="col-sm-12" id="expresslist">
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.5"></script>
+<script src="js/content.min.js?v=1.0.0"></script>
+<script src="js/plugins/jsTree/jstree.min.js"></script>
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+
+<style>
+    .jstree-open>.jstree-anchor>.fa-folder:before{content:"\f07c"}.jstree-default .jstree-icon.none{width:0}
+</style>
+
+<script type="text/javascript" src="custom-js/express-search.js" ></script>
+</body>
+
+</html>

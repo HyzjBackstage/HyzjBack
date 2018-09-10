@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>树形视图</title>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/jsTree/style.min.css" rel="stylesheet">
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+
+    <style>
+        .reonly{
+            border-width:0px ;
+            outline:none;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight">
+
+
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>已支付订单列表</h5>
+                    <div class="ibox-tools">
+
+                    </div>
+                </div>
+                <div class="ibox-content" style="min-height: 450px;">
+
+                    <div id="using_json"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5 id="deal_title">快递下单</h5>
+                </div>
+
+                <div class="spiner-example" id="loading-deal" style="display: none">
+                    <div class="sk-spinner sk-spinner-wave">
+                        <div class="sk-rect1"></div>
+                        <div class="sk-rect2"></div>
+                        <div class="sk-rect3"></div>
+                        <div class="sk-rect4"></div>
+                        <div class="sk-rect5"></div>
+                    </div>
+                </div>
+
+                <div class="ibox-content" style="min-height: 450px;">
+
+                    <form class="form-horizontal m-t" id="commentForm">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" >订单编号:</label>
+                            <div class="col-sm-8">
+                                <input id="order_code"  name="name" readonly  minlength="2" type="text" class=" form-control  reonly" required="" aria-required="true">
+                            </div>
+                            <!--<div class="col-sm-3 text-left" ><a id="btn_search" class="btn btn-primary">查找</a></div>-->
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">用户名:</label>
+                            <div class="col-sm-8">
+                                <input readonly id="customer_name" type="text" class="reonly form-control" name="email" required="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">收货人:</label>
+                            <div class="col-sm-8">
+                                <input readonly id="address_name" type="text" class="reonly form-control"   required="" aria-required="true">
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">收货地址:</label>
+                            <div class="col-sm-8">
+                                <input readonly id="address_text" type="text" class="reonly form-control"  required="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">订单状态</label>
+                            <div class="col-sm-8">
+                                <input readonly id="order_state" type="text" class="reonly form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">酒信息:</label>
+                            <div class="col-sm-8">
+                                <textarea id="good_name" rows="3" type="text" readonly class="reonly form-control" ></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">其他信息:</label>
+                            <div class="col-sm-8">
+                                <textarea id="eyeglass_name" rows="3" type="text" readonly class="reonly form-control" ></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <a id="btn_alter_deal" class="btn btn-primary " >确认</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.5"></script>
+<script src="js/content.min.js?v=1.0.0"></script>
+<script src="js/plugins/jsTree/jstree.min.js"></script>
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+
+<style>
+    .jstree-open>.jstree-anchor>.fa-folder:before{content:"\f07c"}.jstree-default .jstree-icon.none{width:0}
+</style>
+
+<!--<script type="text/javascript" src="custom-js/order-deal.js" ></script>-->
+</body>
+
+</html>

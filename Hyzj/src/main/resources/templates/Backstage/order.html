@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>场景</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Data Tables -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet">
+    <link href="plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet">
+    <link href="plugins/css/components.css" rel="stylesheet">
+    <link href="plugins/css/plugins.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
+    <base target="_blank">
+
+    <link rel="stylesheet" href="js/plugins/daterangepicker/css/bootstrap.css"/>
+
+    <link href="js/plugins/daterangepicker/css/daterangepicker.css" rel="stylesheet">
+
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12" id="page_order_list">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>订单查询</small></h5>
+                </div>
+                <div class="ibox-content">
+
+                    <!--  <div class="input-group input-daterange">
+                          <input type="text" class="form-control" value="2012-04-05">
+                          <div class="input-group-addon">to</div>
+                          <input type="text" class="form-control" value="2012-04-19">
+                      </div>
+  -->
+
+
+                    <div class="input-group">
+                        <span style="font-size: 17px"> 通过订单号查询：</span>
+                        <input type="text" id="seachValue" class="input-medium col-md-4 form-control" >
+                        <button class="btn btn-primary" style="height:34px;" id="seachByid">查找</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style="font-size: 17px">通过时间查询：</span>
+                        <button type="button" class="btn btn-default " id="daterange-btn"
+                                style="background-color: rebeccapurple;">
+                            <i class="fa fa-calendar"></i>
+                            <span>时间</span>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <button class="btn" style="background-color: #e8d614;" id="seachByTime">查找</button>
+
+                    </div>
+
+                    <!--<div class="input-group">-->
+                    <!--<input type="text" id="seachValue" class="form-control" >-->
+                    <!--<span class="input-group-btn">-->
+                    <!--<button  class="btn btn-success" id="seachByid" > 查找 </button>-->
+                    <!--</span>-->
+                    <!--</div>-->
+
+                    <table id="order_table" class="table table-striped table-bordered table-hover ">
+                        <thead>
+                        <tr>
+                            <th>订单号</th>
+                            <th>时间</th>
+                            <th>优惠券</th>
+                            <th>价格</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <!--<tfoot>
+                            <tr>
+                                <th>渲染引擎</th>
+                                <th>浏览器</th>
+                                <th>平台</th>
+                                <th>引擎版本</th>
+                                <th>CSS等级</th>
+                            </tr>
+                        </tfoot>-->
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12" id="page_order_view" style="display: none;">
+            <div class="ibox-title">
+                <h5 id="eyeglass_title">订单详情</h5>
+                <div class="ibox-tools">
+                    <a id="btn-back-a">
+                        <i class="glyphicon glyphicon-share"></i>&nbsp;&nbsp;返回
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content p-xl">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <address>
+                            <span class="h3">订单人：</span><strong id="view_edit_consignee" class="h3">liuqian</strong><br>
+                            <span class="h3">地址：</span><span id="view_edit_address" class="h3"></span>
+                            <h4 id="view_edit_street"></h4>
+                            <strong title="Phone" class="h4">电话：</strong> <strong id="view_edit_phone" class="h3"></strong>
+                        </address>
+                    </div>
+
+                    <div class="col-sm-6 text-right">
+                        <h3>订单编号：</h3>
+                        <h3 class="text-navy" id="view_edit_order"></h3>
+                        <p class="h4">
+                            <strong>日期：</strong><span id="view_edit_sure_time"> </span>
+                        </p>
+                    </div>
+                </div>
+
+                <div style="width: 100%;height: auto;"  id="mywearlist" >
+                    <!-- /table-responsive -->
+                    <table class="table table-hover "  style="border-top:10px solid #F0F0F0; ">
+                        <tbody>
+                        <tr>
+                            <td class="project-people" style="width:60px;">
+                                <a href="projects.html"><img alt="image" class="img-circle" src="img/a3.jpg"></a>
+                            </td>
+                            <td class="project-title">
+                                <a href="project_detail.html"></a>
+                                <br/>
+
+                            </td>
+                            <td class="project-completion">
+                                <small>数量：1</small>
+                            </td>
+                            <td class="project-completion">
+                                <small>价格：￥1223</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="project-people" style="width: 60px;">
+                                <a href="projects.html"><img alt="image" class="img-circle" src="img/a3.jpg"></a>
+                            </td>
+                            <td class="project-title">
+                                <a href="project_detail.html"></a>
+                                <br/>
+
+                            </td>
+                            <td class="project-completion">
+                                <small>数量：1</small>
+                            </td>
+                            <td class="project-completion">
+                                <small>价格：￥1223</small>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="project-people text-right"  >
+                                左眼:
+                            </td>
+                            <td class="project-title" colspan="3">
+                                <small>价格：￥1223</small>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="project-people text-right">
+                                右眼:
+                            </td>
+                            <td class="project-title" colspan="3">
+                                <small>价格：￥1223</small>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <table class="table table-hover"  style="border-top:10px solid #F0F0F0; ">
+                        <tbody>
+                        <tr>
+                            <td class="project-people" style="width:60px;">
+                                <a href="projects.html"><img alt="image" class="img-circle" src="img/a3.jpg"></a>
+                            </td>
+                            <td class="project-title">
+                                <a href="project_detail.html">LIKE－一款能够让用户快速获得认同感的兴趣社交应用</a>
+                                <br/>
+
+                            </td>
+                            <td class="project-completion">
+                                <small>数量：1</small>
+                            </td>
+                            <td class="project-completion">
+                                <small>价格：￥1223</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="project-people" style="width: 60px;">
+                                <a href="projects.html"><img alt="image" class="img-circle" src="img/a3.jpg"></a>
+                            </td>
+                            <td class="project-title">
+                                <a href="project_detail.html">LIKE－一款能够让用户快速获得认同感的兴趣社交应用</a>
+                                <br/>
+
+                            </td>
+                            <td class="project-completion">
+                                <small>数量：1</small>
+                            </td>
+                            <td class="project-completion">
+                                <small>价格：￥1223</small>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="project-people text-right"  >
+                                左眼:
+                            </td>
+                            <td class="project-title" colspan="3">
+                                <small>价格：￥1223</small>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="project-people text-right">
+                                右眼:
+                            </td>
+                            <td class="project-title" colspan="3">
+                                <small>价格：￥1223</small>
+                            </td>
+
+                        </tr>
+                        <!--<table class="table invoice-total">
+                            <tbody>
+                            <tr>
+                                <td><strong>总价：</strong>
+                                </td>
+                                <td><span id="view_edit_price"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>优惠卷：</strong>
+                                </td>
+                                <td><span id="view_edit_voucher"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>总计：</strong>
+                                </td>
+                                <td><input type="text" readonly value="" style="border: none;text-align:right;"
+                                           id="view_edit_lastPrice"></td>
+                            </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+                <table class="table invoice-total">
+                    <tbody>
+                    <tr>
+                        <td><strong >总价：</strong>￥
+                        </td>
+                        <td id="view_edit_price"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>优惠券：</strong>￥
+                        </td>
+                        <td id="view_edit_voucher"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>总计：</strong>￥
+                        </td>
+                        <td id="view_edit_lastPrice"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="text-right">
+                    <button class="btn btn-primary" id="edit_order"></i> 编辑</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!--订单信息修改-->
+<div class="modal inmodal" id="order_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <i class="fa fa-laptop modal-icon"></i>
+                <h4 class="modal-title">订单信息修改</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>订单编号</label>
+                    <input readonly type="text" id="order_edit_order" placeholder="" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>总计</label>
+                    <input type="text" id="order_edit_price" placeholder="请输入修改总计" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                <a id="btn_edit_save" class="btn btn-primary">保存</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spiner-example" id="loading-order" style="display: none">
+    <div class="sk-spinner sk-spinner-wave">
+        <div class="sk-rect1"></div>
+        <div class="sk-rect2"></div>
+        <div class="sk-rect3"></div>
+        <div class="sk-rect4"></div>
+        <div class="sk-rect5"></div>
+    </div>
+</div>
+
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.5"></script>
+<script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="plugins/bootstrap-switch/js/bootstrap-switch.js"></script>
+<script src="plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+<script src="js/content.min.js?v=1.0.0"></script>
+
+<!--<script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>-->
+<script type="text/javascript" src="js/plugins/daterangepicker/js/bootstrap.min.js"></script>
+<script src="js/plugins/daterangepicker/js/moment.min.js"></script>
+<script src="js/plugins/daterangepicker/js/daterangepicker.js"></script>
+<!--custom-js-->
+<script src="custom-js/order.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <title>角色</title>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <!-- Data Tables -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>角色</small></h5>
+                        <div class="ibox-tools">
+                            <a  data-toggle="modal" data-target="#role_add_modal" >
+                                <i class="fa fa-plus"></i>&nbsp;添加
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table id="role_table" class="table table-striped table-bordered table-hover ">
+                            <thead>
+                                <tr>
+                                    <th>角色</th>
+                                    <th>名称</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <!--<tfoot>
+                                <tr>
+                                    <th>渲染引擎</th>
+                                    <th>浏览器</th>
+                                    <th>平台</th>
+                                    <th>引擎版本</th>
+                                    <th>CSS等级</th>
+                                </tr>
+                            </tfoot>-->
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--角色信息添加-->
+        <div class="modal inmodal" id="role_add_modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                        </button>
+                        <i class="fa fa-laptop modal-icon"></i>
+                        <h4 class="modal-title">角色信息添加</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group"><label>角色</label> <input type="text" id="role_add_role" placeholder="" class="form-control"></div>
+                        <div class="form-group"><label>名称</label> <input type="text" id="role_add_name" placeholder="请输入角色名称" class="form-control"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                        <a id="btn_add_save" class="btn btn-primary">添加</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--角色信息修改-->
+        <div class="modal inmodal" id="role_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                        </button>
+                        <i class="fa fa-laptop modal-icon"></i>
+                        <h4 class="modal-title">角色信息修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group"><label>角色</label> <input readonly type="text" id="role_edit_role" placeholder="" class="form-control"></div>
+                        <div class="form-group"><label>名称</label> <input type="text" id="role_edit_name" placeholder="请输入角色名称" class="form-control"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                        <a id="btn_edit_save" class="btn btn-primary">保存</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="spiner-example" id="loading-role" style="display: none">
+        <div class="sk-spinner sk-spinner-wave">
+            <div class="sk-rect1"></div>
+            <div class="sk-rect2"></div>
+            <div class="sk-rect3"></div>
+            <div class="sk-rect4"></div>
+            <div class="sk-rect5"></div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script src="js/content.min.js?v=1.0.0"></script>
+    <!--custom-js-->
+    <script src=""></script>
+
+
+
+
+</body>
+
+</html>
