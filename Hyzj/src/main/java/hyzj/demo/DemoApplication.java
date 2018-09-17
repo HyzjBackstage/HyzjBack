@@ -11,7 +11,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.WebApplicationInitializer;
 
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)//SpringBoot启动错误
+@SpringBootApplication//SpringBoot启动错误
 @MapperScan("hyzj.demo.Dao")//添加Dao层
 //@ServletComponentScan
 public class DemoApplication extends SpringBootServletInitializer implements WebApplicationInitializer {

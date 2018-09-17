@@ -20,4 +20,8 @@ public class DataLinkException extends RuntimeException {
         super(exceptionEnum.getMessage());
         this.code = exceptionEnum.getCode();
     }
+    public DataLinkException(Exception e,ExceptionEnum exceptionEnum) {
+        super(e.getMessage());
+        this.code = exceptionEnum.getCode();
+    }
 }
