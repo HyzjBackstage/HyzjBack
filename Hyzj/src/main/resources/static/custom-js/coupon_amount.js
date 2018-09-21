@@ -1,7 +1,7 @@
 /**
  * Created by 14260 on 2018/6/11.
  *
- * --年龄段管理--
+ * --金额管理--
  */
 $(document).ready(function(){
 
@@ -9,10 +9,10 @@ $(document).ready(function(){
     table.dataTable({
         "columnDefs": [{ // set default column settings
             'orderable': false,
-            'targets': [2]
+            'targets': [5]
         }, {
             "searchable": false,
-            "targets": [2]
+            "targets": [5]
         }],
         "order": [
             [0, "asc"]
@@ -22,16 +22,20 @@ $(document).ready(function(){
     $.ajax({
         async: false,
         type: "POST",
-        url: "../year/list",       //注意路径
+        url: "../coupon/amountlist",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
-            // console.log(JSON.stringify(data.data,null,4));
+            console.log(JSON.stringify(data,null,4));
             for (var i = 0; i < data.data.length; i++) {
                 var itm = data.data[i];
+
                 table.fnAddData([
-                    itm.y_id,
-                    itm.yaer,
+                    itm.co_id,
+                    itm.amount,
+                    itm.starting_time,
+                    itm.end_time,
+                    itm.condition_use,
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                     '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
@@ -39,7 +43,6 @@ $(document).ready(function(){
             }
         },
         error: function (data) {
-            console.log(JSON.stringify(data,null,4));
             swal({
                 title: "数据获取失败！",
                 text: "",
@@ -52,7 +55,7 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-year").css('display','none');
+    $("#loading-coupon").css('display','none');
 
 
     /**
@@ -61,12 +64,42 @@ $(document).ready(function(){
     $("#btn_add_save").click(function(e){
         var delok = true;
         var params={};
-        params.yid = $('#year_add_age').val();
-        params.name = $('#year_add_name').val();
-
-        if(params.yid == '' || params.name == '' ){
+        params.cid = $('#coupon_add_id').val();
+        params.amount = $('#coupon_add_amount').val();
+        params.strat = ($('#coupon_add_strat').val());
+        params.end = ($('#coupon_add_end').val());
+        params.condition = $('#coupon_add_condition').val();
+        // console.log(JSON.stringify(params,null,4));
+        if (params.cid < 999 || params.cid > 2000 ||  params.cid == "" ){
             swal({
-                title: "规格编号不能为空，规格不能为空！",
+                title: "编号格式不对",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+        if (params.amount < 0 ){
+            swal({
+                title: "金额书写格式有问题！",
+                text: "",
+                type: "warning",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+        if(params.cid == '' || params.amount == '' || params.strat == '' ||
+            params.end == '' || params.condition == ''){
+            swal({
+                title: "编号、折扣、日期、使用条件不能为空！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -81,7 +114,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../year/add",          //注意路径
+            url: "../coupon/amountadd",          //注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -92,7 +125,6 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                console.log(JSON.stringify(data,null,4));
                 delok = false;
             }
         });
@@ -110,8 +142,11 @@ $(document).ready(function(){
             return;
         }
         table.fnAddData([
-            $('#year_add_age').val(),
-            $('#year_add_name').val(),
+            $('#coupon_add_id').val(),
+            $('#coupon_add_amount').val(),
+            $('#coupon_add_strat').val(),
+            $('#coupon_add_end').val(),
+            $('#coupon_add_condition').val(),
             '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
             '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
             '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
@@ -123,9 +158,12 @@ $(document).ready(function(){
         // console.log($('#age_add_max').val());
 
         table.fnDraw();
-        $('#year_add_age').val();
-        $('#year_add_name').val();
-        $('#year_add_modal').css('display','none');
+        $('#coupon_add_id').val();
+        $('#coupon_add_amount').val();
+        $('#coupon_add_strat').val();
+        $('#coupon_add_end').val();
+        $('#coupon_add_condition').val();
+        $('#coupon_add_modal').modal('hide');
         swal({
             title: "添加成功！",
             text: "",
@@ -136,8 +174,6 @@ $(document).ready(function(){
             confirmButtonClass: "btn-success",
             confirmButtonText: "OK",
         });
-        $('#year_add_modal').modal('hide');
-        // $('#year_add_modal').css('display','none');
     });
 
     /**
@@ -151,9 +187,12 @@ $(document).ready(function(){
         EditRow = nRow;
         var aData = table.fnGetData(nRow);
 
-        $('#year_edit_age').val(aData[0]);
-        $('#year_edit_name').val(aData[1]);
-        $('#year_edit_modal').modal('show')
+        $('#coupon_edit_id').val(aData[0]);
+        $('#coupon_edit_amount').val(aData[1]);
+        $('#coupon_edit_strat').val(aData[2]);
+        $('#coupon_edit_end').val(aData[3]);
+        $('#coupon_edit_condition').val(aData[4]);
+        $('#coupon_edit_modal').modal('show')
     });
 
 
@@ -161,17 +200,19 @@ $(document).ready(function(){
         var nRow = EditRow;
         var delok = true;
         var params={};
-        params.yid = $('#year_edit_age').val();
-        params.name =$('#year_edit_name').val();
-
+        params.cid = $('#coupon_edit_id').val();
+        params.amount =$('#coupon_edit_amount').val();
+        params.strat = ($('#coupon_edit_strat').val());
+        params.end = ($('#coupon_edit_end').val());
+        params.condition = $("#coupon_edit_condition").val();
         // console.log(params.agesection);
         // console.log(params.name);
         // console.log(params.minage);
-        // console.log(params.maxage);
-
-        if(params.name == '' || params.yid==''){
+        console.log( parseInt(params.end)>= parseInt(params.strat));
+        console.log(JSON.stringify(params,null,4));
+        if(params.cid == '' || params.amount=='' || params.condition=='' || params.end <= params.strat){
             swal({
-                title: "年份不能为空！",
+                title: "折扣、使用条件、时间不能为空、结束时间不能小于开始时间！",
                 text: "",
                 type: "warning",
                 allowOutsideClick: true,
@@ -186,7 +227,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../year/update",       //注意路径
+            url: "../coupon/amountupdate",       //注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -214,12 +255,18 @@ $(document).ready(function(){
             return;
         }
 
-        table.fnUpdate($('#year_edit_age').val(), nRow, 0, false);
-        table.fnUpdate($('#year_edit_name').val(), nRow, 1, false);
+        table.fnUpdate($('#coupon_edit_id').val(), nRow, 0, false);
+        table.fnUpdate($('#coupon_edit_discount').val(), nRow, 1, false);
+        table.fnUpdate($('#coupon_edit_strat').val(), nRow, 2, false);
+        table.fnUpdate($('#coupon_edit_end').val(), nRow, 3, false);
+        table.fnUpdate($('#coupon_edit_condition').val(), nRow,4, false);
         table.fnDraw();
-        $('#year_edit_age').val();
-        $('#year_edit_name').val();
-        $('#year_edit_modal').modal('hide');
+        $('#coupon_edit_id').val();
+        $('#coupon_edit_discount').val();
+        $('#coupon_edit_strat').val();
+        $('#coupon_edit_end').val();
+        $('#coupon_edit_condition').val();
+        $('#coupon_edit_modal').modal('hide')
         swal({
             title: "保存成功！",
             text: "",
@@ -258,12 +305,12 @@ $(document).ready(function(){
             if (!isConfirm) return;
             var delok = true;
             var params={};
-            params.y_id = aData[0];
+            params.coid = aData[0];
 
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../year/delete",      //注意路径
+                url: "../coupon/amountdelete",      //注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {
