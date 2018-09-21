@@ -78,6 +78,7 @@ public class Coupon {
                 ", condition_use='" + condition_use + '\'' +
                 ", type='" + type + '\'' +
                 '}';
+
     }
 }
 

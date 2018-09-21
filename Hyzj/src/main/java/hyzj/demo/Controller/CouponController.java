@@ -73,4 +73,5 @@ public class CouponController {
     public R_data deleteAmount(String coid){
         return ResultUtils.success(couponService.deleteAmount(coid),ExceptionEnum.SUCCESS);
     }
+
 }

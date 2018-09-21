@@ -70,4 +70,5 @@ public interface CouponDao {
     //删除
     @Delete("DELETE FROM coupon WHERE coupon.Co_id = #{0}")
     boolean deleteAmount(@Param("0") String coid);
+
 }

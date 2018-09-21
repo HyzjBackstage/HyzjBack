@@ -3,7 +3,7 @@
  *
  * --金额管理--
  */
-$(document).ready(function(){
+$(document).ready(function () {
 
     var table = $("#age_table");
     table.dataTable({
@@ -18,7 +18,7 @@ $(document).ready(function(){
             [0, "asc"]
         ]
     });
-    var params={};
+    var params = {};
     $.ajax({
         async: false,
         type: "POST",
@@ -26,7 +26,7 @@ $(document).ready(function(){
         data: params,
         dataType: "json",
         success: function (data) {
-            console.log(JSON.stringify(data,null,4));
+            console.log(JSON.stringify(data, null, 4));
             for (var i = 0; i < data.data.length; i++) {
                 var itm = data.data[i];
 
@@ -55,22 +55,22 @@ $(document).ready(function(){
             });
         }
     });
-    $("#loading-coupon").css('display','none');
+    $("#loading-coupon").css('display', 'none');
 
 
     /**
      * 添加
      */
-    $("#btn_add_save").click(function(e){
+    $("#btn_add_save").click(function (e) {
         var delok = true;
-        var params={};
+        var params = {};
         params.cid = $('#coupon_add_id').val();
         params.amount = $('#coupon_add_amount').val();
         params.strat = ($('#coupon_add_strat').val());
         params.end = ($('#coupon_add_end').val());
         params.condition = $('#coupon_add_condition').val();
         // console.log(JSON.stringify(params,null,4));
-        if (params.cid < 999 || params.cid > 2000 ||  params.cid == "" ){
+        if (params.cid < 999 || params.cid > 2000 || params.cid == "") {
             swal({
                 title: "编号格式不对",
                 text: "",
@@ -83,7 +83,7 @@ $(document).ready(function(){
             });
             return;
         }
-        if (params.amount < 0 ){
+        if (params.amount < 0) {
             swal({
                 title: "金额书写格式有问题！",
                 text: "",
@@ -96,8 +96,8 @@ $(document).ready(function(){
             });
             return;
         }
-        if(params.cid == '' || params.amount == '' || params.strat == '' ||
-            params.end == '' || params.condition == ''){
+        if (params.cid == '' || params.amount == '' || params.strat == '' ||
+            params.end == '' || params.condition == '') {
             swal({
                 title: "编号、折扣、日期、使用条件不能为空！",
                 text: "",
@@ -179,7 +179,7 @@ $(document).ready(function(){
     /**
      * 编辑
      */
-    var  EditRow = -1;
+    var EditRow = -1;
     table.on('click', '.edit', function (e) {
         e.preventDefault();
 
@@ -196,21 +196,21 @@ $(document).ready(function(){
     });
 
 
-    $("#btn_edit_save").click(function(e){
+    $("#btn_edit_save").click(function (e) {
         var nRow = EditRow;
         var delok = true;
-        var params={};
+        var params = {};
         params.cid = $('#coupon_edit_id').val();
-        params.amount =$('#coupon_edit_amount').val();
+        params.amount = $('#coupon_edit_amount').val();
         params.strat = ($('#coupon_edit_strat').val());
         params.end = ($('#coupon_edit_end').val());
         params.condition = $("#coupon_edit_condition").val();
         // console.log(params.agesection);
         // console.log(params.name);
         // console.log(params.minage);
-        console.log( parseInt(params.end)>= parseInt(params.strat));
-        console.log(JSON.stringify(params,null,4));
-        if(params.cid == '' || params.amount=='' || params.condition=='' || params.end <= params.strat){
+        console.log(parseInt(params.end) >= parseInt(params.strat));
+        console.log(JSON.stringify(params, null, 4));
+        if (params.cid == '' || params.amount == '' || params.condition == '' || params.end <= params.strat) {
             swal({
                 title: "折扣、使用条件、时间不能为空、结束时间不能小于开始时间！",
                 text: "",
@@ -259,7 +259,7 @@ $(document).ready(function(){
         table.fnUpdate($('#coupon_edit_discount').val(), nRow, 1, false);
         table.fnUpdate($('#coupon_edit_strat').val(), nRow, 2, false);
         table.fnUpdate($('#coupon_edit_end').val(), nRow, 3, false);
-        table.fnUpdate($('#coupon_edit_condition').val(), nRow,4, false);
+        table.fnUpdate($('#coupon_edit_condition').val(), nRow, 4, false);
         table.fnDraw();
         $('#coupon_edit_id').val();
         $('#coupon_edit_discount').val();
@@ -304,7 +304,7 @@ $(document).ready(function(){
         }, function (isConfirm) {
             if (!isConfirm) return;
             var delok = true;
-            var params={};
+            var params = {};
             params.coid = aData[0];
 
             $.ajax({
@@ -324,7 +324,7 @@ $(document).ready(function(){
                     delok = false;
                 }
             });
-            if (!delok){
+            if (!delok) {
                 swal({
                     title: "删除失败！",
                     text: "",

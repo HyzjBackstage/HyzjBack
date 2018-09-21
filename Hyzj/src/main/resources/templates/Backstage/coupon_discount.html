@@ -7,14 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>折扣管理</title>
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <!-- Data Tables -->
     <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
     <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
+    <base target="_blank">
 
 </head>
 
@@ -26,7 +28,7 @@
                 <div class="ibox-title">
                     <h5>折扣</small></h5>
                     <div class="ibox-tools">
-                        <a  data-toggle="modal" data-target="#coupon_add_modal" >
+                        <a data-toggle="modal" data-target="#coupon_add_modal">
                             <i class="fa fa-plus"></i>&nbsp;添加
                         </a>
                     </div>
@@ -46,11 +48,11 @@
                         </thead>
                         <tbody></tbody>
                         <tfoot>
-                            <!--<tr>-->
-                                <!--<th>00</th>-->
-                                <!--<th>红酒</th>-->
-                                <!--<th>199</th>-->
-                            <!--</tr>-->
+                        <!--<tr>-->
+                        <!--<th>00</th>-->
+                        <!--<th>红酒</th>-->
+                        <!--<th>199</th>-->
+                        <!--</tr>-->
                         </tfoot>
                     </table>
 
@@ -64,7 +66,8 @@
         <div class="modal-dialog ">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
                     </button>
                     <i class="fa fa-laptop modal-icon"></i>
                     <h4 class="modal-title">折扣添加</h4>
@@ -79,17 +82,18 @@
                         <input type="number" id="coupon_add_discount" placeholder="请输入折扣" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label >开始时间</label>
-                        <input type="date" id="coupon_add_strat" class="form-control" placeholder="请输入启用时间"   value="" />
+                        <label>开始时间</label>
+                        <input type="date" id="coupon_add_strat" class="form-control" placeholder="请输入启用时间" value=""/>
                     </div>
                     <div class="form-group">
-                        <label >结束时间</label>
-                        <input type="date" id="coupon_add_end" class="form-control" placeholder="请输入结束时间" value="" />
+                        <label>结束时间</label>
+                        <input type="date" id="coupon_add_end" class="form-control" placeholder="请输入结束时间" value=""/>
                     </div>
 
                     <div class="form-group">
-                        <label >使用条件</label>
-                        <input type="text" id="coupon_add_condition" class="form-control" placeholder="请输入使用条件" value="" />
+                        <label>使用条件</label>
+                        <input type="text" id="coupon_add_condition" class="form-control" placeholder="请输入使用条件"
+                               value=""/>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -105,7 +109,8 @@
         <div class="modal-dialog ">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
                     </button>
                     <i class="fa fa-laptop modal-icon"></i>
                     <h4 class="modal-title">折扣修改信息修改</h4>
@@ -120,16 +125,17 @@
                         <input type="text" id="coupon_edit_discount" placeholder="请输入折扣" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label >开始时间</label>
-                        <input type="date" id="coupon_edit_strat" class="form-control" placeholder="请输入启用时间" />
+                        <label>开始时间</label>
+                        <input type="date" id="coupon_edit_strat" class="form-control" placeholder="请输入启用时间"/>
                     </div>
                     <div class="form-group">
-                        <label >结束时间</label>
-                        <input type="date" id="coupon_edit_end" class="form-control" placeholder="请输入结束时间"  />
+                        <label>结束时间</label>
+                        <input type="date" id="coupon_edit_end" class="form-control" placeholder="请输入结束时间"/>
                     </div>
                     <div class="form-group">
-                        <label >使用条件</label>
-                        <input type="text" id="coupon_edit_condition" class="form-control" placeholder="请输入使用条件" value="" />
+                        <label>使用条件</label>
+                        <input type="text" id="coupon_edit_condition" class="form-control" placeholder="请输入使用条件"
+                               value=""/>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -152,6 +158,7 @@
         <div class="sk-rect4"></div>
         <div class="sk-rect5"></div>
     </div>
+
 </div>
 
 <script src="js/jquery.min.js?v=2.1.4"></script>
