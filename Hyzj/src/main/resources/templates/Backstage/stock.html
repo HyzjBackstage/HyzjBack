@@ -25,15 +25,15 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>库存管理</small></h5>
-                    <div class="ibox-tools">
+                   <!-- <div class="ibox-tools">
                         <a  data-toggle="modal" data-target="#category_add_modal" >
                             <i class="fa fa-plus"></i>&nbsp;添加
                         </a>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="ibox-content">
 
-                    <table id="category_table" class="table table-striped table-bordered table-hover ">
+                    <table id="stock_table" class="table table-striped table-bordered table-hover ">
                         <thead>
                         <tr>
                             <th  >商品编号</th>
@@ -44,12 +44,12 @@
                         </thead>
                         <tbody></tbody>
                         <tfoot>
-                            <tr>
-                                <th>001</th>
-                                <th>白酒</th>
-                                <th>123</th>
-                                <th>修改</th>
-                            </tr>
+                            <!--<tr>-->
+                                <!--<th>001</th>-->
+                                <!--<th>白酒</th>-->
+                                <!--<th>123</th>-->
+                                <!--<th>修改</th>-->
+                            <!--</tr>-->
                         </tfoot>
                     </table>
 
@@ -58,37 +58,9 @@
         </div>
     </div>
 
-    <!--商品类别信息添加-->
-    <div class="modal inmodal" id="category_add_modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="modal-content animated bounceInRight">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
-                    </button>
-                    <i class="fa fa-laptop modal-icon"></i>
-                    <h4 class="modal-title">商品类别信息添加</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>类别编号</label>
-                        <input type="text" id="category_add_category" placeholder="请输入类别编号" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>商品名称</label>
-                        <input type="text" id="category_add_name" placeholder="请输入商品名称" class="form-control">
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                    <a id="btn_add_save" class="btn btn-primary">添加</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!--商品类别信息修改-->
-    <div class="modal inmodal" id="category_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal inmodal" id="stock_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content animated bounceInRight">
                 <div class="modal-header">
@@ -102,15 +74,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>商品编号</label>
-                        <input readonly type="text" id="category_edit_category" placeholder="" class="form-control">
+                        <input readonly type="text" id="stock_edit_cid" placeholder="" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>商品名称</label>
-                        <input type="text" id="category_edit_name" placeholder="请输入商品类别名称" class="form-control">
+                        <input readonly type="text" id="stock_edit_name" placeholder="请输入商品类别名称" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>商品数量</label>
-                        <input type="text" id="category_edit_number" placeholder="请输入商品数量" class="form-control">
+                        <input type="text" id="stock_edit_number" placeholder="请输入商品数量" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -125,7 +97,7 @@
 </div>
 
 
-<div class="spiner-example" id="loading-category" style="display: none">
+<div class="spiner-example" id="loading-stock" style="display: none">
     <div class="sk-spinner sk-spinner-wave">
         <div class="sk-rect1"></div>
         <div class="sk-rect2"></div>
@@ -144,7 +116,7 @@
 
 <script src="js/content.min.js?v=1.0.0"></script>
 <!--custom-js-->
-<!--<script src="custom-js/category.js"></script>-->
+<script src="custom-js/stock.js"></script>
 
 
 
