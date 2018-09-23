@@ -33,10 +33,10 @@ public class CouponService {
 
     //添加
     @Transactional
-    public boolean addDiscount(int cid, int discount, String strat, String end, String condition) {
+    public boolean addDiscount(int cid, String discount, String strat, String end, String condition) {
         try {
             System.out.println("12345:::" + condition);
-            return couponDao.addDiscount(String.valueOf(cid), String.valueOf(discount), strat, end, condition);
+            return couponDao.addDiscount(String.valueOf(cid), discount, strat, end, condition);
         } catch (Exception e) {
             throw new DataLinkException(e, ExceptionEnum.DATALINK_Exception);
 

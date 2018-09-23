@@ -2,7 +2,7 @@ package hyzj.demo.Model;
 
 public class Year {
     private String Y_id;
-    private String  yaer;
+    private String  year;
 
     public String getY_id() {
         return Y_id;
@@ -12,19 +12,19 @@ public class Year {
         Y_id = y_id;
     }
 
-    public String getYaer() {
-        return yaer;
+    public String getYear() {
+        return year;
     }
 
-    public void setYaer(String yaer) {
-        this.yaer = yaer;
+    public void setYear(String year) {
+        this.year = year;
     }
 
     @Override
     public String toString() {
         return "Year{" +
                 "Y_id='" + Y_id + '\'' +
-                ", yaer='" + yaer + '\'' +
+                ", year='" + year + '\'' +
                 '}';
     }
 }

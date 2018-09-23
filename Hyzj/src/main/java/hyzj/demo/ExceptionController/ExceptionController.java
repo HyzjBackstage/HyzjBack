@@ -2,6 +2,7 @@ package hyzj.demo.ExceptionController;
 
 
 import hyzj.demo.Exception.DataLinkException;
+import hyzj.demo.Exception.FileException;
 import hyzj.demo.Exception.NoAuthorityException;
 import hyzj.demo.Exception.NoLoginException;
 import hyzj.demo.ExceptionEnum.ExceptionEnum;
@@ -36,6 +37,10 @@ public class ExceptionController {
             DataLinkException dataLinkException = (DataLinkException) e;
             logger.info("报错原因={}",dataLinkException.getMessage());
             return ResultUtils.error(null,dataLinkException.getCode(),dataLinkException.getMessage());
+        }
+        if (e instanceof FileException){ FileException fileException = (FileException) e;
+            logger.info("报错原因={}",fileException.getMessage());
+            return ResultUtils.error(null,fileException.getCode(),fileException.getMessage());
         }
         else {
             logger.info("【系统异常】={}",e);

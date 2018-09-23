@@ -26,12 +26,12 @@ $(document).ready(function(){
         data: params,
         dataType: "json",
         success: function (data) {
-            // console.log(JSON.stringify(data.data,null,4));
+            console.log(JSON.stringify(data.data,null,4));
             for (var i = 0; i < data.data.length; i++) {
                 var itm = data.data[i];
                 table.fnAddData([
                     itm.y_id,
-                    itm.yaer,
+                    itm.year,
                     '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                     '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'

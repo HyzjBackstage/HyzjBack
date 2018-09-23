@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface YearDao {
 
-    @Select("SELECT * from `year` ORDER BY `year`.yaer")
+    @Select("SELECT * from `year` ORDER BY `year`.year")
     List<Year> loadYear();
 
 
@@ -17,6 +17,10 @@ public interface YearDao {
     @Delete("DELETE FROM `year` WHERE `year`.Y_id = #{Y_id}  ")
     boolean delete(@Param("Y_id") String y_id);
 
-    @Update("UPDATE  `year` SET `year`.yaer = #{name} WHERE `year`.Y_id = #{Y_id};")
+    @Update("UPDATE  `year` SET `year`.year = #{name} WHERE `year`.Y_id = #{Y_id};")
     boolean update(@Param("Y_id") String yid,@Param("name") String name);
+
+    //通过id 得到规格
+    @Select("SELECT * FROM `year` WHERE `year`.Y_id = #{0}")
+    Year selectByYearid(@Param("0") String yid);
 }

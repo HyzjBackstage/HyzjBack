@@ -5,14 +5,14 @@
 
     <meta charset="utf-8">
 
-    <title>镜片管理</title>
+    <title>商品入库</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
     <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="../../static/css/plugins/webuploader/webuploader.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/demo/webuploader-demo.min.css">
+    <link rel="stylesheet" type="text/css" href="css/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="css/demo/webuploader-demo.min.css">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
     <link href="plugins/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet">
@@ -20,6 +20,27 @@
     <link href="plugins/css/components.min.css" rel="stylesheet">
     <link href="plugins/css/plugins.min.css" rel="stylesheet">
     <link href="plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet">
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+
+
+    <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="css/plugins/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <link href="css/plugins/cropper/cropper.min.css" rel="stylesheet">
+    <link href="css/plugins/switchery/switchery.css" rel="stylesheet">
+    <link href="css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+    <link href="css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <link href="css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link href="css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css?v=4.0.0" rel="stylesheet"><base target="_blank">
+
+
 
     <style>
         .btn-default {
@@ -46,12 +67,13 @@
             left: 14px;
         }
     </style>
+    <script src="js/jquery.min.js"></script>
 
 </head>
 
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row" id="page_eyeglass_list">
+    <div class="row" id="page_commodity_list">
         <div class="col-sm-12 col-md-12 ">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -67,15 +89,17 @@
                     <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
                         <thead>
                         <tr>
-                            <th>名称</th>
-                            <th>品牌</th>
-                            <th>年份</th>
-                            <th >价格</th>
-                            <th data-hide="all">编号</th>
-                            <th data-hide="all">功能</th>
-                            <th data-hide="all">设计样式</th>
+                            <th>商品编号</th>
+                            <th>商名</th>
+                            <th>库存</th>
+                            <th>进价</th>
+                            <th>售价</th>
+                            <th>保质期</th>
+                            <th data-hide="all">生产日期</th>
+                            <th data-hide="all">规格</th>
                             <th data-hide="all">图片</th>
-                            <th data-hide="all">镜片详情</th>
+                            <th data-hide="all">添加时间</th>
+
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -98,11 +122,11 @@
     </div>
 
 
-    <div class="row" id="page_eyeglass_add"  style="display: none;">
+    <div class="row" id="page_commodity_add"  style="display: none;">
         <div class="col-sm-12 col-md-12 ">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5 id="eyeglass_title">镜片信息添加</h5>
+                    <h5 id="commodity_title">商品信息添加</h5>
                     <div class="ibox-tools">
 
                         <a  id="btn-back-a">
@@ -113,60 +137,82 @@
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="eyeglass_add">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">编号：</label>
+                            <label class="col-sm-3 control-label">商品编号：</label>
                             <div class="col-sm-8">
-                                <input id="add_eyeglass" name="eyeglass" class="form-control" type="text">
+                                <input id="commodity" name="commodity" class="form-control" type="text">
                                 <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">名称：</label>
+                            <label class="col-sm-3 control-label">商品名字：</label>
                             <div class="col-sm-8">
-                                <input id="add_name" name="add_name" class="form-control" type="text">
-                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">功能：</label>
-                            <div class="col-sm-8">
-                                <select id="add_efficacy" name="efficacy" class="form-control">
-                                    <option value="2">哈哈哈</option>
-                                    <option value="老花镜">老花镜</option>
-                                </select>
-                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">品牌：</label>
-                            <div class="col-sm-8">
-                                <select id="add_brand" name="brand" class="form-control">
-                                    <option value="2">白酒</option>
-                                    <option value="老花镜">红酒</option>
-                                </select>
+                                <input id="addname" name="addname" class="form-control" type="text">
                                 <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">价格：</label>
+                            <label class="col-sm-3 control-label">规格：</label>
                             <div class="col-sm-8">
-                                <input id="add_price" name="price" class="form-control" type="text">
+                                <select id="add_year" name="year" class="form-control">
+                                    <option value="2">38</option>
+                                    <option value="老花镜">48</option>
+                                </select>
                                 <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">库存：</label>
+                            <div class="col-sm-8">
+                                <input id="stock" name="stock" class="form-control" type="number">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">进价：</label>
+                            <div class="col-sm-8">
+                                <input id="price" name="price" class="form-control" type="number">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">售价：</label>
+                            <div class="col-sm-8">
+                                <input id="purchase_price" name="purchaseprice" class="form-control" type="number">
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">保质期：</label>
+                            <div class="col-sm-8">
+                                <select id="shelfDate" name="shelfDate" class="form-control">
+                                    <option value="1">一年</option>
+                                    <option value="2">两年</option>
+                                </select>
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">生产日期：</label>
+                            <div class="col-sm-8">
+                                <!--<span class="input-group-addon"><i class="fa fa-calendar"></i></span>-->
+                                <!--<input type="text" class="form-control" value="2014-11-11">-->
+                                <input type="date" class="form-control"  id="productionDate" name="productionDate" value="" />
+                            </div>
+                        </div>
+                       <!-- <div class="form-group">
                             <label class="col-sm-3 control-label">酒图片：</label>
                             <div class="col-sm-8">
                                 <div class="col-sm-12" id="atts_list">
-                                    <!--<div class="col-sm-12">
+                                    &lt;!&ndash;<div class="col-sm-12">
                                         <div class="col-sm-8">
                                             <input name="fileName" value="1.png" readonly style="background-color: white;border: none;outline: none;" class="form-control" type="text">
                                         </div>
                                         <div class="col-sm-4" style="padding-top: 3px;" id="photo_remove_show">
                                             <a  style="float: right;"   class="file-deletes" ><i class="fa fa-times-circle"></i></a>
                                         </div>
-                                    </div>-->
+                                    </div>&ndash;&gt;
                                 </div>
                             </div>
                             <div class="col-sm-8  col-sm-offset-3">
@@ -190,11 +236,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-group">
                             <div class="col-sm-8 col-sm-offset-3">
-                            <label>酒详情：</label>
+                            <label>酒照片：</label>
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div  class="fileinput-new thumbnail" style="width: 96px; height: 96px;">
                                     <img id="edit_img" src="" alt="图片未上传"  />
@@ -225,7 +271,7 @@
 
 </div>
 
-<div class="spiner-example" id="loading-eyeglass" style="display: none">
+<div class="spiner-example" id="loading-CommodityStorage" style="display: none">
     <div class="sk-spinner sk-spinner-wave">
         <div class="sk-rect1"></div>
         <div class="sk-rect2"></div>
@@ -246,9 +292,10 @@
 <script src="js/plugins/footable/footable.all.min.js"></script>
 <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+<!--时间插件-->
 
 <!--js-->
-<script src="custom-js/eyeglass.js"></script>
+<script src="custom-js/commodity.js"></script>
 
 <script src="plugins/bootstrap-mutiselect/custom/components-bootstrap-multiselect.js"></script>
 
@@ -256,8 +303,10 @@
     var BASE_URL = 'js/plugins/webuploader';
 </script>
 <!--图片上传插件-->
-<script src="js/plugins/webuploader/webuploader.min.js"></script>
+<!--<script src="js/plugins/webuploader/webuploader.min.js"></script>-->
 <!--<script src="js/demo/webuploader-demo.min.js"></script>-->
+
+
 
 </body>
 

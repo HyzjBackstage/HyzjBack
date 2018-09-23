@@ -30,7 +30,7 @@ public class CouponController {
 
     @RequestMapping("/discountadd")
     @ResponseBody
-    public R_data addDiscount(int cid, int discount, String strat, String end, String condition) throws Exception {
+    public R_data addDiscount(int cid, String discount, String strat, String end, String condition) throws Exception {
 //        System.out.println("cid:"+cid+"--"+"discount:"+discount+"--"+"strat:"+strat+"--"+"end:"+end+"condition:"+condition);
         return ResultUtils.success(couponService.addDiscount(cid, discount, strat, end, condition), ExceptionEnum.SUCCESS);
     }

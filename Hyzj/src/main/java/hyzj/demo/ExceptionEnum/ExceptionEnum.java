@@ -7,6 +7,7 @@ public enum ExceptionEnum {
     UNKNOW_Exception(-1,"未知错误"),
     DATALINK_Exception(500,"数据库连接错误"),
     SUCCESS(200,"成功！"),
+    FileException(300,"文件处理失败"),
     ;
 
     private Integer code;
