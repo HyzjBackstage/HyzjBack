@@ -1,10 +1,7 @@
 package hyzj.demo.ExceptionController;
 
 
-import hyzj.demo.Exception.DataLinkException;
-import hyzj.demo.Exception.FileException;
-import hyzj.demo.Exception.NoAuthorityException;
-import hyzj.demo.Exception.NoLoginException;
+import hyzj.demo.Exception.*;
 import hyzj.demo.ExceptionEnum.ExceptionEnum;
 import hyzj.demo.RsultModel.R_data;
 import hyzj.demo.Utils.ResultUtils;
@@ -41,6 +38,10 @@ public class ExceptionController {
         if (e instanceof FileException){ FileException fileException = (FileException) e;
             logger.info("报错原因={}",fileException.getMessage());
             return ResultUtils.error(null,fileException.getCode(),fileException.getMessage());
+        }
+        if (e instanceof NoUserException){ NoUserException noUserException = (NoUserException) e;
+            logger.info("报错原因={}",noUserException.getMessage());
+            return ResultUtils.error(null,noUserException.getCode(),noUserException.getMessage());
         }
         else {
             logger.info("【系统异常】={}",e);

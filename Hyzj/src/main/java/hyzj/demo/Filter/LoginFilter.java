@@ -5,10 +5,12 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.URLDecoder;
 
 @Aspect
 @Component
@@ -26,19 +28,27 @@ public class LoginFilter implements Filter {
         String requestURI = req.getServletPath();
         System.out.println("requestURI=" + requestURI);
         boolean ss = requestURI.contains("**/index**");
-        System.out.println("8082:"+ss);
+        System.out.println("8080:"+ss);
         //访问除login.jsp（登录页面）和验证码servlet之外的jsp/servlet都要进行验证
         if (    requestURI.contains("/")
                 && !requestURI.contains("login.html")
-                && "/index".contains(requestURI)
+                && "/index.html".contains(requestURI)
                 ) {
-            HttpSession session = req.getSession();
-            //判断session中是否有用户信息，如果没有则重定向到登录页面
-            if ( (session == null || session.getAttribute("admin") == null ) ) {
-                res.sendRedirect( "login.html");
+            //判断cookies中是否有用户信息，如果没有则重定向到登录页面
+            String WXID = "" ;
+            Cookie[] cookies = req.getCookies();
+
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("WXID")) {
+                    WXID=cookie.getValue();
+                }
+            }
+            System.out.println("wxid:"+WXID);
+            if ( WXID == null || WXID.equals("") ) {
+                res.sendRedirect( "logins.html");
                 return;
             }
-            return;
+
         }
         //继续访问其他资源
         chain.doFilter(req, res);

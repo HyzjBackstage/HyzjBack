@@ -8,6 +8,7 @@ public enum ExceptionEnum {
     DATALINK_Exception(500,"数据库连接错误"),
     SUCCESS(200,"成功！"),
     FileException(300,"文件处理失败"),
+    NOUSER(102,"没有该用户！");
     ;
 
     private Integer code;
