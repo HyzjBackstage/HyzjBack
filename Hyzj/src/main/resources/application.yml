@@ -19,8 +19,7 @@ spring:
     cache: false
     prefix: classpath:/templates/Backstage/
     suffix: .html
-    mode: HTML5
-#  mvc:
-#    static-path-pattern: /**
+
   resources:
-    static-locations: classpath:/static/,file:${web.upload=path}
+    static-locations: classpath:/static/,file:${web.upload=path},classpath:/templates/Backstage/
+

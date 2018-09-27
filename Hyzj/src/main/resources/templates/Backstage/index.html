@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8"/>
@@ -20,6 +20,11 @@
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
+    <script type="text/javascript" th:inline="javascript">
+        if ([[session.UserVo.user]] == null){
+            window.location.href="logins.html";
+        }
+    </script>
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -35,8 +40,8 @@
                             <span><img alt="image" class="img-circle" src="img/profile_small.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
-                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                               <span class="block m-t-xs"><strong class="font-bold" th:text="${session.UserVo.user.name}" style="font-size: 15px" >未知</strong></span>
+                                <span class="text-muted text-xs block" th:text="${session.UserVo.role.name}" style="font-size: 14px" > 未知<b class="caret"></b></span>
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -56,110 +61,101 @@
                         <div class="logo-element">H+
                         </div>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-home"></i>
-                            <span class="nav-label">系统管理</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a class="J_menuItem" href="role.html" data-index="0">角色管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="menu.html">菜单管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="user.html">用户管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="role_menu.html">角色授权</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="user_role.html">用户授权</a>
-                            </li>
-                        </ul>
+                    <!--<li>-->
+                        <!--<a href="#">-->
+                            <!--<i class="fa fa-home"></i>-->
+                            <!--<span class="nav-label">系统管理</span>-->
+                            <!--<span class="fa arrow"></span>-->
+                        <!--</a>-->
+                        <!--<ul class="nav nav-second-level">-->
 
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-th"></i>
-                            <span class="nav-label">商品管理</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                            <a class="J_menuItem" href="years.html">规格管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="CommodityStorage.html">商品入库</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="stock.html">库存管理</a>
-                            </li>
 
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-align-right"></i>
-                            <span class="nav-label">分类管理</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                            <a class="J_menuItem" href="category.html">类别管理</a>
-                            </li>
+                            <!--<li>-->
+                                <!--<a class="J_menuItem" href="user.html">用户管理</a>-->
+                            <!--</li>-->
 
-                            <li>
-                                <a class="J_menuItem" href="brand.html">品牌管理</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-list-alt"></i>
-                            <span class="nav-label">订单查询</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a class="J_menuItem" href="order.html">订单查询</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="express-search.html">快递查询</a>
-                            </li>
+                        <!--</ul>-->
 
-                        </ul>
-                    </li>
-                    <li>
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">-->
+                            <!--<i class="glyphicon glyphicon-th"></i>-->
+                            <!--<span class="nav-label">商品管理</span>-->
+                            <!--<span class="fa arrow"></span>-->
+                        <!--</a>-->
+                        <!--<ul class="nav nav-second-level">-->
+                            <!--<li>-->
+                            <!--<a class="J_menuItem" href="years.html">规格管理</a>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a class="J_menuItem" href="CommodityStorage.html">商品入库</a>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a class="J_menuItem" href="stock.html">库存管理</a>-->
+                            <!--</li>-->
+
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <!--&lt;!&ndash;<li>-->
+                        <!--<a href="#">-->
+                            <!--<i class="glyphicon glyphicon-align-right"></i>-->
+                            <!--<span class="nav-label">分类管理</span>-->
+                            <!--<span class="fa arrow"></span>-->
+                        <!--</a>-->
+                        <!--<ul class="nav nav-second-level">-->
+                            <!--<li>-->
+                            <!--<a class="J_menuItem" href="category.html">类别管理</a>-->
+                            <!--</li>-->
+
+                            <!--<li>-->
+                                <!--<a class="J_menuItem" href="brand.html">品牌管理</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</li>&ndash;&gt;-->
+                    <!--<li>-->
+                        <!--<a href="#">-->
+                            <!--<i class="glyphicon glyphicon-list-alt"></i>-->
+                            <!--<span class="nav-label">订单查询</span>-->
+                            <!--<span class="fa arrow"></span>-->
+                        <!--</a>-->
+                        <!--<ul class="nav nav-second-level">-->
+                            <!--<li>-->
+                                <!--<a class="J_menuItem" href="order.html">订单查询</a>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a class="J_menuItem" href="express-search.html">快递查询</a>-->
+                            <!--</li>-->
+
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">-->
+                            <!--<i class="glyphicon glyphicon-stats"></i>-->
+                            <!--<span class="nav-label">订单处理</span>-->
+                            <!--<span class="fa arrow"></span>-->
+                        <!--</a>-->
+                        <!--<ul class="nav nav-second-level">-->
+                            <!--<li>-->
+                                <!--<a class="J_menuItem" href="order-deal.html">订单加工</a>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a class="J_menuItem" href="express.html">快递下单</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <li th:each="menuvo : ${session.UserVo.menuVos}">
                         <a href="#">
-                            <i class="glyphicon glyphicon-stats"></i>
-                            <span class="nav-label">订单处理</span>
+                            <i th:class="${menuvo.menu.css}"></i>
+                            <span class="nav-label" th:text="${menuvo.menu.title}">优惠管理</span>
                             <span class="fa arrow"></span>
                         </a>
-                        <ul class="nav nav-second-level">
+                        <ul class="nav nav-second-level" th:each="Menus : ${menuvo.menus}" >
                             <li>
-                                <a class="J_menuItem" href="order-deal.html">订单加工</a>
+                                <a class="J_menuItem" th:href="@{${Menus.url}}" th:text="${Menus.title}">折扣管理</a>
                             </li>
-                            <li>
-                                <a class="J_menuItem" href="express.html">快递下单</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="glyphicon glyphicon-fire"></i>
-                            <span class="nav-label">优惠管理</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a class="J_menuItem" href="coupon_discount.html">折扣管理</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="coupon_amount.html">优惠管理</a>
-                            </li>
+                            <!--<li>-->
+                                <!--<a class="J_menuItem" href="coupon_amount.html">优惠管理</a>-->
+                            <!--</li>-->
                             <!--<li>-->
                                 <!--<a href="#"> <span class="fa arrow"></span></a>-->
                                 <!--<ul class="nav nav-third-level">-->
@@ -184,6 +180,7 @@
                             <!--</li>-->
                         </ul>
                     </li>
+
                     <li style="display: none">
                         <a href="#">
                             <i class="glyphicon glyphicon-share-alt"></i>
@@ -754,6 +751,17 @@
     <script src="js/hplus.min.js?v=4.0.0"></script>
     <script type="text/javascript" src="js/contabs.min.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
+<script type="text/javascript" >
+    $(document).ready(function () {
+
+        //
+        //     var user1="<%=request.getAttribute('user')%>"; //这种方法取出来是user是String类型
+        //     var user2=${user}; //这种方法取出来是user是String类型 
+        // alert("user1"+user1);
+        // alert("user2"+user2);
+
+    })
+</script>
 </body>
 
 </html>
