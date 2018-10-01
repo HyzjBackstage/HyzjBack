@@ -71,4 +71,11 @@ public interface CouponDao {
     @Delete("DELETE FROM coupon WHERE coupon.Co_id = #{0}")
     boolean deleteAmount(@Param("0") String coid);
 
+    /**
+     * 通过co_id获取优惠券信息
+     * @param Co_id
+     * @return
+     */
+    @Select("select * from coupon where Co_id = #{0}")
+    Coupon loadById(@Param("0") String Co_id);
 }

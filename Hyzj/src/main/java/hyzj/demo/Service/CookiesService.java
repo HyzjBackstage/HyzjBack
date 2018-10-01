@@ -11,15 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 public class CookiesService {
 
     public boolean saveCookies(String WXid,  HttpServletResponse response, HttpServletRequest request) {
-
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("WXID")) {
-               cookie.setMaxAge(0);
-            }
-        }
-
         try{
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null){
+
+            Cookie WXIDCookie = new Cookie("WXID", WXid);
+            WXIDCookie.setMaxAge(86400);//设置cookie生存时间：
+            response.addCookie(WXIDCookie);// 添加cookie：
+        }
+        else {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("WXID")) {
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                }
+            }
+
+        }
             Cookie WXIDCookie = new Cookie("WXID", WXid);
             WXIDCookie.setMaxAge(86400);//设置cookie生存时间：
             response.addCookie(WXIDCookie);// 添加cookie：
@@ -27,6 +35,18 @@ public class CookiesService {
             return false;
 
         }
+        return true;
+    }
+
+    public boolean clear( HttpServletResponse response, HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("WXID")) {
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+        }
+
         return true;
     }
 }

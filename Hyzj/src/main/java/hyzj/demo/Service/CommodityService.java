@@ -105,7 +105,7 @@ public class CommodityService {
                 throw  new FileException(ExceptionEnum.FileException);
             }
 
-            String detailphoto = path+detailfileName;
+            String detailphoto = detailfileName;
             //获取当前时间
             Date now = new Date();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

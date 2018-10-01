@@ -1,9 +1,12 @@
 package hyzj.demo.Controller;
 
 import hyzj.demo.Service.CookiesService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
@@ -17,25 +20,33 @@ public class CookiesController {
     @Autowired
     CookiesService cookiesService;
 
-    @RequestMapping("saveCookies")
+    @RequestMapping("save")
     @ResponseBody
-    public boolean saveCookies(String WXid,  HttpServletResponse response, HttpServletRequest request){
-        String WXID = "xs02";
+    public boolean saveCookies(@RequestParam("wxid") String WXid, HttpServletResponse response, HttpServletRequest request) {
 
-        return cookiesService.saveCookies(WXID,response,request);
+//        String WXID = "xs02";
+        System.out.println(WXid);
+        return cookiesService.saveCookies(WXid, response, request);
     }
-    @RequestMapping("/print")
+
+    @RequestMapping("print")
     @ResponseBody
-    public String print( HttpServletResponse response, HttpServletRequest request){
+    public String print(HttpServletResponse response, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
-        String ss= "";
+        String ss = "";
         for (Cookie cookie : cookies) {
             System.out.println(cookie.toString());
             if (cookie.getName().equals("WXID")) {
-                ss=cookie.getValue();
+                ss = cookie.getValue();
             }
         }
         return ss;
+    }
+
+    @RequestMapping("clear")
+    @ResponseBody
+    public boolean clearCookies(HttpServletResponse response, HttpServletRequest request) {
+        return cookiesService.clear(response, request);
     }
 
 }

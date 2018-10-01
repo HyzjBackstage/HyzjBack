@@ -31,13 +31,16 @@ public class LoginFilter implements Filter {
         System.out.println("8080:"+ss);
         //访问除login.jsp（登录页面）和验证码servlet之外的jsp/servlet都要进行验证
         if (    requestURI.contains("/")
-                && !requestURI.contains("login.html")
+                && !requestURI.contains("404.html")
                 && "/index.html".contains(requestURI)
                 ) {
             //判断cookies中是否有用户信息，如果没有则重定向到登录页面
             String WXID = "" ;
             Cookie[] cookies = req.getCookies();
-
+            if (cookies == null){
+                res.sendRedirect( "404.html");
+                return;
+            }
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("WXID")) {
                     WXID=cookie.getValue();
@@ -45,9 +48,10 @@ public class LoginFilter implements Filter {
             }
             System.out.println("wxid:"+WXID);
             if ( WXID == null || WXID.equals("") ) {
-                res.sendRedirect( "logins.html");
+                res.sendRedirect( "404.html");
                 return;
             }
+
 
         }
         //继续访问其他资源
