@@ -18,6 +18,7 @@ $(document).ready(function() {
                     title: "账号和密码不能为空！",
                     text: "",
                     type: "warning",
+                    
                     allowOutsideClick: true,
                     showConfirmButton: true,
                     showCancelButton: false,
