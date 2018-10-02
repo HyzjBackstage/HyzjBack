@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("malluser")
 public class MallUserController {
 
     @Autowired
@@ -38,8 +38,8 @@ public class MallUserController {
      */
     @RequestMapping("/add")
     @ResponseBody
-    public boolean Add(String m_id,String r_id,String name,String id_card,String phone){
-        return mallUserService.Add(m_id,r_id,name,id_card,phone);
+    public boolean Add(String m_id,String r_id,String name,String id_card,String phone,String password){
+        return mallUserService.Add(m_id,r_id,name,id_card,phone,password);
     }
 
     /**
@@ -53,8 +53,8 @@ public class MallUserController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public boolean Update(String m_id,String name,String id_card,String phone,String r_id){
-        return mallUserService.Update(m_id,name,id_card,phone,r_id);
+    public boolean Update(String m_id,String name,String id_card,String phone,String r_id,String password){
+        return mallUserService.Update(m_id,name,id_card,phone,r_id,password);
     }
 
     /**

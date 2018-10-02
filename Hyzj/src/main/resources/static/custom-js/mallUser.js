@@ -10,7 +10,7 @@ $(document).ready(function () {
     table.dataTable({
         "columnDefs": [{
             'orderable':false,
-            'targets':[5]
+            'targets':[6]
         }],
         "order":[
             [0,"acs"]
@@ -52,7 +52,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "post",
-        url: "../user/list",
+        url: "../malluser/list",
         data: param,
         dataType: "json",
         success: function(data){
@@ -68,6 +68,7 @@ $(document).ready(function () {
                     itm.name,
                     itm.phone,
                     itm.id_card,
+                    itm.password,
                     numRole,
                     '<a class="edit"><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
@@ -90,7 +91,7 @@ $(document).ready(function () {
 
     })
 
-    $("#loading-user").css('display','none')
+    $("#loading-user").css('display','none');
 
 
     /**
@@ -104,13 +105,14 @@ $(document).ready(function () {
         params.phone = $('#user_add_phone').val();
         params.id_card = $('#user_add_ID').val();
         params.r_id = $('#user_add_role').val();
+        params.password = $('#user_add_password').val();
 
         var numRole = numToRole($('#user_add_role').val());
 
         console.log($('#user_add_role').val());
         console.log(numRole);
 
-        if(params.M_id == '' || params.name == '' ||param.ID_card == '' || param.phone=='' || param.r_id==''){
+        if(params.M_id == '' || params.name == '' ||param.ID_card == '' || param.phone=='' || param.r_id==''|| params.password ==''){
             swal({
                 title: "不能为空！",
                 text: "",
@@ -127,7 +129,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../user/add",
+            url: "../malluser/add",
             data: params,
             dataType: "json",
             success:function(data){
@@ -201,9 +203,13 @@ $(document).ready(function () {
         $('#user_edit_name').val(aData[1]);
         $('#user_edit_phone').val(aData[2]);
         $('#user_edit_ID').val(aData[3]);
+        $('#user_edit_password').val(aData[4]);
+        console.log("roleToNum(aData[5]):"+roleToNum(aData[5]));
+        // $('#user_edit_role').html(roleToNum(aData[5]));
+
 
         console.log(aData[4]);
-        var roleNum = roleToNum(aData[4]);
+        var roleNum = roleToNum(aData[5]);
 
         $('#user_edit_role').val(roleNum);
         $('#user_edit_modal').modal('show')
@@ -220,8 +226,8 @@ $(document).ready(function () {
         param.phone = $("#user_edit_phone").val();
         param.id_card = $("#user_edit_ID").val();
         param.r_id = $("#user_edit_role").val();
-
-        if(param.m_id == '' || param.name==''||param.id_card==''||param.phone==''||param.r_id==''){
+        param.password = $('#user_edit_password').val();
+        if(param.m_id == '' || param.name==''||param.id_card==''||param.phone==''||param.r_id==''|| param.password ==''){
             swal({
                 title: "不能为空！",
                 text: "",
@@ -238,7 +244,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../user/update",       //注意路径
+            url: "../malluser/update",       //注意路径
             data: param,
             dataType: "json",
             success: function (data) {
@@ -270,7 +276,9 @@ $(document).ready(function () {
         table.fnUpdate($('#user_edit_name').val(), nRow, 1, false);
         table.fnUpdate($('#user_edit_phone').val(), nRow, 2, false);
         table.fnUpdate($('#user_edit_ID').val(), nRow, 3, false);
-        table.fnUpdate(numRole2, nRow, 4, false);
+        table.fnUpdate($('#user_edit_password').val(), nRow, 4, false);
+
+        table.fnUpdate(numRole2, nRow, 5, false);
         table.fnDraw();
         $("#user_edit_user").val('');
         $('#user_edit_name').val('');
@@ -320,7 +328,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../user/delete",      //注意路径
+                url: "../malluser/delete",      //注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {

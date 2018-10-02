@@ -32,8 +32,8 @@ public interface MallUserDao {
      * @param r_id
      * @return
      */
-    @Update("update mall_user set name = #{1},ID_card = #{2},phone = #{3},r_id = #{4} where M_id = #{0}")
-    boolean Update(@Param("0") String m_id, @Param("1") String name, @Param("2") String id_card, @Param("3") String phone, @Param("4") String r_id);
+    @Update("update mall_user set name = #{1},ID_card = #{2},phone = #{3},r_id = #{4},password = #{5} where M_id = #{0}")
+    boolean Update(@Param("0") String m_id, @Param("1") String name, @Param("2") String id_card, @Param("3") String phone, @Param("4") String r_id,@Param("5") String password);
 
     /**
      * 删除用户
@@ -52,6 +52,6 @@ public interface MallUserDao {
      * @param phone
      * @return
      */
-    @Insert("insert into mall_user(M_id,R_id,name,ID_card,phone,nickname) values(#{0},#{1},#{2},#{3},#{4},#{4})")
-    boolean Add(@Param("0") String m_id, @Param("1") String r_id, @Param("2") String name, @Param("3") String id_card, @Param("4") String phone);
+    @Insert("insert into mall_user(M_id,R_id,name,ID_card,phone,nickname,password) values(#{0},#{1},#{2},#{3},#{4},#{4},#{5})")
+    boolean Add(@Param("0") String m_id, @Param("1") String r_id, @Param("2") String name, @Param("3") String id_card, @Param("4") String phone,@Param("5") String password);
 }

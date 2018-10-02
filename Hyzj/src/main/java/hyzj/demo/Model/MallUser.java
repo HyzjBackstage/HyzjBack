@@ -9,6 +9,7 @@ public class MallUser {
     private String ID_card;
     private String name;
     private String WX_id; // 登录标识
+    private String password;
 
     public String getM_id() {
         return M_id;
@@ -74,6 +75,14 @@ public class MallUser {
         this.WX_id = WX_id;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "MallUser{" +
@@ -85,6 +94,7 @@ public class MallUser {
                 ", ID_card='" + ID_card + '\'' +
                 ", name='" + name + '\'' +
                 ", WX_id='" + WX_id + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

@@ -4,6 +4,7 @@ import hyzj.demo.Dao.MallUserDao;
 import hyzj.demo.Exception.DataLinkException;
 import hyzj.demo.Model.MallUser;
 import org.springframework.stereotype.Service;
+import sun.security.util.Password;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -33,9 +34,9 @@ public class MallUserService {
      * @param r_id
      * @return
      */
-    public boolean Update(String m_id, String name, String id_card, String phone, String r_id) {
+    public boolean Update(String m_id, String name, String id_card, String phone, String r_id,String password) {
         System.out.println("m_id:"+m_id+"id_card:"+id_card+"phone:"+phone+"r_id:"+r_id);
-        return mallUserDao.Update(m_id,name,id_card,phone,r_id);
+        return mallUserDao.Update(m_id,name,id_card,phone,r_id,password);
     }
 
     /**
@@ -54,6 +55,7 @@ public class MallUserService {
 
     /**
      * 添加用户
+     *
      * @param m_id
      * @param r_id
      * @param name
@@ -61,7 +63,7 @@ public class MallUserService {
      * @param phone
      * @return
      */
-    public boolean Add(String m_id, String r_id, String name, String id_card, String phone) {
-        return mallUserDao.Add(m_id,r_id,name,id_card,phone);
+    public boolean Add(String m_id, String r_id, String name, String id_card, String phone,String password) {
+        return mallUserDao.Add(m_id,r_id,name,id_card,phone,password);
     }
 }
