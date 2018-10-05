@@ -16,8 +16,23 @@ $(document).ready(function () {
             [0,"acs"]
         ]
     })
-
-
+    //手机格式判断
+    $("#user_add_phone").on('input', function (e) {
+        var pattern = /^1[34578]\d{9}$/;
+        var b = pattern.test($("#user_add_phone").val());
+        if (b == false) {
+            $("#tip").text("手机格式错误");
+            $("#tip").show();
+            $("#btn_add_save").attr('disabled', true);
+            $("#btn_add_save").css("background-color", "#ececec");
+        }
+        if (b == true) {
+            // console.log("123");
+            $("#tip").hide();
+            $("#btn_add_save").attr('disabled', false);
+            $("#btn_add_save").css("background-color", "#18a689");
+        }
+    });
     /**
      * 角色选择，int转成String
      * @param role
@@ -100,7 +115,7 @@ $(document).ready(function () {
     $("#btn_add_save").click(function (e) {
         var delok = true;
         var params = {};
-        params.m_id = $('#user_add_user').val();
+        // params.m_id = $('#user_add_user').val();
         params.name = $('#user_add_name').val();
         params.phone = $('#user_add_phone').val();
         params.id_card = $('#user_add_ID').val();
@@ -112,7 +127,7 @@ $(document).ready(function () {
         console.log($('#user_add_role').val());
         console.log(numRole);
 
-        if(params.M_id == '' || params.name == '' ||param.ID_card == '' || param.phone=='' || param.r_id==''|| params.password ==''){
+        if( params.name == '' ||param.ID_card == '' || param.phone=='' || param.r_id==''|| params.password ==''){
             swal({
                 title: "不能为空！",
                 text: "",
@@ -133,11 +148,26 @@ $(document).ready(function () {
             data: params,
             dataType: "json",
             success:function(data){
-                if (data.data){
+                var item = data.data;
+
+                if (item == null){
+                    delok = false;
                     return;
-                }else {
-                    delok:false;
-                }
+                } else {
+                    var numRole = numToRole(item.r_id);
+                    delok = true;
+                    table.fnAddData([
+                    item.m_id,
+                    item.name,
+                    item.phone,
+                    item.id_card,
+                    item.password,
+                    numRole,
+                    '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+                    '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
+                ]);
+            }
             },
             error:function(data){
                 delok = false;
@@ -156,17 +186,6 @@ $(document).ready(function () {
             });
             return;
         }
-        table.fnAddData([
-            $("#user_add_user").val(),
-            $('#user_add_name').val(),
-            $('#user_add_phone').val(),
-            $('#user_add_ID').val(),
-            numRole,
-            '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>' +
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
-            '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
-        ]);
-
         table.fnDraw();
         $("#user_add_user").val(),
         $('#user_add_name').val(),
@@ -332,7 +351,8 @@ $(document).ready(function () {
                 data: params,
                 dataType: "json",
                 success: function (data) {
-                    if (data) {
+                    if (data.data) {
+                        console.log(data.data);
                         return;
                     } else {
                         delok = false;
