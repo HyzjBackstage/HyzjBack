@@ -146,12 +146,12 @@
                     <li th:each="menuvo : ${session.UserVo.menuVos}">
                         <a href="#">
                             <i th:class="${menuvo.menu.css}"></i>
-                            <span class="nav-label" th:text="${menuvo.menu.title}">优惠管理</span>
+                            <span class="nav-label" th:text="${menuvo.menu.title}"></span>
                             <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level" th:each="Menus : ${menuvo.menus}" >
                             <li>
-                                <a class="J_menuItem" th:href="@{${Menus.url}}" th:text="${Menus.title}">折扣管理</a>
+                                <a class="J_menuItem" th:href="@{${Menus.url}}" th:text="${Menus.title}"></a>
                             </li>
                             <!--<li>-->
                                 <!--<a class="J_menuItem" href="coupon_amount.html">优惠管理</a>-->

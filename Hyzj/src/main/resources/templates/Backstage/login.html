@@ -3,24 +3,32 @@
 <head>
     <meta charset="utf-8"/>
     <title>登录</title>
-    <meta name="author" content="DeathGhost" />
+    <meta name="author" content="DeathGhost"/>
     <!--
     <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     -->
     <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/login/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/login/style.css"/>
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/style.min.css?v=4.0.0" rel="stylesheet">
-
+    <script src="js/jquery.min.js?v=2.1.4"></script>
     <style>
-        body{height:100%;background:#16a085;overflow:hidden;}
-        canvas{z-index:-1;position:absolute;}
+        body {
+            height: 100%;
+            background: #16a085;
+            overflow: hidden;
+        }
+
+        canvas {
+            z-index: -1;
+            position: absolute;
+        }
     </style>
+
 
 </head>
 <body>
-
 <dl class="admin_login">
     <dt style="color: white;">
         <strong>合一珍酒管理平台</strong>
@@ -28,6 +36,9 @@
     </dt>
     <dd class="user_icon" style="margin-top: 15px;">
         <input type="text" id="phone" name="username" placeholder="输入手机号" class="login_txtbx"/>
+    </dd>
+    <dd style="margin-top: 15px; display: none;" id="format_phone" >
+        <input name="username" id="tip" readonly class="login_txtbx" style="background: #fed918bd;color: #f7f2f2;">
     </dd>
     <dd class="pwd_icon" style="margin-top: 15px;">
         <input type="password" id="pwd" name="password" placeholder="输入密码" class="login_txtbx"/>
@@ -37,11 +48,13 @@
         <input style="font-weight: bold;" id="btn_login" type="button" value="立  即  登  录" class="submit_btn"/>
     </dd>
     <dd style="color: white;">
-        <p>  2018-2019 </p>
+        <p> 2018-2019 </p>
         <p> B2-20080224-1</p>
     </dd>
 </dl>
-<div class="spiner-example" style="display: none;" id="loding-login">
+
+
+<div class="spiner-example"  id="loding-login">
     <div class="sk-spinner sk-spinner-wave">
         <div class="sk-rect1" style="background-color: white;"></div>
         <div class="sk-rect2" style="background-color: white;"></div>
@@ -50,15 +63,16 @@
         <div class="sk-rect5" style="background-color: white;"></div>
     </div>
 </div>
-<script src="js/jquery.min.js?v=2.1.4"></script>
+
 <script src="js/bootstrap.min.js?v=3.3.5"></script>
 <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="css/login/Particleground.js"></script>
 
-<script src="custom-js/login.js" ></script>
+<script src="custom-js/login.js"></script>
+
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('body').particleground({
             dotColor: '#5cbdaa',
             lineColor: '#5cbdaa'
@@ -66,7 +80,6 @@
 
     });
 </script>
-
 
 
 </body>
