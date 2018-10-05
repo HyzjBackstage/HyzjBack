@@ -1,8 +1,11 @@
 package hyzj.demo.Controller;
 
 
+import hyzj.demo.ExceptionEnum.ExceptionEnum;
 import hyzj.demo.Model.MallUser;
+import hyzj.demo.RsultModel.R_data;
 import hyzj.demo.Service.MallUserService;
+import hyzj.demo.Utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +32,6 @@ public class MallUserController {
 
     /**
      * 添加用户
-     * @param m_id
      * @param r_id
      * @param name
      * @param id_card
@@ -38,8 +40,12 @@ public class MallUserController {
      */
     @RequestMapping("/add")
     @ResponseBody
-    public boolean Add(String m_id,String r_id,String name,String id_card,String phone,String password){
-        return mallUserService.Add(m_id,r_id,name,id_card,phone,password);
+    public R_data Add(String r_id,String name,String id_card,String phone,String password){
+
+
+        return ResultUtils.success(mallUserService.Add(r_id,name,id_card,phone,password),ExceptionEnum.SUCCESS);
+
+
     }
 
     /**
@@ -64,9 +70,9 @@ public class MallUserController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public boolean Delete(String m_id){
+    public R_data Delete(String m_id){
         System.out.println("delete");
-        return mallUserService.Delete(m_id);
+        return ResultUtils.success(mallUserService.Delete(m_id),ExceptionEnum.SUCCESS) ;
     }
 
 }
