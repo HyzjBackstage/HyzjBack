@@ -32,23 +32,28 @@ public class LoginFilter implements Filter {
         //访问除login.jsp（登录页面）和验证码servlet之外的jsp/servlet都要进行验证
         if (    requestURI.contains("/")
                 && !requestURI.contains("404.html")
+                && !requestURI.contains("login.html")
                 && "/index.html".contains(requestURI)
                 ) {
             //判断cookies中是否有用户信息，如果没有则重定向到登录页面
             String WXID = "" ;
             Cookie[] cookies = req.getCookies();
-            if (cookies == null){
+            HttpSession session = req.getSession();
+            if (cookies == null && session.getAttribute("UserVo") == null ){
                 res.sendRedirect( "404.html");
                 return;
             }
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("WXID")) {
-                    WXID=cookie.getValue();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("WXID")) {
+                        WXID = cookie.getValue();
+                    }
                 }
             }
+
             System.out.println("wxid:"+WXID);
-            if ( WXID == null || WXID.equals("") ) {
-                res.sendRedirect( "404.html");
+            if ( WXID == null || WXID.equals("") && session.getAttribute("UserVo") == null) {
+                res.sendRedirect( "login.html");
                 return;
             }
 
