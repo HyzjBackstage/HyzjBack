@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 public interface UserDao {
 
-    @Select("select * from mall_user where WX_id = #{0} ")
+    @Select("select * from mall_user where M_id = #{0} ")
     MallUser loadById(@Param("0") String username);
 
 

@@ -80,4 +80,20 @@ public interface MallUserDao {
      */
     @Delete("delete from shopping_cart where SC_id = #{0}")
     boolean deleteCartBySid(@Param("0") String sc_id);
+
+    /**
+     * 获取不是项目的发起人和项目投资人
+     * @return
+     */
+    @Select("SELECT * FROM mall_user WHERE R_id > '2'")
+    List<MallUser> loadByRid();
+
+    /**
+     * 修改Rid
+     * @param rid
+     * @param mid
+     * @return
+     */
+    @Update("update mall_user set R_id = #{0} where M_id = #{1}")
+    boolean updateRid(@Param("0") String rid,@Param("1") String mid);
 }
