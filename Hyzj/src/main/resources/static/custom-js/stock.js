@@ -58,6 +58,7 @@ $(document).ready(function(){
     /**
      * 编辑
      */
+    var unmodifiedNumble;
     var  EditRow = -1;
     table.on('click', '.edit', function (e) {
         e.preventDefault();
@@ -69,6 +70,7 @@ $(document).ready(function(){
         $('#stock_edit_cid').val(aData[0]);
         $('#stock_edit_name').val(aData[1]);
         $('#stock_edit_number').val(aData[2]);
+        unmodifiedNumble = aData[2];
         $('#stock_edit_modal').modal('show')
     });
 
@@ -79,6 +81,8 @@ $(document).ready(function(){
         var params={};
         params.cid = $('#stock_edit_cid').val();
         params.stock =$('#stock_edit_number').val();
+        params.unmodifiedNumble = unmodifiedNumble;
+        // alert(JSON.stringify(params,null,4));
 
         if(params.cid == '' || params.stock == '' ){
             swal({
