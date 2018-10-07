@@ -39,18 +39,18 @@ public class UserService {
     @Transactional
     public UserVo login(HttpServletRequest request,HttpServletResponse response, HttpSession session) {
         try {
-            String WXID = "" ;
+            String MID = "" ;
             Cookie[] cookies = request.getCookies();
             for (Cookie cookie : cookies){
 
-                if (cookie.getName().equals("WXID")){
-                    WXID = cookie.getValue();
+                if (cookie.getName().equals("MID")){
+                    MID = cookie.getValue();
                 }
             }
 //            String WXID = "xs02";
-            System.out.println(WXID);
+            System.out.println(MID);
 
-            MallUser mallUser = userDao.loadById(WXID);
+            MallUser mallUser = userDao.loadById(MID);
             //用户不存在或者无效
             if (mallUser == null) {
                 throw  new NoUserException(ExceptionEnum.NOUSER);
@@ -92,7 +92,7 @@ public class UserService {
             }
 
             uvo.setMenuVos(menuVos);
-            session.setAttribute("MallUser", uvo);
+//            session.setAttribute("MallUser", uvo);
             //  }
             return uvo;
         } catch (Exception e) {
