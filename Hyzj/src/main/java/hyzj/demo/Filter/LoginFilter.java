@@ -36,23 +36,23 @@ public class LoginFilter implements Filter {
                 && "/index.html".contains(requestURI)
                 ) {
             //判断cookies中是否有用户信息，如果没有则重定向到登录页面
-            String WXID = "" ;
+            String MID = "" ;
             Cookie[] cookies = req.getCookies();
             HttpSession session = req.getSession();
             if (cookies == null && session.getAttribute("UserVo") == null ){
-                res.sendRedirect( "404.html");
+                res.sendRedirect( "login.html");
                 return;
             }
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("WXID")) {
-                        WXID = cookie.getValue();
+                    if (cookie.getName().equals("MID")) {
+                        MID = cookie.getValue();
                     }
                 }
             }
 
-            System.out.println("wxid:"+WXID);
-            if ( WXID == null || WXID.equals("") && session.getAttribute("UserVo") == null) {
+            System.out.println("MID:"+MID);
+            if ( MID == null || MID.equals("") && session.getAttribute("UserVo") == null) {
                 res.sendRedirect( "login.html");
                 return;
             }
