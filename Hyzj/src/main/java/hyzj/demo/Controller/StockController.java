@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -26,8 +27,8 @@ public class StockController {
     }
     @RequestMapping("/update")
     @ResponseBody
-    public R_data update(String cid,String stock){
-        return ResultUtils.success(stockService.update(cid,stock),ExceptionEnum.SUCCESS);
+    public R_data update(String cid, String stock,String unmodifiedNumble , HttpSession session){
+        return ResultUtils.success(stockService.update(cid,stock,unmodifiedNumble,session),ExceptionEnum.SUCCESS);
 
     }
 }

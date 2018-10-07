@@ -22,11 +22,11 @@ public class CookiesController {
 
     @RequestMapping("save")
     @ResponseBody
-    public boolean saveCookies(@RequestParam("wxid") String WXid, HttpServletResponse response, HttpServletRequest request) {
+    public boolean saveCookies(@RequestParam("mid") String MID, HttpServletResponse response, HttpServletRequest request) {
 
 //        String WXID = "xs02";
-        System.out.println(WXid);
-        return cookiesService.saveCookies(WXid, response, request);
+        System.out.println(MID);
+        return cookiesService.saveCookies(MID, response, request);
     }
 
     @RequestMapping("print")
@@ -36,7 +36,7 @@ public class CookiesController {
         String ss = "";
         for (Cookie cookie : cookies) {
             System.out.println(cookie.toString());
-            if (cookie.getName().equals("WXID")) {
+            if (cookie.getName().equals("MID")) {
                 ss = cookie.getValue();
             }
         }

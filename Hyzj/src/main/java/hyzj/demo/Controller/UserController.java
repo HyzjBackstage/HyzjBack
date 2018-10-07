@@ -45,7 +45,7 @@ public class UserController {
 //            session.setAttribute("user","user");
         } catch (Exception e) {
 //            throw  new DataLinkException(e, ExceptionEnum.DATALINK_Exception);
-            return "4o4.html";
+            return "login.html";
         }
 //        return userVo;
         return "index.html";
