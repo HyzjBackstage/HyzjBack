@@ -71,7 +71,11 @@ public class UserController {
         return "index.html";
     }
 
-
+    @RequestMapping("/UserOut")
+    public String UserOut(HttpSession session){
+        userService.UserOut(session);
+        return "redirect:/index";
+    }
 
 
 
