@@ -29,31 +29,33 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>代理商</small></h5>
-                    <div class="ibox-tools">
+                    <!--<div class="ibox-tools">
                         <a data-toggle="modal" data-target="#user_add_modal">
                             <i class="fa fa-plus"></i>&nbsp;添加
                         </a>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="ibox-content">
 
-                    <table id="user_table" class="table table-striped table-bordered table-hover ">
+                    <table id="agent_table" class="table table-striped table-bordered table-hover ">
                         <thead>
                         <tr>
-                            <th style="width:20%;">代理商编号</th>
-                            <th style="width:20%;">代理商名</th>
-                            <th style="width:20%;">是否有效</th>
-                            <th style="width:40%;">操作</th>
+                            <th>商城用户编号</th>
+                            <th>商城用户名</th>
+                            <th>手机号</th>
+                            <th>角色</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody></tbody>
                         <tfoot>
-                        <tr>
+                        <!--<tr>
                             <th>渲染引擎</th>
                             <th>浏览器</th>
                             <th>平台</th>
                             <th>引擎版本</th>
-                        </tr>
+                            <th>引擎版本</th>
+                        </tr>-->
                         </tfoot>
                     </table>
 
@@ -75,19 +77,18 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>代理商编号</label>
-                        <input type="text" id="user_add_user" placeholder="请输入代理商编号" class="form-control">
+                        <label>商城用户编号</label>
+                        <input type="text" readonly id="user_add_user" placeholder="请输入代理商编号" class="form-control">
                     </div>
+
                     <div class="form-group">
-                        <label>代理商名</label>
-                        <input type="text" id="user_add_name" placeholder="请输入代理商名" class="form-control">
-                        <div class="form-group">
-                            <label>是否有效</label>
-                            <select id="user_add_isvalid" class="form-control m-b" name="account">
-                                <option value="1">有效</option>
-                                <option value="0">无效</option>
-                            </select>
-                        </div>
+                        <label>是否有效</label>
+                        <select id="user_add_isvalid" class="form-control m-b" name="account">
+                            <option value="1">有效</option>
+                            <option value="0">无效</option>
+                        </select>
+                    </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
                             <a id="btn_add_save" class="btn btn-primary">添加</a>
@@ -97,7 +98,7 @@
             </div>
 
             <!--角色信息修改-->
-            <div class="modal inmodal" id="user_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal inmodal" id="agent_edit_modal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog ">
                     <div class="modal-content animated bounceInRight">
                         <div class="modal-header">
@@ -105,19 +106,22 @@
                                     aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
                             </button>
                             <i class="fa fa-laptop modal-icon"></i>
-                            <h4 class="modal-title">用户信息修改</h4>
+                            <h4 class="modal-title">代理商信息修改</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="form-group"><label>用户名</label> <input type="text" id="user_edit_user"
-                                                                              placeholder="" class="form-control"></div>
-                            <div class="form-group"><label>姓名</label> <input type="text" id="user_edit_name"
-                                                                             placeholder="请输入姓名" class="form-control">
+                            <div class="form-group">
+                                <label>商城用户名</label>
+                                <input type="text" readonly style="background-color: #ddddddbf" id="agent_edit_agent" placeholder="" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>是否有效</label>
-                                <select id="user_edit_isvalid" class="form-control m-b" name="account">
-                                    <option value="1">有效</option>
-                                    <option value="0">无效</option>
+                                <label>手机号</label>
+                                <input type="text" readonly style="background-color: #ddddddbf"  id="agent_edit_phone" placeholder="请输入姓名" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>角色</label>
+                                <select id="agent_edit_role" class="form-control m-b" name="account">
+                                    <option value="3">商城用户</option>
+                                    <option value="4">代理商</option>
                                 </select>
                             </div>
                         </div>
@@ -133,7 +137,7 @@
     </div>
 
 
-    <div class="spiner-example" id="loading-user" style="display: none">
+    <div class="spiner-example" id="loading-agent">
         <div class="sk-spinner sk-spinner-wave">
             <div class="sk-rect1"></div>
             <div class="sk-rect2"></div>
@@ -152,7 +156,7 @@
 
     <script src="js/content.min.js?v=1.0.0"></script>
     <!--custom-js-->
-    <!--<script src="custom-js/user.js"></script>-->
+    <script src="custom-js/agent_user.js"></script>
 
 
 </body>
