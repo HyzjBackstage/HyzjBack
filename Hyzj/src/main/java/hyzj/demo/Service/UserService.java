@@ -164,4 +164,18 @@ public class UserService {
             return "4";
         }
     }
+
+    /**
+     * 退出登录
+     * @param session
+     * @return
+     */
+    public boolean UserOut(HttpSession session) {
+        if (session.getAttribute("UserVo") != null){
+            session.removeAttribute("UserVo");
+            return true;
+        }else {
+            return true;
+        }
+    }
 }

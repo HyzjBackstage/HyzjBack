@@ -1,5 +1,6 @@
 package hyzj.demo.Service;
 
+import hyzj.demo.Dao.AgentDao;
 import hyzj.demo.Dao.MallUserDao;
 import hyzj.demo.Exception.DataLinkException;
 import hyzj.demo.Model.MallUser;
@@ -19,6 +20,8 @@ public class MallUserService {
     @Resource
     MallUserDao mallUserDao;
 
+    @Resource
+    AgentDao agentDao;
     /**
      * 显示所有用户
      *
@@ -52,9 +55,13 @@ public class MallUserService {
     @Transactional
     public boolean Delete(String m_id) {
         //要想删掉用户，先删掉购物车
+        //然后删掉代理商
         System.out.println("service:delete" + m_id);
         try {
             MallUser mallUser = mallUserDao.loadById(m_id);
+            if (agentDao.loadByMid(m_id) != null) {
+                agentDao.deleteAgent(m_id);
+            }
             System.out.println("123456:"+mallUser.getSC_id());
             if (mallUserDao.Delete(m_id)) {
                 return   mallUserDao.deleteCartBySid(mallUser.getSC_id());
