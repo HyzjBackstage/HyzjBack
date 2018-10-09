@@ -1,10 +1,9 @@
 package hyzj.demo.Dao;
 
-import com.sun.tracing.dtrace.ProviderAttributes;
 import hyzj.demo.Model.Coupon;
+import hyzj.demo.Model.CouponType;
 import org.apache.ibatis.annotations.*;
 
-import java.util.Date;
 import java.util.List;
 
 public interface CouponDao {
@@ -15,7 +14,7 @@ public interface CouponDao {
      * @return
      */
     @Select("SELECT * FROM coupon WHERE type = '1'")
-    List<Coupon> loadDiscount();
+    List<CouponType> loadDiscount();
 
     @Insert("insert into coupon values(#{0},'',#{1},#{2},#{3},#{4},'1')")
     boolean addDiscount(@Param("0") String cid,
@@ -47,7 +46,7 @@ public interface CouponDao {
      * @return
      */
     @Select("SELECT * FROM coupon WHERE type = '2'")
-    List<Coupon> loadAmount();
+    List<CouponType> loadAmount();
 
     @Insert("insert into coupon values(#{0},#{1},'',#{2},#{3},#{4},'2')")
     boolean addAmount(@Param("0") String cid,
@@ -77,5 +76,17 @@ public interface CouponDao {
      * @return
      */
     @Select("select * from coupon where Co_id = #{0}")
-    Coupon loadById(@Param("0") String Co_id);
+    CouponType loadById(@Param("0") String Co_id);
+
+
+    //-----------------------发放优惠券
+    //发放优惠券
+    @Insert("insert into offeCoupon(OFid, offe_user, COid) values (#{OFid}, #{offe_user}, #{COid})")
+    int createNewCoupon(Coupon coupon);
+
+    @Update("update offeCoupon set Receiver = #{Receiver}, pickTime = #{pickTime}, state = #{state} where OFid = #{OFid}")
+    int bindPhoneNum(Coupon coupon);
+
+    @Select("select * from offeCoupon where OFid = #{OFid}")
+    Coupon getCouponById(@Param("OFid") String OFid);
 }

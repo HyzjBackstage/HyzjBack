@@ -1,17 +1,15 @@
 package hyzj.demo.Controller;
 
 import hyzj.demo.ExceptionEnum.ExceptionEnum;
-import hyzj.demo.Model.Coupon;
+import hyzj.demo.Model.CouponType;
 import hyzj.demo.RsultModel.R_data;
 import hyzj.demo.Service.CouponService;
 import hyzj.demo.Utils.ResultUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -23,7 +21,7 @@ public class CouponController {
 
     @RequestMapping("/discountlist")
     @ResponseBody
-    public R_data<List<Coupon>> loadDiscount() throws Exception {
+    public R_data<List<CouponType>> loadDiscount() throws Exception {
         System.out.println(ResultUtils.success(couponService.loadDiscount(), ExceptionEnum.SUCCESS));
         return ResultUtils.success(couponService.loadDiscount(), ExceptionEnum.SUCCESS);
     }
@@ -53,7 +51,7 @@ public class CouponController {
      */
     @RequestMapping("/amountlist")
     @ResponseBody
-    public R_data<List<Coupon>> loadAmount() throws Exception {
+    public R_data<List<CouponType>> loadAmount() throws Exception {
         return ResultUtils.success(couponService.loadAmount(), ExceptionEnum.SUCCESS);
     }
 

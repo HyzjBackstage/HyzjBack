@@ -3,12 +3,11 @@ package hyzj.demo.Service;
 import hyzj.demo.Dao.CouponDao;
 import hyzj.demo.Exception.DataLinkException;
 import hyzj.demo.ExceptionEnum.ExceptionEnum;
-import hyzj.demo.Model.Coupon;
+import hyzj.demo.Model.CouponType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ public class CouponService {
      *
      * @return
      */
-    public List<Coupon> loadDiscount() {
+    public List<CouponType> loadDiscount() {
         try {
             return couponDao.loadDiscount();
         } catch (Exception e) {
@@ -69,7 +68,7 @@ public class CouponService {
      *
      * @return
      */
-    public List<Coupon> loadAmount() {
+    public List<CouponType> loadAmount() {
 
         try {
             return couponDao.loadAmount();

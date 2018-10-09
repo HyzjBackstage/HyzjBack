@@ -1,16 +1,13 @@
 package hyzj.demo.ModelVo;
 
-import hyzj.demo.Model.Coupon;
-import hyzj.demo.Model.MallUser;
-import hyzj.demo.Model.orders;
-import hyzj.demo.Model.receiver;
+import hyzj.demo.Model.*;
 
 public class OrderVo {
 
     private orders t_orders;
     private receiver t_receiver;
     private MallUser t_mallUser;
-    private Coupon coupon;
+    private CouponType couponType;
 
     public orders getT_orders() {
         return t_orders;
@@ -36,12 +33,12 @@ public class OrderVo {
         this.t_mallUser = t_mallUser;
     }
 
-    public Coupon getCoupon() {
-        return coupon;
+    public CouponType getCoupon() {
+        return couponType;
     }
 
-    public void setCoupon(Coupon coupon) {
-        this.coupon = coupon;
+    public void setCouponType(CouponType couponType) {
+        this.couponType = couponType;
     }
 
     @Override
@@ -50,7 +47,7 @@ public class OrderVo {
                 "t_orders=" + t_orders +
                 ", t_receiver=" + t_receiver +
                 ", t_mallUser=" + t_mallUser +
-                ", coupon=" + coupon +
+                ", couponType=" + couponType +
                 '}';
     }
 }

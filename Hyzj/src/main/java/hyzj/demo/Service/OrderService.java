@@ -40,7 +40,7 @@ public class OrderService {
                 orderVo1.setT_orders(order);
                 orderVo1.setT_mallUser(mallUserDao.loadById(order.getM_id()));
                 orderVo1.setT_receiver(receiverDao.loadById(order.getRe_id()));
-                orderVo1.setCoupon(couponDao.loadById(order.getCo_id()));
+                orderVo1.setCouponType(couponDao.loadById(order.getCo_id()));
 
 //                System.out.println("mallUserDao:" + mallUserDao.loadById(order.getM_id()));
 //                System.out.println("receiverDao:" + receiverDao.loadById(order.getRe_id()));
@@ -71,7 +71,7 @@ public class OrderService {
                 orderVo2.setT_orders(order);
                 orderVo2.setT_mallUser(mallUserDao.loadById(order.getM_id()));
                 orderVo2.setT_receiver(receiverDao.loadById(order.getRe_id()));
-                orderVo2.setCoupon(couponDao.loadById(order.getCo_id()));
+                orderVo2.setCouponType(couponDao.loadById(order.getCo_id()));
 
                 orderVo.add(orderVo2);
             }
@@ -100,7 +100,7 @@ public class OrderService {
             orderVo.setT_orders(order);
             orderVo.setT_receiver(receiverDao.loadById(order.getRe_id()));
             orderVo.setT_mallUser(mallUserDao.loadById(order.getM_id()));
-            orderVo.setCoupon(couponDao.loadById(order.getCo_id()));
+            orderVo.setCouponType(couponDao.loadById(order.getCo_id()));
 
             return orderVo;
         }catch (Exception e){
