@@ -3,6 +3,7 @@ package hyzj.demo.Model;
 import java.sql.Date;
 
 public class CouponType {
+
     private String Co_id;
     private String amount;
     private String discount;
