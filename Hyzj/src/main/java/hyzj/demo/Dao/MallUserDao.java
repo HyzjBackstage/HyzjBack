@@ -96,4 +96,30 @@ public interface MallUserDao {
      */
     @Update("update mall_user set R_id = #{0} where M_id = #{1}")
     boolean updateRid(@Param("0") String rid,@Param("1") String mid);
+
+    /**
+     * 通过平台手机号码，检测商城是否已注册用户
+     * @param Platphone
+     * @return
+     */
+    @Select("select count(M_id) from mall_user where phone = #{0}")
+    boolean checkPhone(@Param("0") String Platphone);
+
+//    @Select("select case when phone = #{0} then true else false end from mall_user")
+//    boolean checkPhone(@Param("0") String Platphone);
+
+    /**
+     * 通过手机号码查询
+     * @param platphone
+     * @return
+     */
+    @Select("select * from mall_user where phone = #{0}")
+    MallUser loadByPhone(@Param("0") String platphone);
+
+    /**
+     * 平台的信息迁移过来之后，原来商城的信息也迁移成功，把原来的商城用户id注销（手机帐号+logout,标记该帐号已注销）
+     * @param platphone
+     */
+    @Update("update mall_user set phone = platphone+'logout' where phone = #{0}")
+    boolean logOutMallUser(String platphone);
 }
