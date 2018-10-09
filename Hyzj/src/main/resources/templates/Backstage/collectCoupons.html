@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>优惠券领取</title>
+    <link rel="stylesheet" type="text/css" href="css/collectCoupons.css"/>
+</head>
+<body class="invite-xl-body">
+<div class="xl-banner">
+    <img src="images/banner.png" class="xun-banner">
+    <div class="receive-time ">
+        <span class="circle-left"></span>
+        <p class="receive-time-ft">
+            领取倒计时:
+            <span class="time-text">60</span>秒
+        </p>
+        <span class="circle-right"></span>
+    </div>
+</div>
+<div class="xl-container">
+    <div class="input-container ">
+        <div class="phone-area">
+            <input type="text" name="" placeholder="请输入手机号,领取红包" id="phone_num" style="padding: 0;">
+            <p class="receive-btn" onclick="getVerifyCode()">立即领取</p>
+        </div>
+    </div>
+    <div class="receive-red-pack-bg init-hide">
+        <div class="red-pack-con">
+            <img src="images/red_pack.png" class="receive-success-img">
+            <p class="receive-success-title">领取成功</p>
+            <p class="user-phone-check-title">请使用此手机号登录商城使用！</p>
+            <p class="receive-success-download-btn" onclick="backToShop()">回到商城 (
+                <span class="download-time">3</span>S)</p>
+        </div>
+    </div>
+    <div class="receive-success-container  init-hide ">
+        <div class="receive-success-tips">
+            <p>领取成功！
+                <br>请使用此手机号登录商城使用！</p>
+        </div>
+        <div class="download-btn" id="download_btn" onclick="backToShop()">回到商城</div>
+    </div>
+</div>
+<div class="remind-phone-tips">
+    <p>* 任何用户都可领取此券;</p>
+    <p>* 使用您填写的手机号码登录商城，即可使用；</p>
+    <p>* 本活动由南昌城市合伙人提供，享有一切解释权。</p>
+</div>
+<div class="logo-btn"></div>
+</body>
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/receive.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script>
+
+    var urlJSON = {};
+    urlJSON.url = window.location.href;
+    $.ajax({
+        type: "POST",
+        url: "/coupon/jssdk",
+        data: urlJSON,
+        dataType: "json",
+        success: function (data) {
+            jssdk(data.appId, data.timestamp, data.nonceStr, data.signature);
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+
+    function jssdk(appId, timestamp, nonceStr, signature) {
+        wx.config({
+            debug: true,
+            appId: appId,
+            timestamp: timestamp,
+            nonceStr: nonceStr,
+            signature: signature,
+            jsApiList: [
+                'updateAppMessageShareData',
+                'updateTimelineShareData ',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage'
+            ]
+        });
+
+        //验证成功
+        wx.ready(function () {
+
+            //判断当前版本是否支持指定 JS 接口
+            wx.checkJsApi({
+                jsApiList: [
+                    'updateAppMessageShareData',
+                    'updateTimelineShareData ',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage'
+                ],
+                success: function (res) {
+                    // alert('接口检查：' + JSON.stringify(res))
+                }
+            });
+
+            //注册获取“发送给朋友”状态事件
+            wx.onMenuShareAppMessage({
+                title: '优惠券分享',
+                desc: '我向你分享了一张免费优惠券，手快有手慢无，快点抓紧时间来领呀。',
+                link: window.location.href,
+                imgUrl: 'http://test.trunch.cn/coupon/images/red_pack.png',
+                trigger: function (res) {
+                    // alert('用户点击发送给朋友');
+                },
+                success: function (res) {
+                    // alert('已分享');
+                },
+                cancel: function (res) {
+                    // alert('已取消');
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+
+            //注册获取“分享到朋友圈”状态事件
+            wx.onMenuShareTimeline({
+                title: '优惠券分享',
+                desc: '我向你分享了一张免费优惠券，手快有手慢无，快点抓紧时间来领呀。',
+                link: window.location.href,
+                imgUrl: 'http://test.trunch.cn/coupon/images/red_pack.png',
+                trigger: function (res) {
+                    // alert('用户点击分享到朋友圈');
+                },
+                success: function (res) {
+                    // alert('已分享');
+                },
+                cancel: function (res) {
+                    // alert('已取消');
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+            alert("已注入");
+        });
+        //验证失败
+        wx.error(function (res) {
+            alert("配置出错：" + res.errMsg);
+        });
+    }
+</script>
+
+</html>
