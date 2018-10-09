@@ -1,84 +1,107 @@
 package hyzj.demo.Model;
 
-import java.sql.Date;
+
+import java.sql.Timestamp;
 
 public class Coupon {
-    private String Co_id;
-    private String amount;
-    private String discount;
-    private String starting_time;
-    private Date end_time;
-    private String condition_use;
-    private String type;
 
-    public String getCo_id() {
-        return Co_id;
+    private String OFid;
+    private String offe_user;
+    private String Receiver;
+    private String COid;
+    private Timestamp pickTime;
+    private String state;
+    private Timestamp useTime;
+
+    public Coupon(String OFid, String offe_user, String receiver, String COid, Timestamp pickTime, String state, Timestamp useTime) {
+        this.OFid = OFid;
+        this.offe_user = offe_user;
+        Receiver = receiver;
+        this.COid = COid;
+        this.pickTime = pickTime;
+        this.state = state;
+        this.useTime = useTime;
     }
 
-    public void setCo_id(String co_id) {
-        Co_id = co_id;
+    public Coupon(String OFid, String offe_user, String COid) {
+        this.OFid = OFid;
+        this.offe_user = offe_user;
+        this.COid = COid;
     }
 
-    public String getAmount() {
-        return amount;
+    public Coupon(String OFid, String receiver, Timestamp pickTime, String state) {
+        this.OFid = OFid;
+        Receiver = receiver;
+        this.pickTime = pickTime;
+        this.state = state;
     }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
+    public String getOFid() {
+        return OFid;
     }
 
-    public String getDiscount() {
-        return discount;
+    public void setOFid(String OFid) {
+        this.OFid = OFid;
     }
 
-    public void setDiscount(String discount) {
-        this.discount = discount;
+    public String getOffe_user() {
+        return offe_user;
     }
 
-    public String getStarting_time() {
-        return starting_time;
+    public void setOffe_user(String offe_user) {
+        this.offe_user = offe_user;
     }
 
-    public void setStarting_time(String starting_time) {
-        this.starting_time = starting_time;
+    public String getReceiver() {
+        return Receiver;
     }
 
-    public Date getEnd_time() {
-        return end_time;
+    public void setReceiver(String receiver) {
+        Receiver = receiver;
     }
 
-    public void setEnd_time(Date end_time) {
-        this.end_time = end_time;
+    public String getCOid() {
+        return COid;
     }
 
-    public String getCondition_use() {
-        return condition_use;
+    public void setCOid(String COid) {
+        this.COid = COid;
     }
 
-    public void setCondition_use(String condition_use) {
-        this.condition_use = condition_use;
+    public Timestamp getPickTime() {
+        return pickTime;
     }
 
-    public String getType() {
-        return type;
+    public void setPickTime(Timestamp pickTime) {
+        this.pickTime = pickTime;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Timestamp getUseTime() {
+        return useTime;
+    }
+
+    public void setUseTime(Timestamp useTime) {
+        this.useTime = useTime;
     }
 
     @Override
     public String toString() {
         return "Coupon{" +
-                "Co_id='" + Co_id + '\'' +
-                ", amount='" + amount + '\'' +
-                ", discount='" + discount + '\'' +
-                ", starting_time='" + starting_time + '\'' +
-                ", end_time='" + end_time + '\'' +
-                ", condition_use='" + condition_use + '\'' +
-                ", type='" + type + '\'' +
+                "OFid='" + OFid + '\'' +
+                ", offe_user='" + offe_user + '\'' +
+                ", Receiver='" + Receiver + '\'' +
+                ", COid='" + COid + '\'' +
+                ", pickTime=" + pickTime +
+                ", state='" + state + '\'' +
+                ", useTime=" + useTime +
                 '}';
-
     }
 }
-
