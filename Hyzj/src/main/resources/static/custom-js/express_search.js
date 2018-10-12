@@ -12,7 +12,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../express/SearchByOrder",//注意路径
+            url: "express/SearchByOrder",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {

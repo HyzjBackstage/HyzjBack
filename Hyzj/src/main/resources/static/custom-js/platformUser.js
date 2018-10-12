@@ -35,7 +35,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../platformUser/searchByPhone",
+            url: "platformUser/searchByPhone",
             data: param,
             dataType: "json",
             success:function (data) {
@@ -80,7 +80,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../platformUser/checkPhone",
+            url: "platformUser/checkPhone",
             data: param,
             dataType: "json",
             success:function (data) {
@@ -133,7 +133,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../platformUser/addUser",
+            url: "platformUser/addUser",
             data: params,
             dataType: "json",
             success: function (data) {

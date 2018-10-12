@@ -22,7 +22,7 @@ $(document).ready(function(){
     $.ajax({
         async: false,
         type: "POST",
-        url: "../year/list",       //注意路径
+        url: "year/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -81,7 +81,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../year/add",          //注意路径
+            url: "year/add",          //注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -186,7 +186,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../year/update",       //注意路径
+            url: "year/update",       //注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -263,7 +263,7 @@ $(document).ready(function(){
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../year/delete",      //注意路径
+                url: "year/delete",      //注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {

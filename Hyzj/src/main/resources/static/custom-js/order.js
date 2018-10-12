@@ -20,7 +20,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "../order/list",//注意路径
+        url: "order/list",//注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -114,7 +114,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../order/seachByTime",//注意路径
+            url: "order/seachByTime",//注意路径
             data: time,
             dataType: "json",
             success: function (data) {
@@ -168,7 +168,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../order/seachById",//注意路径
+            url: "order/seachById",//注意路径
             data: seachOrder,
             dataType: "json",
             success: function (data) {
@@ -244,7 +244,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../order/delete",//注意路径
+                url: "order/delete",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {

@@ -15,7 +15,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../express/OrdersList",
+            url: "express/OrdersList",
             data: param,
             dataType: "json",
             success:function (data) {
@@ -130,7 +130,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../express/SearchByOrder",
+            url: "express/SearchByOrder",
             data: param,
             dataType: "json",
             success:function (data) {
@@ -199,7 +199,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../express/updateOrder",//注意路径
+            url: "express/updateOrder",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {

@@ -67,7 +67,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "post",
-        url: "../malluser/list",
+        url: "malluser/list",
         data: param,
         dataType: "json",
         success: function(data){
@@ -144,7 +144,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../malluser/add",
+            url: "malluser/add",
             data: params,
             dataType: "json",
             success:function(data){
@@ -263,7 +263,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../malluser/update",       //注意路径
+            url: "malluser/update",       //注意路径
             data: param,
             dataType: "json",
             success: function (data) {
@@ -347,7 +347,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../malluser/delete",      //注意路径
+                url: "malluser/delete",      //注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {

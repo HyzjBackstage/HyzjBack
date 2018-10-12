@@ -20,7 +20,7 @@ $(document).ready(function(){
     $.ajax({
         async: false,
         type: "POST",
-        url: "../stock/list",       //注意路径
+        url: "stock/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -101,7 +101,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "../stock/update",//注意路径
+            url: "stock/update",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {

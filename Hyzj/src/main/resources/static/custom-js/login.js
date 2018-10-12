@@ -55,7 +55,7 @@ $(document).ready(function() {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../MallUserLogin",//注意路径
+                url: "/mall/back/MallUserLogin",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {
@@ -91,6 +91,7 @@ $(document).ready(function() {
                         //clearInterval(int);
                     }else if (itm == "1") {
                         $("#loding-login").css('display','none');
+
                         window.location.href="index";
                         return;
                     }else if (itm == "3"){

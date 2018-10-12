@@ -21,7 +21,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "../orderAdd/list",
+        url: "orderAdd/list",
         data: params,
         dataType: "json",
         success:function (data) {
@@ -96,7 +96,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../orderAdd/add",
+            url: "orderAdd/add",
             data: params,
             dataType: "json",
             success:function(data){
@@ -218,7 +218,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../orderAdd/update",
+            url: "orderAdd/update",
             data: params,
             dataType: "json",
             success: function (data) {
@@ -308,7 +308,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../orderAdd/delete",
+                url: "orderAdd/delete",
                 data: params,
                 dataType: "json",
                 success: function (data) {
