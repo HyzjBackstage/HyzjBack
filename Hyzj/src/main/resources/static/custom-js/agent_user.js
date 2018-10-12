@@ -38,7 +38,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "../agent/list",       //注意路径
+        url: "agent/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -122,7 +122,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../agent/update",//注意路径
+            url: "agent/update",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {

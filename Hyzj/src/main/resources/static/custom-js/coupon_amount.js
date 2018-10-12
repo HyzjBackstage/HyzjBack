@@ -22,7 +22,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "../coupon/amountlist",       //注意路径
+        url: "coupon/amountlist",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -114,7 +114,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../coupon/amountadd",          //注意路径
+            url: "coupon/amountadd",          //注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -227,7 +227,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../coupon/amountupdate",       //注意路径
+            url: "coupon/amountupdate",       //注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -310,7 +310,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../coupon/amountdelete",      //注意路径
+                url: "coupon/amountdelete",      //注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {

@@ -22,7 +22,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "../agent/ShowDiscount",       //注意路径
+        url: "agent/ShowDiscount",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -60,7 +60,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "../agent/load",       //注意路径
+        url: "agent/load",       //注意路径
         data: param,
         dataType: "json",
         success: function (data) {
@@ -143,7 +143,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../agent/updateDiscount",//注意路径
+            url: "agent/updateDiscount",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {

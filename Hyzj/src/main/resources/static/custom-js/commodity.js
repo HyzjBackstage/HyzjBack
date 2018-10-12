@@ -64,7 +64,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "../commodity/list",       //注意路径
+        url: "commodity/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -128,7 +128,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "../year/list",       //注意路径
+        url: "year/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -200,7 +200,7 @@ $(document).ready(function () {
             var delok = true;
             $.ajax({
                 async: false,
-                url: '../commodity/add',//路径
+                url: 'commodity/add',//路径
                 type: 'POST',
                 dataType: "json",
                 contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
@@ -282,7 +282,7 @@ $(document).ready(function () {
             var delok = true;
             $.ajax({
                 async: false,
-                url: '../commodity/update',//路径
+                url: 'commodity/update',//路径
                 type: 'POST',
                 dataType: "json",
                 contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
@@ -400,7 +400,7 @@ $(document).ready(function () {
                 $.ajax({
                     async: false,
                     type: "POST",
-                    url: "../commodity/delete",//注意路径
+                    url: "commodity/delete",//注意路径
                     data: params,
                     dataType: "json",
                     success: function (data) {
@@ -467,7 +467,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../commodity/loadById",//注意路径
+                url: "commodity/loadById",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {
