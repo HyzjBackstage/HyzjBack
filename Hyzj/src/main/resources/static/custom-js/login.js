@@ -3,6 +3,10 @@
  */
 $(document).ready(function() {
 
+    //上下文路径问题
+    var pathName=window.document.location.pathname;
+    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+
 
     $("#phone").on('input', function (e) {
         var pattern = /^1[34578]\d{9}$/;
@@ -52,10 +56,11 @@ $(document).ready(function() {
             }
             // alert(JSON.stringify(params,null,4));
 
+            console.log(projectName);
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "/mall/back/MallUserLogin",//注意路径
+                url: projectName+"/MallUserLogin",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {

@@ -4,6 +4,11 @@
 
 $(document).ready(function () {
 
+
+    //上下文路径问题
+    var pathName=window.document.location.pathname;
+    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+
     $("#loading-express").css('display', 'none');
 
     function  loadByOrder(id){
@@ -12,7 +17,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "express/SearchByOrder",//注意路径
+            url: projectName+"/express/SearchByOrder",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
