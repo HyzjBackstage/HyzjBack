@@ -103,7 +103,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <finalName>back</finalName>
+        <finalName>mallback</finalName>
     </build>
 
 
