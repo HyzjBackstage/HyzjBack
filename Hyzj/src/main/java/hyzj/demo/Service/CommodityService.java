@@ -213,7 +213,7 @@ public class CommodityService {
         String productionDate  = request.getParameter("productionDate");
         String editDetailphoto = "";
         try{
-            String path = "D:/goods/";
+            String path = "/usr/local/upload/goods/";
             Commodity commodity1 = commodityDao.loadCommodityByid(commodity);
             //检测是否修改了图片
             if (detailfile!=null && !detailfile.getOriginalFilename().equals("")) {
