@@ -81,7 +81,7 @@ public class CommodityService {
             String ctimes = System.currentTimeMillis() + "";
             System.out.println("开始");
 //            String path1 = request.getSession().getServletContext().getRealPath("goods");
-            String path = "D:/goods/";
+            String path = "/usr/local/upload/goods/";
             String detailfileName = ctimes + ".jpg";
             System.out.println(detailfileName);
 //            System.out.println(path);
@@ -151,7 +151,7 @@ public class CommodityService {
             */
            Commodity commodity = new Commodity();
            commodity = commodityDao.loadCommodityByid(cid);
-           String path = "D:/goods/";
+           String path = "/usr/local/upload/goods/";
            String photo = commodity.getImage();
            //删除对应的图片
            String d_detailphoto = path + photo;
