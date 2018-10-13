@@ -3,7 +3,9 @@
  */
 
 $(document).ready(function () {
-
+    //上下文路径问题
+    var pathName=window.document.location.pathname;
+    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
     //通过用户手机号查询
     $("#btn_search").click(function(){
         var phone = $("#platToMall_phone").val();
@@ -35,7 +37,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "platformUser/searchByPhone",
+            url: projectName+"/platformUser/searchByPhone",
             data: param,
             dataType: "json",
             success:function (data) {
@@ -80,7 +82,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "platformUser/checkPhone",
+            url: projectName+"/platformUser/checkPhone",
             data: param,
             dataType: "json",
             success:function (data) {
@@ -133,7 +135,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "platformUser/addUser",
+            url: projectName+"/platformUser/addUser",
             data: params,
             dataType: "json",
             success: function (data) {

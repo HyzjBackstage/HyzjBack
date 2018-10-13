@@ -3,7 +3,9 @@
  */
 
 $(document).ready(function () {
-
+    //上下文路径问题
+    var pathName=window.document.location.pathname;
+    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
     var table = $("#orderAdd_add_table");
     table.dataTable({
         "columnDefs": [{
@@ -21,7 +23,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "orderAdd/list",
+        url: projectName+"/orderAdd/list",
         data: params,
         dataType: "json",
         success:function (data) {
@@ -96,7 +98,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "orderAdd/add",
+            url: projectName+"/orderAdd/add",
             data: params,
             dataType: "json",
             success:function(data){
@@ -218,7 +220,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "orderAdd/update",
+            url: projectName+"/orderAdd/update",
             data: params,
             dataType: "json",
             success: function (data) {
@@ -308,7 +310,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "orderAdd/delete",
+                url: projectName+"/orderAdd/delete",
                 data: params,
                 dataType: "json",
                 success: function (data) {

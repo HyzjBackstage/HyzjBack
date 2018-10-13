@@ -2,6 +2,9 @@
  * Created by 14260 on 2018/6/11.
  */
 $(document).ready(function(){
+    //上下文路径问题
+    var pathName=window.document.location.pathname;
+    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 
     var table = $("#stock_table");
     table.dataTable({
@@ -20,7 +23,7 @@ $(document).ready(function(){
     $.ajax({
         async: false,
         type: "POST",
-        url: "stock/list",       //注意路径
+        url: projectName+"/stock/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -101,7 +104,7 @@ $(document).ready(function(){
         $.ajax({
             async: false,
             type: "POST",
-            url: "stock/update",//注意路径
+            url: projectName+"/stock/update",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {

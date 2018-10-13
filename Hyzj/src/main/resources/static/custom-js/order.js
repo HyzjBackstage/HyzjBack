@@ -4,6 +4,9 @@
 
 $(document).ready(function () {
 
+    //上下文路径问题
+    var pathName=window.document.location.pathname;
+    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
     var table = $("#order_table");
     table.dataTable({
         "columnDefs": [{
@@ -20,7 +23,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "order/list",//注意路径
+        url: projectName+"/order/list",//注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -114,7 +117,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "order/seachByTime",//注意路径
+            url: projectName+"/order/seachByTime",//注意路径
             data: time,
             dataType: "json",
             success: function (data) {
@@ -168,7 +171,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "order/seachById",//注意路径
+            url: projectName+"/order/seachById",//注意路径
             data: seachOrder,
             dataType: "json",
             success: function (data) {
@@ -244,7 +247,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "order/delete",//注意路径
+                url: projectName+"/order/delete",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {
