@@ -4,6 +4,9 @@
  * --金额管理--
  */
 $(document).ready(function () {
+    //上下文路径问题
+    var pathName=window.document.location.pathname;
+    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 
     var table = $("#age_table");
     table.dataTable({
@@ -22,7 +25,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "coupon/amountlist",       //注意路径
+        url: projectName+"/coupon/amountlist",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -114,7 +117,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "coupon/amountadd",          //注意路径
+            url: projectName+"/coupon/amountadd",          //注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -227,7 +230,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "coupon/amountupdate",       //注意路径
+            url: projectName+"/coupon/amountupdate",       //注意路径
             data: params,
             dataType: "json",
             success: function (data) {
@@ -310,7 +313,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "coupon/amountdelete",      //注意路径
+                url: projectName+"/coupon/amountdelete",      //注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {

@@ -1,5 +1,7 @@
 $(document).ready(function () {
-
+    //上下文路径问题
+    var pathName=window.document.location.pathname;
+    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
 
     var table = $("#agent_table");
     table.dataTable({
@@ -22,7 +24,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "agent/ShowDiscount",       //注意路径
+        url: projectName+"/agent/ShowDiscount",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -60,7 +62,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "agent/load",       //注意路径
+        url: projectName+"/agent/load",       //注意路径
         data: param,
         dataType: "json",
         success: function (data) {
@@ -143,7 +145,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "agent/updateDiscount",//注意路径
+            url: projectName+"/agent/updateDiscount",//注意路径
             data: params,
             dataType: "json",
             success: function (data) {
