@@ -4,7 +4,7 @@ server:
     path: /
 
 web:
-  upload=path: D:/
+  upload=path: /usr/local/upload/
 
 spring:
   messages:
