@@ -12,6 +12,7 @@ public class FileUtils {
         }
         FileOutputStream out = new FileOutputStream(filePath+fileName);
         out.write(file);
+        System.out.println("保存图片成功！");
         out.flush();
         out.close();
     }
