@@ -32,12 +32,7 @@ $(document).ready(function () {
     //如果是点击添加，就会显示添加界面，如果是编辑，就会是编辑界面
     $("#btn-add-a").click(function () {
 
-        if (!initJs) {
-            dynamicLoadJs(projectName+'/js/demo/webuploader-demo.min.js', function (e) {
-                console.log('加载成功')
-            });
-            initJs = true;
-        }
+
 
         $("#commodity").removeAttr('readonly');
         $("#addname").val('');
@@ -99,7 +94,7 @@ $(document).ready(function () {
                     '<td>' + datas.commodity.shelfDate + '</td>年' +
                     '<td>' + datas.commodity.productionDate + '</td>' +
                     '<td>' + datas.year.year + '</td>' +
-                    '<td>' + '<img src="' +"../goods/"+ datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
+                    '<td>' + '<img src="' +projectName+"/goods/"+ datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
                     '<td>' + datas.commodity.addTime + '</td>' +
                     //id，动态添加数据可以相同
                     '<td><a class="edit"  id="' + datas.commodity.c_id+ '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.commodity.c_id+ '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
@@ -232,7 +227,7 @@ $(document).ready(function () {
                         '<td>' + datas.commodity.shelfDate + '</td>年' +
                         '<td>' + datas.commodity.productionDate + '</td>' +
                         '<td>' + datas.year.year + '</td>' +
-                        '<td>' + '<img src="' + "../goods/"+ datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
+                        '<td>' + '<img src="' + projectName+"/goods/"+ datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
                         '<td>' + datas.commodity.addTime + '</td>' +
                         //id，动态添加数据可以相同
                         '<td><a class="edit"  id="' + datas.commodity.c_id+ '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.commodity.c_id+ '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
@@ -451,12 +446,7 @@ $(document).ready(function () {
          */
         $(".edit").click(function (e) {
 
-            if (!initJs) {
-                dynamicLoadJs(projectName+'/js/demo/webuploader-demo.min.js', function (e) {
-                    console.log('加载成功')
-                });
-                initJs = true;
-            }
+
             var nRow = $(this).parents('tr')[0];
             EditRow = nRow;
             //获取eyeglass
