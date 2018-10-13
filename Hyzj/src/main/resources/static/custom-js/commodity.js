@@ -486,7 +486,7 @@ $(document).ready(function () {
                     $("#shelfDate").val(datas.commodity.shelfDate);
                     $("#productionDate").val(datas.commodity.productionDate);
 
-                    $("#edit_img").attr('src', 'goods/' + datas.commodity.image);
+                    $("#edit_img").attr('src', '../goods/' + datas.commodity.image);
                     //alert(ageStr);
 
                    /*  $("#atts_list").html('');*/
