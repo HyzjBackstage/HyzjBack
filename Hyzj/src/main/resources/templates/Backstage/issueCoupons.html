@@ -80,14 +80,20 @@
 </section>
 </body>
 <script>
+    $(document).ready(function () {
+
+
+    //上下文路径问题
+    var pathName=window.document.location.pathname;
+    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
     function issueCoupon(couponType) {
         $.ajax({
             type: "get",
-            url: "/coupon/issue/generate",
+            url: projectName+"/issue/generate",
             data: "couponType="+couponType,
             dataType: "text",
             success: function (data) {
-                $(location).attr('href', '/coupon/collect?couponId=' + data);
+                $(location).attr('href', projectName+'/collect?couponId=' + data);
             },
             error: function () {
                 alert("error");
@@ -112,5 +118,6 @@
         //     }
         // });
     }
+    });
 </script>
 </html>
