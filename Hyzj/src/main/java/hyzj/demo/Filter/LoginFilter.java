@@ -9,12 +9,15 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.geom.FlatteningPathIterator;
 import java.io.IOException;
 import java.net.URLDecoder;
 
 @Aspect
 @Component
 public class LoginFilter implements Filter {
+
+
 
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -27,20 +30,31 @@ public class LoginFilter implements Filter {
 //        String requestURI = req.getRequestURI().substring(req.getRequestURI().indexOf("/", 1), req.getRequestURI().length());
         String requestURI = req.getServletPath();
         System.out.println("requestURI=" + requestURI);
-        boolean ss = requestURI.contains("**/index**");
-        System.out.println("8080:"+ss);
+////        boolean ss = requestURI.contains("**/index**");
+//        System.out.println("80:"+requestURI);
         //访问除login.jsp（登录页面）和验证码servlet之外的jsp/servlet都要进行验证
-        if (    requestURI.contains("/")
-                && !requestURI.contains("404.html")
-                && !requestURI.contains("login.html")
-                && "/index.html".contains(requestURI)
+        if (    requestURI.contains("/mallback")
+                && !requestURI.contains("/404.html")
+                && !requestURI.contains("/login.html")
+                && !requestURI.contains("/MallUserLogin")
+                && !requestURI.contains("/Hyzj")
+                && !requestURI.contains("/js")
+                && !requestURI.contains("/css")
+                && !requestURI.contains("/fonts")
+                && !requestURI.contains("/images")
+                && !requestURI.contains("/custom-js")
+                && !requestURI.contains("/plugins")
+                && !requestURI.contains("/goods")
+//                && !requestURI.contains("/save")
+                && !requestURI.contains("/index")
+//                && !requestURI.contains("/print")
                 ) {
             //判断cookies中是否有用户信息，如果没有则重定向到登录页面
             String MID = "" ;
             Cookie[] cookies = req.getCookies();
             HttpSession session = req.getSession();
             if (cookies == null && session.getAttribute("UserVo") == null ){
-                res.sendRedirect( "login.html");
+                res.sendRedirect( req.getContextPath()+"/login.html");
                 return;
             }
             if (cookies != null) {
@@ -53,17 +67,22 @@ public class LoginFilter implements Filter {
 
             System.out.println("MID:"+MID);
             if ( MID == null || MID.equals("") && session.getAttribute("UserVo") == null) {
-                res.sendRedirect( "login.html");
+                res.sendRedirect( req.getContextPath()+"/login.html");
                 return;
             }
 
 
         }
-        //继续访问其他资源
-        chain.doFilter(req, res);
+
+        chain.doFilter(request, response);
+
     }
 
     public void destroy() {
 
     }
+
+
+
+
 }
