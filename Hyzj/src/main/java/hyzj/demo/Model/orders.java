@@ -6,7 +6,7 @@ public class orders implements Serializable{
     private String O_id;            //订单编号
     private String Re_id;           //收货人id
     private String M_id;            //商城用户id（发货人）
-    private String Co_id;           //优惠券id
+    private String OFid;           //优惠券id
     private String price;           //总价
     private String order_time;      //下单时间
     private String self_lifting;    //是否自提
@@ -36,12 +36,12 @@ public class orders implements Serializable{
         M_id = m_id;
     }
 
-    public String getCo_id() {
-        return Co_id;
+    public String getOFid() {
+        return OFid;
     }
 
-    public void setCo_id(String co_id) {
-        Co_id = co_id;
+    public void setOFid(String OFid) {
+        this.OFid = OFid;
     }
 
     public String getPrice() {
@@ -78,11 +78,11 @@ public class orders implements Serializable{
 
     @Override
     public String toString() {
-        return "T_orders{" +
+        return "orders{" +
                 "O_id='" + O_id + '\'' +
                 ", Re_id='" + Re_id + '\'' +
                 ", M_id='" + M_id + '\'' +
-                ", Co_id='" + Co_id + '\'' +
+                ", OFid='" + OFid + '\'' +
                 ", price='" + price + '\'' +
                 ", order_time='" + order_time + '\'' +
                 ", self_lifting='" + self_lifting + '\'' +

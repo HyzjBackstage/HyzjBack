@@ -3,7 +3,7 @@ package hyzj.demo.Model;
 public class Project {
     private String P_id;
     private String name;
-    private String funding;
+    private String funding;   //项目基金
     private float discount_lowest;
     private float discount_highest;
 
