@@ -1,9 +1,6 @@
 package hyzj.demo.Service;
 
-import hyzj.demo.Dao.CouponDao;
-import hyzj.demo.Dao.MallUserDao;
-import hyzj.demo.Dao.OrderDao;
-import hyzj.demo.Dao.ReceiverDao;
+import hyzj.demo.Dao.*;
 import hyzj.demo.Model.orders;
 import hyzj.demo.ModelVo.OrderVo;
 import org.springframework.stereotype.Service;
@@ -25,11 +22,15 @@ public class OrderService {
     ReceiverDao receiverDao;
 
     @Resource
-    CouponDao couponDao;
+    OffeCouponDao offeCouponDao;
 
+    /**
+     * 获取订单数据
+     * @return
+     */
     public List<OrderVo> loadList() {
 
-//        System.out.println("orderVO::::");
+        System.out.println("orderVO::::");
 
         try{
             List<OrderVo> orderVo = new ArrayList<>();
@@ -40,7 +41,7 @@ public class OrderService {
                 orderVo1.setT_orders(order);
                 orderVo1.setT_mallUser(mallUserDao.loadById(order.getM_id()));
                 orderVo1.setT_receiver(receiverDao.loadById(order.getRe_id()));
-                orderVo1.setCouponType(couponDao.loadById(order.getCo_id()));
+                orderVo1.setOffecoupon(offeCouponDao.loadById(order.getOFid()));
 
 //                System.out.println("mallUserDao:" + mallUserDao.loadById(order.getM_id()));
 //                System.out.println("receiverDao:" + receiverDao.loadById(order.getRe_id()));
@@ -71,7 +72,7 @@ public class OrderService {
                 orderVo2.setT_orders(order);
                 orderVo2.setT_mallUser(mallUserDao.loadById(order.getM_id()));
                 orderVo2.setT_receiver(receiverDao.loadById(order.getRe_id()));
-                orderVo2.setCouponType(couponDao.loadById(order.getCo_id()));
+                orderVo2.setOffecoupon(offeCouponDao.loadById(order.getOFid()));
 
                 orderVo.add(orderVo2);
             }
@@ -100,7 +101,7 @@ public class OrderService {
             orderVo.setT_orders(order);
             orderVo.setT_receiver(receiverDao.loadById(order.getRe_id()));
             orderVo.setT_mallUser(mallUserDao.loadById(order.getM_id()));
-            orderVo.setCouponType(couponDao.loadById(order.getCo_id()));
+            orderVo.setOffecoupon(offeCouponDao.loadById(order.getOFid()));
 
             return orderVo;
         }catch (Exception e){
