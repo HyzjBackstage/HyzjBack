@@ -122,4 +122,12 @@ public interface MallUserDao {
      */
     @Update("update mall_user set phone = platphone+'logout' where phone = #{0}")
     boolean logOutMallUser(String platphone);
+
+    /**
+     * 通过手机号查询
+     * @param single_phone
+     * @return
+     */
+    @Select("select * from mall_user where phone = #{0}")
+    MallUser searchByPhone(@Param("0") String single_phone);
 }

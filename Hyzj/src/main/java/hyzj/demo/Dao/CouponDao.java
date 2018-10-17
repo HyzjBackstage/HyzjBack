@@ -2,6 +2,7 @@ package hyzj.demo.Dao;
 
 import hyzj.demo.Model.Coupon;
 import hyzj.demo.Model.CouponType;
+import hyzj.demo.Model.offeCoupon;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -89,4 +90,12 @@ public interface CouponDao {
 
     @Select("select * from offeCoupon where OFid = #{OFid}")
     Coupon getCouponById(@Param("OFid") String OFid);
+
+    /**
+     * 通过OFid获取优惠券信息
+     * @param OFid
+     * @return
+     */
+    @Select("select * from offeCoupon where OFid = #{0}")
+    offeCoupon loadByOFId(@Param("0") String OFid);
 }

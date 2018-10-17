@@ -25,4 +25,8 @@ public interface AgentDao {
 
     @Update("update agent set discount = #{0} where Mid = #{1}")
     boolean updateDiscount(@Param("0") String discount, @Param("1") String mid);
+
+
+    @Select("select * from agent where Mid = #{0}")
+    Agent searchByMid(@Param("0") String m_id);
 }
