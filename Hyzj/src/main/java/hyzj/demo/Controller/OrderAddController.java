@@ -1,7 +1,6 @@
 package hyzj.demo.Controller;
 
-import hyzj.demo.Dao.OrderAddDao;
-import hyzj.demo.Model.order_add;
+import hyzj.demo.Model.OrderAdd;
 import hyzj.demo.Service.OrderAddService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,7 @@ public class OrderAddController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<order_add> loadList(){
+    public List<OrderAdd> loadList(){
         return orderAddService.loadList();
     }
 
