@@ -1,14 +1,14 @@
 /**
- *create by xiaoyi 2018.10.5
+ *create by xiaoyi 2018.10.13
  */
 
 $(document).ready(function () {
 
-    var table = $("#orderAdd_add_table");
+    var table = $("#businessReturn_table");
     table.dataTable({
         "columnDefs": [{
             'orderable':false,
-            'targets':[8]
+            'targets':[3]
         }],
         "order":[
             [0,"acs"]
@@ -21,7 +21,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: "../orderAdd/list",
+        url: "../businessReturn/list",
         data: params,
         dataType: "json",
         success:function (data) {
@@ -31,15 +31,12 @@ $(document).ready(function () {
                 var itm = data[i];
 
                 table.fnAddData([
-                    itm.add_record,
-                    itm.single_people,
-                    itm.single_phone,
-                    itm.c_id,
-                    itm.number,
-                    itm.price,
-                    itm.add_time,
-                    itm.add_describe,
-                    '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑&nbsp;</a>'
+                    itm.f_id,
+                    itm.rebate_time,
+                    itm.rebate_amount,
+                    '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑&nbsp;</a>' +
+                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+                    '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
             }
         },
@@ -67,17 +64,11 @@ $(document).ready(function () {
     $("#btn_add_save").click(function (e) {
         var delok = true;
         var params = {};
-        params.single_people = $('#orderAdd_add_people').val();
-        params.single_phone = $('#orderAdd_add_phone').val();
-        params.c_id = $('#orderAdd_add_Cid').val();
-        params.number = $('#orderAdd_add_number').val();
-        params.price = $('#orderAdd_add_price').val();
-        params.add_describe = $('#orderAdd_add_describe').val();
+        params.rebate_amount = $('#businessReturn_add_Money').val();
 
         console.log(params);
 
-        if(params.single_people == '' || params.single_phone == '' || params.c_id=='' ||
-            params.number =='' || params.price=='' || params.add_describe == ''){
+        if(params.rebate_amount == ''){
             swal({
                 title: "不能为空！",
                 text: "",
@@ -94,7 +85,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../orderAdd/add",
+            url: "../businessReturn/add",
             data: params,
             dataType: "json",
             success:function(data){
@@ -124,26 +115,18 @@ $(document).ready(function () {
 
         table.fnAddData([
             "AR0000000",
-            $('#orderAdd_add_people').val(),
-            $('#orderAdd_add_phone').val(),
-            $('#orderAdd_add_Cid').val(),
-            $('#orderAdd_add_number').val(),
-            $('#orderAdd_add_price').val(),
             "0000.00.0 00:00:00",
-            $('#orderAdd_add_describe').val(),
-            '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑&nbsp;</a>'
+            $('#businessReturn_add_Money').val(),
+            '<a class="edit"><i class="fa fa-edit"></i>&nbsp;编辑&nbsp;</a>' +
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
+            '<a class="delete"><i class="fa fa-trash"></i>&nbsp;删除</a>'
         ]);
 
         table.fnDraw();
         "AR0000000",
-        $('#orderAdd_add_people').val(),
-        $('#orderAdd_add_phone').val(),
-        $('#orderAdd_add_Cid').val(),
-        $('#orderAdd_add_number').val(),
-        $('#orderAdd_add_price').val(),
         "0000.00.0 00:00:00",
-        $('#orderAdd_add_describe').val(),
-        $('#orderAdd_add_model').css('display','none');
+        $('#businessReturn_add_Money').val(),
+        $('#businessReturn_add_modal').css('display','none');
         swal({
             title: "添加成功！",
             text: "",
@@ -154,7 +137,7 @@ $(document).ready(function () {
             confirmButtonClass: "btn-success",
             confirmButtonText: "OK",
         });
-        $('#orderAdd_add_modal').modal('hide');
+        $('#businessReturn_add_modal').modal('hide');
     });
 
 
@@ -169,16 +152,11 @@ $(document).ready(function () {
         EditRow = nRow;
         var aData = table.fnGetData(nRow);
 
-        $('#orderAdd_edit_order').val(aData[0]);
-        $('#orderAdd_edit_people').val(aData[1]);
-        $('#orderAdd_edit_phone').val(aData[2]);
-        $('#orderAdd_edit_Cid').val(aData[3]);
-        $('#orderAdd_edit_number').val(aData[4]);
-        $('#orderAdd_edit_price').val(aData[5]);
-        $('#orderAdd_edit_time').val(aData[6]);
-        $('#orderAdd_edit_describe').val(aData[7]);
+        $('#businessReturn_edit_Id').val(aData[0]);
+        $('#businessReturn_edit_Time').val(aData[1]);
+        $('#businessReturn_edit_Money').val(aData[2]);
 
-        $('#orderAdd_edit_modal').modal('show')
+        $('#businessReturn_edit_modal').modal('show')
     });
 
 
@@ -187,16 +165,13 @@ $(document).ready(function () {
         var delok = true;
         var params = {};
 
-        params.add_record = $('#orderAdd_edit_order').val();
-        params.single_people = $('#orderAdd_edit_people').val();
-        params.single_phone = $('#orderAdd_edit_phone').val();
-        params.c_id = $('#orderAdd_edit_Cid').val();
-        params.number = $('#orderAdd_edit_number').val();
-        params.price = $('#orderAdd_edit_price').val();
-        params.add_describe = $('#orderAdd_edit_describe').val();
+        params.f_id = $('#businessReturn_edit_Id').val();
+        params.rebate_time = $('#businessReturn_edit_Time').val();
+        params.rebate_amount = $('#businessReturn_edit_Money').val();
 
-        if(params.add_record == '' || params.single_people == '' || params.single_phone == '' || params.c_id==''
-            || params.number =='' || params.price=='' || params.add_describe == ''){
+        console.log(JSON.stringify(params,null,4));
+
+        if(params.rebate_amount == ''){
             swal({
                 title: "不能为空！",
                 text: "",
@@ -213,7 +188,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../orderAdd/update",
+            url: "../businessReturn/update",
             data: params,
             dataType: "json",
             success: function (data) {
@@ -241,25 +216,15 @@ $(document).ready(function () {
             return;
         }
 
-        table.fnUpdate($('#orderAdd_edit_order').val(), nRow, 0, false);
-        table.fnUpdate($('#orderAdd_edit_people').val(), nRow, 1, false);
-        table.fnUpdate($('#orderAdd_edit_phone').val(), nRow, 2, false);
-        table.fnUpdate($('#orderAdd_edit_Cid').val(), nRow, 3, false);
-        table.fnUpdate($('#orderAdd_edit_number').val(), nRow, 4, false);
-        table.fnUpdate($('#orderAdd_edit_price').val(), nRow, 5, false);
-        table.fnUpdate($('#orderAdd_edit_time').val(), nRow, 6, false);
-        table.fnUpdate($('#orderAdd_edit_describe').val(), nRow, 7, false);
+        table.fnUpdate($('#businessReturn_edit_Id').val(), nRow, 0, false);
+        table.fnUpdate($('#businessReturn_edit_Time').val(), nRow, 1, false);
+        table.fnUpdate($('#businessReturn_edit_Money').val(), nRow, 2, false);
         table.fnDraw();
-        $('#orderAdd_edit_order').val('');
-        $('#orderAdd_edit_people').val('');
-        $('#orderAdd_edit_phone').val('');
-        $('#orderAdd_edit_Cid').val('');
-        $('#orderAdd_edit_number').val('');
-        $('#orderAdd_edit_price').val('');
-        $('#orderAdd_edit_time').val('');
-        $('#orderAdd_edit_describe').val('');
+        $('#businessReturn_edit_Id').val('');
+        $('#businessReturn_edit_Time').val('');
+        $('#businessReturn_edit_Money').val('');
 
-        $('#orderAdd_edit_modal').modal('hide');
+        $('#businessReturn_edit_modal').modal('hide');
         swal({
             title: "保存成功！",
             text: "",
@@ -297,13 +262,13 @@ $(document).ready(function () {
             if (!isConfirm) return;
             var delok = true;
             var params={};
-            params.add_record = aData[0];
+            params.f_id = aData[0];
+            console.log(params.f_id);
 
-            console.log(params.add_record);
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../orderAdd/delete",
+                url: "../businessReturn/delete",
                 data: params,
                 dataType: "json",
                 success: function (data) {

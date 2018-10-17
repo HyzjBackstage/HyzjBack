@@ -4,9 +4,6 @@
 
 $(document).ready(function () {
 
-    //上下文路径问题
-    var pathName=window.document.location.pathname;
-    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
     var table = $("#order_table");
     table.dataTable({
         "columnDefs": [{
@@ -23,7 +20,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: projectName+"/order/list",//注意路径
+        url: "../order/list",//注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -31,18 +28,19 @@ $(document).ready(function () {
             for (var i = 0; i < data.length; i++) {
                 var itm = data[i];
 
+                console.log(itm.offecoupon.offe_user);
+
                 var time = itm.order_time;
                 table.fnAddData([
                     itm.t_orders.o_id,
                     itm.t_orders.order_time,
                     itm.t_receiver.name,
                     itm.t_mallUser.name,
-                    itm.coupon.condition_use,
+                    itm.offecoupon.offe_user,
                     itm.t_orders.price,
                     itm.t_orders.status,
                     itm.t_orders.self_lifting,
-                    '<a class="View"  ><i class="fa fa-eye"></i>&nbsp;查看</a>' +
-                    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
+                    '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
             }
         },
@@ -117,7 +115,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: projectName+"/order/seachByTime",//注意路径
+            url: "../order/seachByTime",//注意路径
             data: time,
             dataType: "json",
             success: function (data) {
@@ -132,11 +130,10 @@ $(document).ready(function () {
                             itm.t_orders.order_time,
                             itm.t_receiver.name,
                             itm.t_mallUser.name,
-                            itm.coupon.condition_use,
+                            itm.offecoupon.offe_user,
                             itm.t_orders.price,
                             itm.t_orders.status,
                             itm.t_orders.self_lifting,
-                            '<a class="View"  ><i class="fa fa-eye"></i>&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                             '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                         ]);
                     }
@@ -171,7 +168,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: projectName+"/order/seachById",//注意路径
+            url: "../order/seachById",//注意路径
             data: seachOrder,
             dataType: "json",
             success: function (data) {
@@ -185,11 +182,10 @@ $(document).ready(function () {
                         itm.t_orders.order_time,
                         itm.t_receiver.name,
                         itm.t_mallUser.name,
-                        itm.coupon.condition_use,
+                        itm.offecoupon.offe_user,
                         itm.t_orders.price,
                         itm.t_orders.status,
                         itm.t_orders.self_lifting,
-                        '<a class="View"  ><i class="fa fa-eye"></i>&nbsp;查看</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                         '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                     ]);
                 }
@@ -247,7 +243,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: projectName+"/order/delete",//注意路径
+                url: "../order/delete",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {
