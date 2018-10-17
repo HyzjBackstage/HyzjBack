@@ -53,6 +53,7 @@ public class UserService {
             MallUser mallUser = userDao.loadById(MID);
             //用户不存在或者无效
             if (mallUser == null) {
+                System.out.println("用户不存在或者无效");
                 throw  new NoUserException(ExceptionEnum.NOUSER);
             }
             UserVo uvo = new UserVo();
