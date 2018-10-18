@@ -1,17 +1,18 @@
 package hyzj.demo.Model;
 
 public class Commodity {
-       private String C_id;
-       private String Y_id;//规格
-       private String name;//商品名
-       private String productionDate;//生产日期
-       private String shelfDate;
-       private String image;
-       private float price;//售价
-       private String comment;//评论
-       private float purchase_price;//进价
-        private String stock; //库存
-        private String addTime;//商品加入的时间
+    private String C_id;
+    private String Y_id;//规格
+    private String name;//商品名
+    private String productionDate;//生产日期
+    private String shelfDate;
+    private String image;
+    private float price;//售价
+    private String comment;//评论
+    private float purchase_price;//进价
+    private String stock; //库存
+    private String addTime;//商品加入的时间
+    private int state;
 
     public String getC_id() {
         return C_id;
@@ -102,6 +103,14 @@ public class Commodity {
         this.addTime = addTime;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     @Override
     public String toString() {
         return "Commodity{" +
@@ -116,6 +125,7 @@ public class Commodity {
                 ", purchase_price=" + purchase_price +
                 ", stock='" + stock + '\'' +
                 ", addTime='" + addTime + '\'' +
+                ", state=" + state +
                 '}';
     }
 }

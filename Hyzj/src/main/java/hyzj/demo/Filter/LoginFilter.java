@@ -46,7 +46,7 @@ public class LoginFilter implements Filter {
                 && !requestURI.contains("/plugins")
                 && !requestURI.contains("/goods")
 //                && !requestURI.contains("/save")
-                && !requestURI.contains("/index")
+//                && !requestURI.contains("/index")
 //                && !requestURI.contains("/print")
                 ) {
             //判断cookies中是否有用户信息，如果没有则重定向到登录页面
