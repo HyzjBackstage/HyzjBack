@@ -65,6 +65,7 @@ public class UserController {
 
     @RequestMapping("/index")
     public String Transfer(HttpSession session){
+        System.out.println((UserVo)session.getAttribute("UserVo"));
         if (session.getAttribute("UserVo") == null){
             return "login.html";
         }
