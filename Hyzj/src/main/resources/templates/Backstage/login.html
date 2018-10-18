@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <title>登录</title>
@@ -35,7 +36,7 @@
         <em>&nbsp;&nbsp;&nbsp;</em>
     </dt>
     <dd class="user_icon" style="margin-top: 15px;">
-        <input type="text" id="phone" name="username" placeholder="输入手机号" class="login_txtbx"/>
+        <input type="text" id="phone"  oninput = "value=value.replace(/[^\d]/g,'')" name="username" placeholder="输入手机号" class="login_txtbx"/>
     </dd>
     <dd style="margin-top: 15px; display: none;" id="format_phone" >
         <input name="username" id="tip" readonly class="login_txtbx" style="background: #fed918bd;color: #f7f2f2;">

@@ -94,7 +94,8 @@
                             <th>库存</th>
                             <th>进价</th>
                             <th>售价</th>
-                            <th>保质期</th>
+                            <th>状态</th>
+                            <th data-hide="all">保质期</th>
                             <th data-hide="all">生产日期</th>
                             <th data-hide="all">规格</th>
                             <th data-hide="all">图片</th>
@@ -155,8 +156,20 @@
                             <label class="col-sm-3 control-label">规格：</label>
                             <div class="col-sm-8">
                                 <select id="add_year" name="year" class="form-control">
-                                    <option value="2">38</option>
-                                    <option value="老花镜">48</option>
+                                    <!--<option value="1">常规商品</option>
+                                    <option value="老花镜">48</option>-->
+                                </select>
+                                <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">状态：</label>
+                            <div class="col-sm-8">
+                                <select id="add_state" name="state" class="form-control">
+                                    <option value="1">常规商品</option>
+                                    <option value="2">没货商品</option>
+                                    <option value="3">下架商品</option>
+                                    <option value="4">新品上市</option>
                                 </select>
                                 <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
                             </div>
@@ -189,6 +202,9 @@
                                 <select id="shelfDate" name="shelfDate" class="form-control">
                                     <option value="1">一年</option>
                                     <option value="2">两年</option>
+                                    <option value="5">五年</option>
+                                    <option value="10">十年</option>
+                                    <option value="100">无限</option>
                                 </select>
                                 <!--<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 输入眼镜名称</span>-->
                             </div>

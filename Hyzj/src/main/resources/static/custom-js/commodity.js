@@ -6,8 +6,8 @@
 $(document).ready(function () {
 
     //上下文路径问题
-    var pathName=window.document.location.pathname;
-    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+    var pathName = window.document.location.pathname;
+    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
 
     $(".footable").footable();
 
@@ -33,14 +33,14 @@ $(document).ready(function () {
     $("#btn-add-a").click(function () {
 
 
-
         $("#commodity").removeAttr('readonly');
+        $("#commodity").val('');
         $("#addname").val('');
         $("#stock").val('');
         $("#price").val("");
         $("#purchase_price").val("");
         $("#productionDate").val("");
-        $("#edit_img").attr("src","");
+        $("#edit_img").attr("src", "");
         //动态修改标签，将添加和编辑是同一个界面，只是根据title来区分，哪个是编辑、添加
         $("#commodity_title").text('商品信息添加');
 
@@ -55,6 +55,24 @@ $(document).ready(function () {
         $("#page_commodity_add").css('display', 'none');
     });
 
+    //将状态数字转成文字
+    function state(numble) {
+        if (numble == "1") {
+            return "常规商品";
+        }
+        if (numble == "2") {
+            return "没货商品";
+        }
+        if (numble == "3") {
+            return "下架商品";
+
+        }
+        if (numble == "4") {
+            return "新品上市";
+
+        }
+    }
+
 
     /**
      *初始化
@@ -63,7 +81,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: projectName+"/commodity/list",       //注意路径
+        url: projectName + "/commodity/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -91,13 +109,14 @@ $(document).ready(function () {
                     '<td>' + datas.commodity.stock + '</td>' +
                     '<td>' + datas.commodity.purchase_price + '</td>' +
                     '<td>' + datas.commodity.price + '</td>' +
+                    '<td>' + state(datas.commodity.state)+ '</td>' +
                     '<td>' + datas.commodity.shelfDate + '</td>年' +
                     '<td>' + datas.commodity.productionDate + '</td>' +
                     '<td>' + datas.year.year + '</td>' +
-                    '<td>' + '<img src="' +projectName+"/goods/"+ datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
+                    '<td>' + '<img src="' + projectName + "/goods/" + datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
                     '<td>' + datas.commodity.addTime + '</td>' +
                     //id，动态添加数据可以相同
-                    '<td><a class="edit"  id="' + datas.commodity.c_id+ '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.commodity.c_id+ '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
+                    '<td><a class="edit"  id="' + datas.commodity.c_id + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.commodity.c_id + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
                     '</tr>';
                 $("#tbd").prepend(str1).trigger('footable_redraw');
             }
@@ -127,7 +146,7 @@ $(document).ready(function () {
     $.ajax({
         async: false,
         type: "POST",
-        url: projectName+"/year/list",       //注意路径
+        url: projectName + "/year/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -142,7 +161,7 @@ $(document).ready(function () {
 
         },
         error: function (data) {
-            console.log(JSON.stringify(data.data,null,4));
+            console.log(JSON.stringify(data.data, null, 4));
             swal({
                 title: "数据获取失败！",
                 text: "",
@@ -175,8 +194,8 @@ $(document).ready(function () {
             formData1.get("purchaseprice") == null ||
             formData1.get("shelfDate") == null ||
             formData1.get("productionDate") == null ||
-            formData1.get("detailfile") == null
-
+            formData1.get("detailfile") == null ||
+            formData1.get("state") == null
         ) {
             swal({
                 title: "输入框不能为空！",
@@ -199,7 +218,7 @@ $(document).ready(function () {
             var delok = true;
             $.ajax({
                 async: false,
-                url: projectName+'/commodity/add',//路径
+                url: projectName + '/commodity/add',//路径
                 type: 'POST',
                 dataType: "json",
                 contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
@@ -224,13 +243,14 @@ $(document).ready(function () {
                         '<td>' + datas.commodity.stock + '</td>' +
                         '<td>' + datas.commodity.purchase_price + '</td>' +
                         '<td>' + datas.commodity.price + '</td>' +
+                        '<td>' + state(datas.commodity.state)+ '</td>' +
                         '<td>' + datas.commodity.shelfDate + '</td>年' +
                         '<td>' + datas.commodity.productionDate + '</td>' +
                         '<td>' + datas.year.year + '</td>' +
-                        '<td>' + '<img src="' + projectName+"/goods/"+ datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
+                        '<td>' + '<img src="' + projectName + "/goods/" + datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
                         '<td>' + datas.commodity.addTime + '</td>' +
                         //id，动态添加数据可以相同
-                        '<td><a class="edit"  id="' + datas.commodity.c_id+ '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.commodity.c_id+ '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
+                        '<td><a class="edit"  id="' + datas.commodity.c_id + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.commodity.c_id + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
                         '</tr>';
                     //解除edit 、 delete 原有的点击事件
 
@@ -281,7 +301,7 @@ $(document).ready(function () {
             var delok = true;
             $.ajax({
                 async: false,
-                url: projectName+'/commodity/update',//路径
+                url: projectName + '/commodity/update',//路径
                 type: 'POST',
                 dataType: "json",
                 contentType: false,// 当有文件要上传时，此项是必须的，否则后台无法识别文件流的起始位置(详见：#1)
@@ -304,6 +324,20 @@ $(document).ready(function () {
                     //     attachStr += '&nbsp;&nbsp;&nbsp;<image style="width: 45px;height: 45px;" src="../goods/' + itm.path + '"></image>'
                     // }
                     var datas = data.data;
+                    if (datas == null){
+                        swal({
+                            title: "修改失败！",
+                            text: "",
+                            type: "error",
+                            allowOutsideClick: true,
+                            showConfirmButton: true,
+                            showCancelButton: false,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "OK",
+                        });
+                        return;
+                    }
+
                     //alert(attachStr);
                     var str1 = '<tr>' +
                         '<td>' + datas.commodity.c_id + '</td>' +
@@ -311,13 +345,14 @@ $(document).ready(function () {
                         '<td>' + datas.commodity.stock + '</td>' +
                         '<td>' + datas.commodity.purchase_price + '</td>' +
                         '<td>' + datas.commodity.price + '</td>' +
+                        '<td>' + state(datas.commodity.state)+ '</td>' +
                         '<td>' + datas.commodity.shelfDate + '</td>年' +
                         '<td>' + datas.commodity.productionDate + '</td>' +
                         '<td>' + datas.year.year + '</td>' +
-                        '<td>' + '<img src="' + projectName+"/goods/"+ datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
+                        '<td>' + '<img src="' + projectName + "/goods/" + datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
                         '<td>' + datas.commodity.addTime + '</td>' +
                         //id，动态添加数据可以相同
-                        '<td><a class="edit"  id="' + datas.commodity.c_id+ '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.commodity.c_id+ '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
+                        '<td><a class="edit"  id="' + datas.commodity.c_id + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.commodity.c_id + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
                         '</tr>';
 
 
@@ -399,7 +434,7 @@ $(document).ready(function () {
                 $.ajax({
                     async: false,
                     type: "POST",
-                    url: projectName+"/commodity/delete",//注意路径
+                    url: projectName + "/commodity/delete",//注意路径
                     data: params,
                     dataType: "json",
                     success: function (data) {
@@ -461,7 +496,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: projectName+"/commodity/loadById",//注意路径
+                url: projectName + "/commodity/loadById",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {
@@ -472,14 +507,15 @@ $(document).ready(function () {
                     $("#add_year").val(datas.year.y_id);
                     $("#stock").val(datas.commodity.stock);
                     $("#price").val(datas.commodity.price);
+                    $("#add_state").val(datas.commodity.state);
                     $("#purchase_price").val(datas.commodity.purchase_price);
                     $("#shelfDate").val(datas.commodity.shelfDate);
                     $("#productionDate").val(datas.commodity.productionDate);
 
-                    $("#edit_img").attr('src', projectName+'/goods/' + datas.commodity.image);
+                    $("#edit_img").attr('src', projectName + '/goods/' + datas.commodity.image);
                     //alert(ageStr);
 
-                   /*  $("#atts_list").html('');*/
+                    /*  $("#atts_list").html('');*/
                     // //将附件里面的图片获取出来
                     // var attachStr = '';
                     // for (var j = 0; j < datas.t_attachments.length; j++) {
@@ -499,51 +535,51 @@ $(document).ready(function () {
                     // }
 
                     //将删除解除click，重新添加事件
-                   /* $(".atts_deletes").unbind('click');
+                    /* $(".atts_deletes").unbind('click');
 
-                    $(".atts_deletes").click(function (e) {
-                        var divs = $(this).parents('div')[0].parentNode;
-                        //alert(divs.id);
+                     $(".atts_deletes").click(function (e) {
+                         var divs = $(this).parents('div')[0].parentNode;
+                         //alert(divs.id);
 
-                        var params = {};
-                        params.code = divs.id + '';
-                        $.ajax({
-                            async: false,
-                            type: "POST",
-                            url: "../eyeglass/deleteAttach",//注意路径
-                            data: params,
-                            dataType: "json",
-                            success: function (datas) {
-                                if (datas) {
-                                    $('#' + divs.id).remove();
-                                } else {
-                                    swal({
-                                        title: "移除失败！",
-                                        text: "",
-                                        type: "error",
-                                        allowOutsideClick: true,
-                                        showConfirmButton: true,
-                                        showCancelButton: false,
-                                        confirmButtonClass: "btn-danger",
-                                        confirmButtonText: "OK",
-                                    });
-                                }
+                         var params = {};
+                         params.code = divs.id + '';
+                         $.ajax({
+                             async: false,
+                             type: "POST",
+                             url: "../eyeglass/deleteAttach",//注意路径
+                             data: params,
+                             dataType: "json",
+                             success: function (datas) {
+                                 if (datas) {
+                                     $('#' + divs.id).remove();
+                                 } else {
+                                     swal({
+                                         title: "移除失败！",
+                                         text: "",
+                                         type: "error",
+                                         allowOutsideClick: true,
+                                         showConfirmButton: true,
+                                         showCancelButton: false,
+                                         confirmButtonClass: "btn-danger",
+                                         confirmButtonText: "OK",
+                                     });
+                                 }
 
-                            }, error: function (err) {
-                                console.log(JSON.stringify(err, null, 4));
-                                swal({
-                                    title: "移除失败！",
-                                    text: "",
-                                    type: "error",
-                                    allowOutsideClick: true,
-                                    showConfirmButton: true,
-                                    showCancelButton: false,
-                                    confirmButtonClass: "btn-danger",
-                                    confirmButtonText: "OK",
-                                });
-                            }
-                        });
-                    });*/
+                             }, error: function (err) {
+                                 console.log(JSON.stringify(err, null, 4));
+                                 swal({
+                                     title: "移除失败！",
+                                     text: "",
+                                     type: "error",
+                                     allowOutsideClick: true,
+                                     showConfirmButton: true,
+                                     showCancelButton: false,
+                                     confirmButtonClass: "btn-danger",
+                                     confirmButtonText: "OK",
+                                 });
+                             }
+                         });
+                     });*/
 
                     $("#commodity_title").text('商品信息修改');
                     $("#commodity").attr('readonly', 'readonly');
