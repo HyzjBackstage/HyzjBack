@@ -65,6 +65,7 @@ public class CommodityService {
         float purchase_price = Float.valueOf(request.getParameter("purchaseprice"));
         String shelfDate = request.getParameter("shelfDate");
         String productionDate  = request.getParameter("productionDate");
+        int state = Integer.parseInt(request.getParameter("state"));
 
 
         System.out.println(commodity+":"+
@@ -74,7 +75,8 @@ public class CommodityService {
                 price+":"+
                 purchase_price+":"+
                 shelfDate+":"+
-                productionDate
+                productionDate+":"+
+                state
         );
 
         try {
@@ -122,7 +124,8 @@ public class CommodityService {
                     shelfDate,
                     productionDate,
                     detailphoto,
-                    nowtime
+                    nowtime,
+                    state
             );
         } catch (Exception e) {
            throw  new DataLinkException(e, ExceptionEnum.DATALINK_Exception);
@@ -210,7 +213,18 @@ public class CommodityService {
         float price = Float.valueOf(request.getParameter("price"));
         float purchase_price = Float.valueOf(request.getParameter("purchaseprice"));
         String shelfDate = request.getParameter("shelfDate");
+        int state = Integer.parseInt(request.getParameter("state"));//修改状态
         String productionDate  = request.getParameter("productionDate");
+        System.out.println(commodity+":"+
+                addname+":"+
+                year+":"+
+                stock+":"+
+                price+":"+
+                purchase_price+":"+
+                shelfDate+":"+
+                productionDate+":"+
+                state
+        );
         String editDetailphoto = "";
         try{
             String path = "/usr/local/upload/goods/";
@@ -260,7 +274,8 @@ public class CommodityService {
                 purchase_price,
                 shelfDate,
                 productionDate,
-                editDetailphoto
+                editDetailphoto,
+                state
 
         );
         CommodityVo commodityVo = new CommodityVo();
