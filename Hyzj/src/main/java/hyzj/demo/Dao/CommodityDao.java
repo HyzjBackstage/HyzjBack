@@ -13,17 +13,17 @@ public interface CommodityDao {
     List<Commodity> loadCommodity();
 
     @Insert("insert into commodity(" +
-            "C_id" +
-            "Y_id" +
-            "name" +
-            "productionDate" +
-            "shelfDate" +
-            "image" +
-            "price" +
-            "comment" +
-            "purchase_price" +
-            "stock" +
-            "addTime" +
+            "C_id," +
+            "Y_id," +
+            "name," +
+            "productionDate," +
+            "shelfDate," +
+            "image," +
+            "price," +
+            "comment," +
+            "purchase_price," +
+            "stock," +
+            "addTime," +
             "state" +") values(#{0},#{2},#{1},#{7},#{6},#{8},#{4},'',#{5},#{3},#{9},#{10})")
     boolean add(@Param("0") String commodity,
                 @Param("1") String addname,
