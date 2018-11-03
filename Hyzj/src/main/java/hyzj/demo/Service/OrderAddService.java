@@ -91,10 +91,10 @@ public class OrderAddService {
             float discountedPrice = Float.parseFloat(price)*discount;
 
             //投资人或代理商个人赚取金额income_amount
-            float income_amount = Float.parseFloat(price) - discountedPrice*Float.parseFloat(number);
+            float income_amount = Float.parseFloat(price) - discountedPrice;
 
             //未分配利润
-            float unallocated_amount = discountedPrice - commodity.getPurchase_price();
+            float unallocated_amount = discountedPrice - commodity.getPurchase_price()*Float.parseFloat(number);
 
             boolean b1 = incomeDao.add(In_id,mallUser.getM_id(),add_time,income_amount,unallocated_amount);
             boolean b2 = orderAddDao.add(add_record,single_people,single_phone,c_id,number,price,add_time,add_describe,In_id);
@@ -145,14 +145,14 @@ public class OrderAddService {
 
         Commodity commodity = commodityDao.loadCommodityByid(c_id);
 
-        //投资人或者代理商使用永久折扣后得出的价格discountedPrice(单价)
+        //投资人或者代理商使用永久折扣后得出的价格discountedPrice(折后总价)
         float discountedPrice = Float.parseFloat(price)*discount;
 
         //投资人或代理商个人赚取金额income_amount
-        float income_amount = Float.parseFloat(price) - discountedPrice*Float.parseFloat(number);
+        float income_amount = Float.parseFloat(price) - discountedPrice;
 
         //未分配利润
-        float unallocated_amount = discountedPrice - commodity.getPurchase_price();
+        float unallocated_amount = discountedPrice - commodity.getPurchase_price()*Float.parseFloat(number);
 
         boolean b1 = incomeDao.update(orderAdd.getIn_id(),mallUser.getM_id(),add_time,income_amount,unallocated_amount);
         boolean b2 = orderAddDao.update(add_record,single_people,single_phone,c_id,number,price,add_time,add_describe);
