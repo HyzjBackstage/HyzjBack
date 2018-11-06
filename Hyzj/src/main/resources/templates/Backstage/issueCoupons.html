@@ -90,11 +90,11 @@
     function issueCoupon(couponType) {
         $.ajax({
             type: "get",
-            url: "/issue/generate",
+            url: "issue/generate",
             data: "couponType=" + couponType,
             dataType: "text",
             success: function (data) {
-                $(location).attr('href', '/collect?couponId=' + data);
+                $(location).attr('href', 'collect?couponId=' + data);
             },
             error: function () {
                 alert("error");
