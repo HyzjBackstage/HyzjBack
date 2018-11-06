@@ -59,7 +59,7 @@
                                         <!--<h3 th:utext="'<em>'+((${couponType.type}=='1')?'打折券':'现金券')+'</em>&nbsp;'+${couponType.condition_use}"></h3>-->
                                         <h3 th:utext="'<em>现金券</em>&nbsp;限定商品'+${couponType.getAmount()}+'元现金券'"></h3>
                                         <p>&nbsp;由项目发起人设置&nbsp;<i>无限期</i><em class="coupon-issue"
-                                                                             th:onclick="'issueCoupon('+${couponType.getCo_id()}+')'">&nbsp;发放&nbsp;</em>
+                                                                             th:onclick="'issueCoupon(\''+${couponType.getCo_id()}+'\')'">&nbsp;发放&nbsp;</em>
                                         </p>
                                     </div>
                                 </div>
@@ -84,27 +84,22 @@
 </section>
 </body>
 <script>
-    $(document).ready(function () {
-
-
-        //上下文路径问题
-        var pathName = window.document.location.pathname;
-        var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
-
-        function issueCoupon(couponType) {
-            $.ajax({
-                type: "get",
-                url: projectName + "/issue/generate",
-                data: "couponType=" + couponType,
-                dataType: "text",
-                success: function (data) {
-                    $(location).attr('href', projectName + '/collect?couponId=' + data);
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
-        }
-    });
+    var pathName = window.document.location.pathname;
+    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+    // projectName +
+    function issueCoupon(couponType) {
+        $.ajax({
+            type: "get",
+            url: "/issue/generate",
+            data: "couponType=" + couponType,
+            dataType: "text",
+            success: function (data) {
+                $(location).attr('href', '/collect?couponId=' + data);
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
 </script>
 </html>
