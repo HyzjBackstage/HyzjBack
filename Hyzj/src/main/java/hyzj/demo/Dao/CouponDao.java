@@ -82,8 +82,10 @@ public interface CouponDao {
 
     //-----------------------发放优惠券
     //发放优惠券
-    @Insert("insert into offeCoupon(OFid, offe_user, COid) values (#{OFid}, #{offe_user}, #{COid})")
-    int createNewCoupon(Coupon coupon);
+    @Insert("insert into offeCoupon(OFid, offe_user, COid) values (#{couponId}, #{collectUserId}, #{couponTypeId})")
+    int createNewCoupon(@Param("couponId") String couponId
+            , @Param("collectUserId") String collectUserId
+            , @Param("couponTypeId") String couponTypeId);
 
     @Update("update offeCoupon set Receiver = #{Receiver}, pickTime = #{pickTime}, state = #{state} where OFid = #{OFid}")
     int bindPhoneNum(Coupon coupon);

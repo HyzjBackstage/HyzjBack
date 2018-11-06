@@ -97,14 +97,14 @@ function getVerifyCode() {
 function collectCoupn(phoneNum) {
     $.ajax({
         type: "get",
-        url: "/coupon/collect/bind",
+        url: "collect/bind",
         data: "phoneNum="+phoneNum,
         dataType: "text",
         success: function (data) {
             loadData(data);
         },
         error: function () {
-            alert("error");
+            alert("领取失败");
         }
     });
 }
@@ -113,7 +113,7 @@ function collectCoupn(phoneNum) {
 
 //回到商城
 function backToShop() {
-	window.location.href = "http://www.trunch.cn"
+	window.location.href = "http://haoduodian.trunch.cn/mall"
 }
 
 //网页初始化
