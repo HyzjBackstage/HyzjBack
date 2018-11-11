@@ -85,11 +85,29 @@ $(document).ready(function () {
         data: params,
         dataType: "json",
         success: function (data) {
-            console.log(JSON.stringify(data.data, null, 4));
             //循环显示data里面的List<EyeglassVo>数据
+
+            console.log(JSON.stringify(data.data, null, 4));
+            //alert(attachStr);
+            var str1 = '<tr>' +
+                '<td>' + datas.commodity.c_id + '</td>' +
+                '<td>' + datas.commodity.name + '</td>' +
+                '<td>' + datas.commodity.stock + '</td>' +
+                '<td>' + datas.commodity.price + '</td>' +
+                '<td>' + datas.commodity.purchase_price + '</td>' +
+                '<td>' + state(datas.commodity.state)+ '</td>' +
+                '<td>' + datas.commodity.shelfDate + '</td>年' +
+                '<td>' + datas.commodity.productionDate + '</td>' +
+                '<td>' + datas.year.year + '</td>' +
+                '<td>' + '<img src="' + projectName + "/goods/" + datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
+                '<td>' + datas.commodity.addTime + '</td>' +
+                //id，动态添加数据可以相同
+                '<td><a class="edit"  id="' + datas.commodity.c_id + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.commodity.c_id + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
+                '</tr>';
             for (var i = 0; i < data.data.length; i++) {
                 var datas = data.data[i];
                 console.log(JSON.stringify(datas, null, 4));
+
                 // //获取附件里面的图片
                 // var attachStr = '';
                 // for (var j = 0; j < datas.t_attachments.length; j++) {
@@ -100,24 +118,7 @@ $(document).ready(function () {
 
                 //显示一条条数据
                 console.log(str1);
-
                 //
-                //alert(attachStr);
-                var str1 = '<tr>' +
-                    '<td>' + datas.commodity.c_id + '</td>' +
-                    '<td>' + datas.commodity.name + '</td>' +
-                    '<td>' + datas.commodity.stock + '</td>' +
-                    '<td>' + datas.commodity.purchase_price + '</td>' +
-                    '<td>' + datas.commodity.price + '</td>' +
-                    '<td>' + state(datas.commodity.state)+ '</td>' +
-                    '<td>' + datas.commodity.shelfDate + '</td>年' +
-                    '<td>' + datas.commodity.productionDate + '</td>' +
-                    '<td>' + datas.year.year + '</td>' +
-                    '<td>' + '<img src="' + projectName + "/goods/" + datas.commodity.image + '" style="width: 45px;height: 45px;cursor:pointer;" alt="图片未存在" onclick="javascript:window.open(this.src) "></td>' +
-                    '<td>' + datas.commodity.addTime + '</td>' +
-                    //id，动态添加数据可以相同
-                    '<td><a class="edit"  id="' + datas.commodity.c_id + '"  ><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="delete" id="' + datas.commodity.c_id + '" ><i class="fa fa-trash"></i>&nbsp;删除</a></td> ' +
-                    '</tr>';
                 $("#tbd").prepend(str1).trigger('footable_redraw');
             }
 
