@@ -52,10 +52,10 @@ public class IssueService {
     }
 
     //生成一张优惠券
-    public String generateCoupon(HttpSession httpSession, String couponType) {
-        String userId = (String) httpSession.getAttribute("userId");
+    public String generateCoupon(HttpSession httpSession, String couponTypeId) {
+        String collectUserId = (String) httpSession.getAttribute("userId");
         String couponId = UUID.randomUUID().toString().replace("-", "");
-        couponDao.createNewCoupon(new Coupon(couponId, userId, couponType));
+        couponDao.createNewCoupon(couponId, collectUserId, couponTypeId);
         System.out.println("随机生成优惠券：" + couponId);
         return couponId;
     }

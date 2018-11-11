@@ -22,15 +22,14 @@ public class CollectService {
     //领取优惠券绑定手机号
     public String bindPhoneNum(HttpSession httpSession, String phoneNum) {
         String couponId = (String) httpSession.getAttribute("couponId");
-//        String collectTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         Timestamp collectTime = new Timestamp(new Date().getTime());
-        String couponState = "0";
-        System.out.println(couponId);
+        String couponState = "0";//0表示领取了，未使用。null表示未领取。
         Coupon coupon = couponDao.getCouponById(couponId);
         if (coupon == null) {
             return "2";
         }
-        if (!(coupon.getReceiver()==null)) {
+        if (coupon.getReceiver() != null && !"".equals(coupon.getReceiver())) {
+            System.out.println("??????????????????????????"+coupon.getReceiver()+couponId);
             if (coupon.getReceiver().equals(phoneNum))
                 return "3";
             else

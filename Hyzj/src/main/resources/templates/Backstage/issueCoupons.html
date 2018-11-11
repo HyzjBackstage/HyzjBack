@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <meta charset="UTF-8">
-    <title>优惠券</title>
-    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
-    <meta content="yes" name="apple-mobile-web-app-capable"/>
-    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
-    <meta content="telephone=no" name="format-detection"/>
-    <link href="css/issueCoupons.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="js/jquery-1.js"></script>
-    <script type="text/javascript" src="js/tab.js"></script>
+<meta charset="UTF-8">
+<title>优惠券</title>
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="telephone=no" name="format-detection"/>
+<link href="css/issueCoupons.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/jquery-1.js"></script>
+<script type="text/javascript" src="js/tab.js"></script>
 </head>
 <body>
 
@@ -22,7 +22,7 @@
             <span class="aui-center-title">发放优惠券</span>
         </div>
         <a href="javascript:;" class="aui-navBar-item">
-            <i class="icon icon-sys"></i>说明
+            <i class="icon icon-sys"></i>
         </a>
     </header>
     <section class="aui-scrollView">
@@ -44,7 +44,9 @@
                                     </div>
                                     <div class="aui-coupon-list-flex-bd">
                                         <h3 th:utext="'<em>打折券</em>&nbsp;全场商品'+${couponType.getDiscount()}+'折优惠券'"></h3>
-                                        <p>&nbsp;由项目发起人设置&nbsp;<i>无限期</i><em class="coupon-issue" th:onclick="'issueCoupon('+${couponType.getCo_id()}+')'">&nbsp;发放&nbsp;</em></p>
+                                        <p>&nbsp;由项目发起人设置&nbsp;<i>无限期</i><em class="coupon-issue"
+                                                                             th:onclick="'issueCoupon(\''+${couponType.getCo_id()}+'\')'">&nbsp;发放&nbsp;</em>
+                                        </p>
                                     </div>
                                 </div>
                                 <!--现金券种类-->
@@ -56,7 +58,9 @@
                                     <div class="aui-coupon-list-flex-bd">
                                         <!--<h3 th:utext="'<em>'+((${couponType.type}=='1')?'打折券':'现金券')+'</em>&nbsp;'+${couponType.condition_use}"></h3>-->
                                         <h3 th:utext="'<em>现金券</em>&nbsp;限定商品'+${couponType.getAmount()}+'元现金券'"></h3>
-                                        <p>&nbsp;由项目发起人设置&nbsp;<i>无限期</i><em class="coupon-issue" th:onclick="'issueCoupon('+${couponType.getCo_id()}+')'">&nbsp;发放&nbsp;</em></p>
+                                        <p>&nbsp;由项目发起人设置&nbsp;<i>无限期</i><em class="coupon-issue"
+                                                                             th:onclick="'issueCoupon(\''+${couponType.getCo_id()}+'\')'">&nbsp;发放&nbsp;</em>
+                                        </p>
                                     </div>
                                 </div>
                                 <!--用券说明-->
@@ -80,44 +84,22 @@
 </section>
 </body>
 <script>
-    $(document).ready(function () {
-
-
-    //上下文路径问题
-    var pathName=window.document.location.pathname;
-    var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+    var pathName = window.document.location.pathname;
+    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+    // projectName +
     function issueCoupon(couponType) {
         $.ajax({
             type: "get",
-            url: projectName+"/issue/generate",
-            data: "couponType="+couponType,
+            url: "issue/generate",
+            data: "couponType=" + couponType,
             dataType: "text",
             success: function (data) {
-                $(location).attr('href', projectName+'/collect?couponId=' + data);
+                $(location).attr('href', 'collect?couponId=' + data);
             },
             error: function () {
                 alert("error");
             }
         });
-
-
-        // var jsonTest = {};
-        // jsonTest.test1 = "客户端测试一";
-        // jsonTest.test2 = "客户端测试二";
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/coupon/issue/test",
-        //     data: jsonTest,
-        //     // contentType: "application/json;charset=utf-8",
-        //     dataType: "json",
-        //     success: function (data) {
-        //         alert(JSON.stringify(data));
-        //     },
-        //     error: function () {
-        //         alert("error");
-        //     }
-        // });
     }
-    });
 </script>
 </html>

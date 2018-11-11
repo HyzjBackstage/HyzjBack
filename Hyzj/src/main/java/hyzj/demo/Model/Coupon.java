@@ -6,18 +6,18 @@ import java.sql.Timestamp;
 public class Coupon {
 
     private String OFid;
+    private String COid;
     private String offe_user;
     private String Receiver;
-    private String COid;
     private Timestamp pickTime;
     private String state;
     private Timestamp useTime;
 
-    public Coupon(String OFid, String offe_user, String receiver, String COid, Timestamp pickTime, String state, Timestamp useTime) {
+    public Coupon(String OFid, String COid, String offe_user, String receiver, Timestamp pickTime, String state, Timestamp useTime) {
         this.OFid = OFid;
+        this.COid = COid;
         this.offe_user = offe_user;
         Receiver = receiver;
-        this.COid = COid;
         this.pickTime = pickTime;
         this.state = state;
         this.useTime = useTime;
@@ -44,6 +44,14 @@ public class Coupon {
         this.OFid = OFid;
     }
 
+    public String getCOid() {
+        return COid;
+    }
+
+    public void setCOid(String COid) {
+        this.COid = COid;
+    }
+
     public String getOffe_user() {
         return offe_user;
     }
@@ -58,14 +66,6 @@ public class Coupon {
 
     public void setReceiver(String receiver) {
         Receiver = receiver;
-    }
-
-    public String getCOid() {
-        return COid;
-    }
-
-    public void setCOid(String COid) {
-        this.COid = COid;
     }
 
     public Timestamp getPickTime() {
