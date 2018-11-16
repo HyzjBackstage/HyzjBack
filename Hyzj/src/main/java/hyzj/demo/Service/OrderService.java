@@ -3,6 +3,7 @@ package hyzj.demo.Service;
 import hyzj.demo.Dao.*;
 import hyzj.demo.Model.orders;
 import hyzj.demo.ModelVo.OrderVo;
+import hyzj.demo.Utils.DatatablesView;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,6 +29,38 @@ public class OrderService {
      * 获取订单数据
      * @return
      */
+//    public DatatablesView<OrderVo> loadList() {
+//
+//        System.out.println("orderVO::::");
+//
+//        try{
+//            List<OrderVo> orderVo = new ArrayList<>();
+//            List<orders> orders = orderDao.loadList();
+//
+//            for (hyzj.demo.Model.orders order: orders) {
+//                OrderVo orderVo1 = new OrderVo();
+//                orderVo1.setT_orders(order);
+//                orderVo1.setT_mallUser(mallUserDao.loadById(order.getM_id()));
+//                orderVo1.setT_receiver(receiverDao.loadById(order.getRe_id()));
+//                orderVo1.setOffecoupon(offeCouponDao.loadById(order.getOFid()));
+//
+////                System.out.println("mallUserDao:" + mallUserDao.loadById(order.getM_id()));
+////                System.out.println("receiverDao:" + receiverDao.loadById(order.getRe_id()));
+//
+//                orderVo.add(orderVo1);
+//            }
+//
+//            int count = orderDao.orderCount();
+//            DatatablesView<OrderVo> dataView = new DatatablesView<OrderVo>();
+//            dataView.setRecordsTotal(count);
+//            dataView.setData(orderVo);
+//
+//            return dataView;
+//        }catch (Exception e){
+//            throw new RuntimeException(e.getMessage());
+//        }
+//    }
+
     public List<OrderVo> loadList() {
 
         System.out.println("orderVO::::");

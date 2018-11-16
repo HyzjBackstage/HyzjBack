@@ -4,6 +4,10 @@
 
 $(document).ready(function () {
 
+    $.extend($.fn.dataTable.defaults, {
+        searching: false
+    });
+
     var table = $("#order_table");
     table.dataTable({
         "columnDefs": [{
@@ -12,19 +16,120 @@ $(document).ready(function () {
         }],
         "order": [
             [0, "asc"]
-        ]
+        ],
     });
+
+
+
+        // serverSide: true,               //分页，取数据等等的都放到服务端去
+        // processing: true,               //载入数据的时候是否显示“载入中”
+        // pageLength: 10,                 //首次加载的数据条数
+        // ordering: false,                //排序操作在服务端进行，所以可以关了。
+        // pagingType: "full_numbers",
+        // autoWidth: false,
+        // stateSave: true,                //保持翻页状态，和comTable.fnDraw(false);结合使用
+        // searching: false,               //禁用datatables搜索
+        //
+        // ajax: {
+        //     type: "post",
+        //     url: "../order/list",
+        //     dataSrc: "data",
+        //     data: function (d) {
+        //
+        //         var param = {};
+        //         param.draw = d.draw;
+        //         param.start = d.start;
+        //         param.length = d.length;
+        //         var formData = $("#queryForm").serializeArray();    //把form里面的数据序列化成数组
+        //         formData.forEach(function (e) {
+        //             param[e.name] = e.value;
+        //         });
+        //         return param;//自定义需要传递的参数。
+        //     },
+        // },
+        //
+        // //列表表头字段
+        // columns: [
+        //     { "data": "t_orders","t_orders": "o_id"},
+        //     { "data": "t_orders","t_orders": "order_time" },
+        //     { "data": "t_receiver","t_receiver": "name" },
+        //     { "data": "t_mallUser","t_mallUser": "name" },
+        //     { "data": "offecoupon","offecoupon": "offe_user" },
+        //     { "data": "t_orders","t_orders": "price" },
+        //     { "data": "t_orders","t_orders": "status" },
+        //     { "data": "t_orders","t_orders": "self_lifting" },
+
+            // { "data": data.t_orders.o_id },
+            // { "data": data.t_orders.order_time },
+            // { "data": data.t_receiver.name },
+            // { "data": data.t_mallUser.name },
+            // { "data": data.offecoupon.offe_user },
+            // { "data": data.t_orders.price },
+            // { "data": data.t_orders.status },
+            // { "data": data.t_orders.self_lifting },
+
+            // { "data": JSON.parse("t_orders").o_id },
+            // { "data": JSON.parse("t_orders").order_time },
+            // { "data": JSON.parse("t_receiver").name },
+            // { "data": JSON.parse("t_mallUser").name },
+            // { "data": JSON.parse("offecoupon").offe_user },
+            // { "data": JSON.parse("t_orders").price },
+            // { "data": JSON.parse("t_orders").status },
+            // { "data": JSON.parse("t_orders").self_lifting },
+            //新建列的 定义
+
+            // {
+            //     data: "office",
+            //     defaultContent:"",
+            //     orderable : false,
+            // }
+        //
+        // ],
+
+    //     "createdRow": function ( row, data, index ) {
+    //         //行渲染回调,在这里可以对该行dom元素进行任何操作
+    //         console.log(JSON.stringify(data,null,4))
+    //
+    //         for (var i = 0; i < data.length; i++) {
+    //             var itm = data[i];
+    //
+    //             console.log(itm.offecoupon.offe_user);
+    //
+    //             var time = itm.order_time;
+    //             table.fnAddData([
+    //                 itm.t_orders.o_id,
+    //                 itm.t_orders.order_time,
+    //                 itm.t_receiver.name,
+    //                 itm.t_mallUser.name,
+    //                 itm.offecoupon.offe_user,
+    //                 itm.t_orders.price,
+    //                 itm.t_orders.status,
+    //                 itm.t_orders.self_lifting,
+    //                 '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
+    //             ]);
+    //         }
+    //
+    //         var $btn = $('<div class="btn-group text-cen">'+
+    //             '<button type="button" class="btn btn-sm btn-primary btn-edit">修改</button>'+
+    //             '<button type="button" class="btn btn-sm btn-danger btn-del">删除</button>'+
+    //             '</div>'+
+    //             '</div>');
+    //         $('td', row).eq(8).append($btn);
+    //     }
+    // }).api();
+
 
     //查看全部订单
     var params = {};
     $.ajax({
         async: false,
         type: "POST",
-        url: "../order/list",//注意路径
+        url: "../order/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
-            console.log(JSON.stringify(data, null, 4));
+            // console.log(JSON.stringify("api data::"+this.api().ajax.json(),null,4));
+            // console.log(JSON.stringify(data, null, 4));
             for (var i = 0; i < data.length; i++) {
                 var itm = data[i];
 

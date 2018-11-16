@@ -54,4 +54,7 @@ public interface OrderDao {
      */
     @Update("update orders set status = #{1} where O_id = #{0}")
     boolean updateDetail(@Param("0") String o_id, @Param("1") String status);
+
+    @Select("select count(*) from orders")
+    int orderCount();
 }

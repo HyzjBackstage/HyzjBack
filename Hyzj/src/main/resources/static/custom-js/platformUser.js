@@ -6,6 +6,7 @@ $(document).ready(function () {
     //上下文路径问题
     var pathName=window.document.location.pathname;
     var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+
     //通过用户手机号查询
     $("#btn_search").click(function(){
         var phone = $("#platToMall_phone").val();
@@ -50,7 +51,8 @@ $(document).ready(function () {
                 $("#platToMall_nickName").val(showdata.nickname);
                 $("#platToMall_name").val(showdata.name);
                 $("#platToMall_IDcard").val(showdata.id_card);
-
+                $("#platToMall_invest_amount").val(showdata.invest_amount);
+                $("#platToMall_invest_stock").val(showdata.invest_stock);
                 delok = true;
             },
             error:function (data) {
@@ -131,6 +133,8 @@ $(document).ready(function () {
         params.nickname =$('#platToMall_nickName').val();
         params.name = $("#platToMall_name").val();
         params.id_card =$('#platToMall_IDcard').val();
+        params.invest_amount = $("#platToMall_invest_amount").val();
+        params.invest_stock = $('#platToMall_invest_stock').val();
 
         $.ajax({
             async: false,
