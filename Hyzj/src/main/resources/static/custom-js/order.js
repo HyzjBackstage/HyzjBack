@@ -118,6 +118,22 @@ $(document).ready(function () {
     //     }
     // }).api();
 
+    // 0-未支付  1-已支付  2-待发货  3-已发货  4-已完成  5-订单已取消
+    function ExchangeStatus(num) {
+        if (num == 1){
+            return "已支付";
+        } else if (num == 2){
+            return "待发货"
+        } else if (num == 3){
+            return "已发货";
+        } else if (num == 4){
+            return "已完成";
+        } else if (num == 5){
+            return "订单已取消";
+        } else if (num == 0){
+            return "未支付";
+        }
+    }
 
     //查看全部订单
     var params = {};
@@ -136,6 +152,7 @@ $(document).ready(function () {
                 console.log(itm.offecoupon.offe_user);
 
                 var time = itm.order_time;
+                var Exstatus = ExchangeStatus(itm.t_orders.status);
                 table.fnAddData([
                     itm.t_orders.o_id,
                     itm.t_orders.order_time,
@@ -143,7 +160,7 @@ $(document).ready(function () {
                     itm.t_mallUser.name,
                     itm.offecoupon.offe_user,
                     itm.t_orders.price,
-                    itm.t_orders.status,
+                    Exstatus,
                     itm.t_orders.self_lifting,
                     '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
@@ -230,6 +247,7 @@ $(document).ready(function () {
                     for (var i = 0; i < data.length; i++) {
 
                         var itm = data[i];
+                        var Exstatus = ExchangeStatus(itm.t_orders.status);
                         table.fnAddData([
                             itm.t_orders.o_id,
                             itm.t_orders.order_time,
@@ -237,7 +255,7 @@ $(document).ready(function () {
                             itm.t_mallUser.name,
                             itm.offecoupon.offe_user,
                             itm.t_orders.price,
-                            itm.t_orders.status,
+                            Exstatus,
                             itm.t_orders.self_lifting,
                             '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                         ]);
@@ -282,6 +300,7 @@ $(document).ready(function () {
                 if (data != null) {
                     table.dataTable().fnClearTable();
                     var itm = data;
+                    var Exstatus = ExchangeStatus(itm.t_orders.status);
                     table.fnAddData([
                         itm.t_orders.o_id,
                         itm.t_orders.order_time,
@@ -289,7 +308,7 @@ $(document).ready(function () {
                         itm.t_mallUser.name,
                         itm.offecoupon.offe_user,
                         itm.t_orders.price,
-                        itm.t_orders.status,
+                        Exstatus,
                         itm.t_orders.self_lifting,
                         '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                     ]);
