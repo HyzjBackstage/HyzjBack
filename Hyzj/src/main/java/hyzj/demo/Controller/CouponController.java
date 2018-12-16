@@ -57,7 +57,7 @@ public class CouponController {
 
     @RequestMapping("/amountadd")
     @ResponseBody
-    public R_data addAmount(int cid, int amount, String strat, String end, String condition) throws Exception {
+    public R_data addAmount(int cid, String amount, String strat, String end, String condition) throws Exception {
         return ResultUtils.success(couponService.addAmount(cid, amount, strat, end, condition), ExceptionEnum.SUCCESS);
     }
 
