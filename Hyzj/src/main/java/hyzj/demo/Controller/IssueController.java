@@ -30,7 +30,6 @@ public class IssueController {
     @RequestMapping("/generate")
     @ResponseBody
     public String generate(HttpSession httpSession, String couponType) {
-        httpSession.setAttribute("userId", "1000000000");//TODO 发券用户
         return issueService.generateCoupon(httpSession, couponType);
     }
 

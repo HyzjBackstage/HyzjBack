@@ -5,6 +5,7 @@ import hyzj.demo.Dao.CouponDao;
 import hyzj.demo.Dao.CouponTypeDao;
 import hyzj.demo.Model.Coupon;
 import hyzj.demo.Model.CouponType;
+import hyzj.demo.ModelVo.UserVo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -53,7 +54,7 @@ public class IssueService {
 
     //生成一张优惠券
     public String generateCoupon(HttpSession httpSession, String couponTypeId) {
-        String collectUserId = (String) httpSession.getAttribute("userId");
+        String collectUserId = ((UserVo) httpSession.getAttribute("UserVo")).getUser().getM_id();
         String couponId = UUID.randomUUID().toString().replace("-", "");
         couponDao.createNewCoupon(couponId, collectUserId, couponTypeId);
         System.out.println("随机生成优惠券：" + couponId);
