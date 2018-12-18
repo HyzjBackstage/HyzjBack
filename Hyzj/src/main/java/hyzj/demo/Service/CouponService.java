@@ -78,10 +78,11 @@ public class CouponService {
         }
     }
 
+
     //添加
-    public boolean addAmount(int cid, int amount, String strat, String end, String condition) {
+    public boolean addAmount(int cid, String amount, String strat, String end, String condition) {
         try {
-            return couponDao.addAmount(String.valueOf(cid), String.valueOf(amount), strat, end, condition);
+            return couponDao.addAmount(String.valueOf(cid), amount, strat, end, condition);
         } catch (Exception e) {
             throw new DataLinkException(e, ExceptionEnum.DATALINK_Exception);
 
