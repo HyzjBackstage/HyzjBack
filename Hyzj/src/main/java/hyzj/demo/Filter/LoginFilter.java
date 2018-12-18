@@ -45,6 +45,7 @@ public class LoginFilter implements Filter {
                 && !requestURI.contains("/custom-js")
                 && !requestURI.contains("/plugins")
                 && !requestURI.contains("/goods")
+                && !requestURI.contains("/issue")
 //                && !requestURI.contains("/save")
 //                && !requestURI.contains("/index")
 //                && !requestURI.contains("/print")
