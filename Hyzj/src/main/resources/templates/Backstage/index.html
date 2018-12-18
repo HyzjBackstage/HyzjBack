@@ -61,7 +61,12 @@
                         <div class="logo-element">H+
                         </div>
                     </li>
-
+                    <li class="active" onclick="window.location.href='http://nchhr.com/mallback/issue'">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-new-window"></i>
+                            <span class="nav-label">优惠卷管理</span>
+                        </a>
+                    </li>
                     <li th:each="menuvo : ${session.UserVo.menuVos}">
                         <a href="#">
                             <i th:class="${menuvo.menu.css}"></i>
