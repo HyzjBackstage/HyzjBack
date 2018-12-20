@@ -3,6 +3,7 @@ package hyzj.demo.Service;
 import hyzj.demo.Dao.*;
 import hyzj.demo.Model.*;
 import hyzj.demo.Utils.CodeUtils;
+import hyzj.demo.Utils.IncomeAddUtils;
 import hyzj.demo.Utils.TimeUtils;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,15 @@ public class OrderAddService {
     @Resource
     CommodityDao commodityDao;
 
+    @Resource
+    IncomeDayDao incomeDayDao;
+
+    @Resource
+    IncomeMonthDao incomeMonthDao;
+
+    @Resource
+    IncomeYearDao incomeYearDao;
+
     /**
      * 获取补录记录
      * @return
@@ -54,6 +64,7 @@ public class OrderAddService {
                        String number,String price,String add_describe) {
 
         CodeUtils codeUtils = new CodeUtils();
+        IncomeAddUtils incomeAddUtils = new IncomeAddUtils();
 
         try{
 
@@ -91,15 +102,24 @@ public class OrderAddService {
             float discountedPrice = Float.parseFloat(price)*discount;
 
             //投资人或代理商个人赚取金额income_amount
-            float income_amount = Float.parseFloat(price) - discountedPrice;
+            String income_amount = (Float.parseFloat(price) - discountedPrice)+"";
 
             //未分配利润
-            float unallocated_amount = discountedPrice - commodity.getPurchase_price()*Float.parseFloat(number);
+            String unallocated_amount = (discountedPrice - commodity.getPurchase_price()*Float.parseFloat(number))+"";
 
             boolean b1 = incomeDao.add(In_id,mallUser.getM_id(),add_time,income_amount,unallocated_amount);
             boolean b2 = orderAddDao.add(add_record,single_people,single_phone,c_id,number,price,add_time,add_describe,In_id);
 
-            if (b1 && b2 == true){
+            //插入和更新income_day表的数据
+            boolean Income_day = incomeAddUtils.updateIncomeDay(add_time,income_amount,incomeDayDao);
+
+            //插入或更新income_month表的数据
+            boolean Income_month = incomeAddUtils.updateIncomeMonth(add_time,income_amount,incomeMonthDao);
+
+            //插入火更新income_year表的数
+            boolean Income_year = incomeAddUtils.updateIncomeYear(add_time,income_amount,incomeYearDao);
+
+            if (b1 == true && b2 == true && Income_day == true && Income_month == true && Income_year == true){
                 return true;
             }else {
                 return false;
@@ -149,10 +169,10 @@ public class OrderAddService {
         float discountedPrice = Float.parseFloat(price)*discount;
 
         //投资人或代理商个人赚取金额income_amount
-        float income_amount = Float.parseFloat(price) - discountedPrice;
+        String income_amount = (Float.parseFloat(price) - discountedPrice) + "";
 
         //未分配利润
-        float unallocated_amount = discountedPrice - commodity.getPurchase_price()*Float.parseFloat(number);
+        String unallocated_amount = (discountedPrice - commodity.getPurchase_price()*Float.parseFloat(number))+"";
 
         boolean b1 = incomeDao.update(orderAdd.getIn_id(),mallUser.getM_id(),add_time,income_amount,unallocated_amount);
         boolean b2 = orderAddDao.update(add_record,single_people,single_phone,c_id,number,price,add_time,add_describe);

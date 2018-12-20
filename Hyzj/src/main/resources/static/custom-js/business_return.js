@@ -34,7 +34,7 @@ $(document).ready(function () {
                     itm.f_id,
                     itm.rebate_time,
                     itm.rebate_amount,
-                    '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑&nbsp;</a>' +
+                    // '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑&nbsp;</a>' +
                     '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
                     '<a class="delete" ><i class="fa fa-trash"></i>&nbsp;删除</a>'
                 ]);
@@ -117,7 +117,7 @@ $(document).ready(function () {
             "AR0000000",
             "0000.00.0 00:00:00",
             $('#businessReturn_add_Money').val(),
-            '<a class="edit"><i class="fa fa-edit"></i>&nbsp;编辑&nbsp;</a>' +
+            // '<a class="edit"><i class="fa fa-edit"></i>&nbsp;编辑&nbsp;</a>' +
             '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +
             '<a class="delete"><i class="fa fa-trash"></i>&nbsp;删除</a>'
         ]);
