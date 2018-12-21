@@ -39,7 +39,7 @@ $(document).ready(function () {
                     itm.price,
                     itm.add_time,
                     itm.add_describe,
-                    '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑&nbsp;</a>'
+                    '<a class="delete"  ><i class="fa fa-trash"></i>&nbsp;删除&nbsp;</a>'
                 ]);
             }
         },
@@ -131,7 +131,7 @@ $(document).ready(function () {
             $('#orderAdd_add_price').val(),
             "0000.00.0 00:00:00",
             $('#orderAdd_add_describe').val(),
-            '<a class="edit"  ><i class="fa fa-edit"></i>&nbsp;编辑&nbsp;</a>'
+            '<a class="delete"><i class="fa fa-trash"></i>&nbsp;删除&nbsp;</a>'
         ]);
 
         table.fnDraw();
