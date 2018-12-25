@@ -17,7 +17,7 @@ public interface IncomeDao {
      * @return
      */
     @Insert("insert into income values(#{0},#{1},#{2},#{3},#{4})")
-    boolean add(@Param("0") String in_id, @Param("1") String m_id, @Param("2") String add_time, @Param("3") float income_amount, @Param("4") float unallocated_amount);
+    boolean add(@Param("0") String in_id, @Param("1") String m_id, @Param("2") String add_time, @Param("3") String income_amount, @Param("4") String unallocated_amount);
 
     /**
      * 通过in_id获取记录
@@ -37,5 +37,5 @@ public interface IncomeDao {
      * @return
      */
     @Update("update income set M_id = #{1},time = #{2},income_amount = #{3},unallocated_amount = #{4} where In_id = #{0}")
-    boolean update(@Param("0") String in_id, @Param("1") String m_id, @Param("2") String add_time, @Param("3") Float income_amount, @Param("4") Float unallocated_amount);
+    boolean update(@Param("0") String in_id, @Param("1") String m_id, @Param("2") String add_time, @Param("3") String income_amount, @Param("4") String unallocated_amount);
 }

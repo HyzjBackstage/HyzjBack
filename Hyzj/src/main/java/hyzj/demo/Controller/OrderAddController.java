@@ -51,7 +51,7 @@ public class OrderAddController {
 
 
     /**
-     * 更新补录信息
+     * 更新补录信息  （暂停使用）
      * @param add_record
      * @param single_people
      * @param single_phone

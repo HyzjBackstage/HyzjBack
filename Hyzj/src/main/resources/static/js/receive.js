@@ -85,7 +85,7 @@ function getVerifyCode() {
 	if (phoneNum == "" || phoneNum == undefined) {
 		showToastInfo("", "请输入手机号!");
 		return false;
-	} else if (!phoneNum.match(/^(((13[0-9]{1})|159|153|186|15[0-9]{1}|16[0-9]{1}|18[0-9]{1}|17[0-9]{1})+\d{8})$/)) {
+	} else if (!phoneNum.match(/^1[3|4|5|8][0-9]\d{4,8}$/)) {
 		showToastInfo("", "手机号码格式不正确!");
 		return false;
 	}
