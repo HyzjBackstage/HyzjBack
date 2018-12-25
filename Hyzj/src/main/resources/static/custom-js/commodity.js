@@ -107,8 +107,8 @@ $(document).ready(function () {
                     '<td>' + datas.commodity.c_id + '</td>' +
                     '<td>' + datas.commodity.name + '</td>' +
                     '<td>' + datas.commodity.stock + '</td>' +
-                    '<td>' + datas.commodity.purchase_price + '</td>' +
-                    '<td>' + datas.commodity.price + '</td>' +
+                    '<td>' + datas.commodity.purchase_price + '</td>' + // 进价
+                    '<td>' + datas.commodity.price + '</td>' +  //售价
                     '<td>' + state(datas.commodity.state)+ '</td>' +
                     '<td>' + datas.commodity.shelfDate + '</td>年' +
                     '<td>' + datas.commodity.productionDate + '</td>' +
