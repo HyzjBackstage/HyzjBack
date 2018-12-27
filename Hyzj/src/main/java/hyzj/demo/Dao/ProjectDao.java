@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 public interface ProjectDao {
 
-    @Select("select * from project where P_id = 'PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz'")
+    @Select("select * from project where project_id = 'PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz'")
     Project ShowDiscount();
 
     /**
@@ -14,6 +14,6 @@ public interface ProjectDao {
      * @param m_id
      * @return
      */
-    @Select("select * from project where P_id = #{0}")
+    @Select("select * from project where project_id = #{0}")
     Project searchByMid(@Param("0") String m_id);
 }
