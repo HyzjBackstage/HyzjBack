@@ -135,6 +135,14 @@ $(document).ready(function () {
         }
     }
 
+    function offecouponIsNull(offecoupon) {
+        if (offecoupon != null) {
+            return offecoupon;
+        }else{
+            return " ";
+        }
+    }
+
     //查看全部订单
     var params = {};
     $.ajax({
@@ -149,16 +157,18 @@ $(document).ready(function () {
             for (var i = 0; i < data.length; i++) {
                 var itm = data[i];
 
-                console.log(itm.offecoupon.offe_user);
-
                 var time = itm.order_time;
                 var Exstatus = ExchangeStatus(itm.t_orders.status);
+                var offecoupon = offecouponIsNull(itm.offecoupon.offe_user);
+
+                console.log(offecoupon);
+
                 table.fnAddData([
                     itm.t_orders.o_id,
                     itm.t_orders.order_time,
                     itm.t_receiver.name,
                     itm.t_mallUser.name,
-                    itm.offecoupon.offe_user,
+                    offecoupon,
                     itm.t_orders.price,
                     Exstatus,
                     itm.t_orders.self_lifting,

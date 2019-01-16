@@ -10,10 +10,10 @@ public interface ProjectDao {
     Project ShowDiscount();
 
     /**
-     * 通过M_id查询project
-     * @param m_id
+     * 通过project_id查询project
+     * @param project_id
      * @return
      */
     @Select("select * from project where project_id = #{0}")
-    Project searchByMid(@Param("0") String m_id);
+    Project searchByMid(@Param("0") String project_id);
 }

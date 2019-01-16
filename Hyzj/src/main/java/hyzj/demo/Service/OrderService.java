@@ -75,6 +75,12 @@ public class OrderService {
                 orderVo1.setT_mallUser(mallUserDao.loadById(order.getM_id()));
                 orderVo1.setT_receiver(receiverDao.loadById(order.getRe_id()));
                 orderVo1.setOffecoupon(offeCouponDao.loadById(order.getOFid()));
+//                if (order.getOFid() != null){
+//                    orderVo1.setOffecoupon(offeCouponDao.loadById(order.getOFid()));
+//                }else{
+//                    orderVo1.setOffecoupon();
+//                }
+
 
 //                System.out.println("mallUserDao:" + mallUserDao.loadById(order.getM_id()));
 //                System.out.println("receiverDao:" + receiverDao.loadById(order.getRe_id()));

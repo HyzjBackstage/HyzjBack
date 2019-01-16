@@ -66,7 +66,7 @@ public class OrderAddService {
         CodeUtils codeUtils = new CodeUtils();
         IncomeAddUtils incomeAddUtils = new IncomeAddUtils();
 
-        try{
+//        try{
 
             String In_id = "In" + codeUtils.createRandom(false,7);
             String add_record = "AR" + codeUtils.createRandom(false,6) + c_id;
@@ -84,9 +84,9 @@ public class OrderAddService {
 
             float discount = 0;
             MallUser mallUser = mallUserDao.searchByPhone(single_phone);
-            if (mallUser.getR_id() == "1" || mallUser.getR_id() == "2"){
+            if ( "1".equals(mallUser.getR_id()) || "2".equals(mallUser.getR_id())){
 
-                Project project = projectDao.searchByMid(mallUser.getM_id());
+                Project project = projectDao.searchByMid("PmA1bP2PAVSUItWEZsLjeTTQAD1NFpktz");
                 discount = project.getDiscount_lowest();
 
             }else if (mallUser.getR_id() == "4"){
@@ -110,24 +110,24 @@ public class OrderAddService {
             boolean b1 = incomeDao.add(In_id,mallUser.getM_id(),add_time,income_amount,unallocated_amount);
             boolean b2 = orderAddDao.add(add_record,single_people,single_phone,c_id,number,price,add_time,add_describe,In_id);
 
-            //插入和更新income_day表的数据
-            boolean Income_day = incomeAddUtils.updateIncomeDay(add_time,income_amount,incomeDayDao);
+//            //插入和更新income_day表的数据
+//            boolean Income_day = incomeAddUtils.updateIncomeDay(add_time,income_amount,incomeDayDao);
+//
+//            //插入或更新income_month表的数据
+//            boolean Income_month = incomeAddUtils.updateIncomeMonth(add_time,income_amount,incomeMonthDao);
+//
+//            //插入火更新income_year表的数
+//            boolean Income_year = incomeAddUtils.updateIncomeYear(add_time,income_amount,incomeYearDao);
 
-            //插入或更新income_month表的数据
-            boolean Income_month = incomeAddUtils.updateIncomeMonth(add_time,income_amount,incomeMonthDao);
-
-            //插入火更新income_year表的数
-            boolean Income_year = incomeAddUtils.updateIncomeYear(add_time,income_amount,incomeYearDao);
-
-            if (b1 == true && b2 == true && Income_day == true && Income_month == true && Income_year == true){
+            if (b1 == true && b2 == true ){
                 return true;
             }else {
                 return false;
             }
 
-        }catch (Exception e){
-            throw new RuntimeException(e.getMessage());
-        }
+//        }catch (Exception e){
+//            throw new RuntimeException(e.getMessage());
+//        }
     }
 
     /**

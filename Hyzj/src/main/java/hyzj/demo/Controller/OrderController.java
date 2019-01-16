@@ -34,7 +34,7 @@ public class OrderController {
     @RequestMapping("/list")
     @ResponseBody
     public List<OrderVo> loadList(HttpServletRequest request){
-        System.out.println("order list:" + orderService.loadList());
+//        System.out.println("order list:" + orderService.loadList());
 
         return orderService.loadList();
     }

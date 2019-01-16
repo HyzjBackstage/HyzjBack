@@ -135,14 +135,14 @@ $(document).ready(function () {
         ]);
 
         table.fnDraw();
-        "AR0000000",
-        $('#orderAdd_add_people').val(),
-        $('#orderAdd_add_phone').val(),
-        $('#orderAdd_add_Cid').val(),
-        $('#orderAdd_add_number').val(),
-        $('#orderAdd_add_price').val(),
-        "0000.00.0 00:00:00",
-        $('#orderAdd_add_describe').val(),
+        "AR0000000";
+        $('#orderAdd_add_people').val();
+        $('#orderAdd_add_phone').val();
+        $('#orderAdd_add_Cid').val();
+        $('#orderAdd_add_number').val();
+        $('#orderAdd_add_price').val();
+        "0000.00.0 00:00:00";
+        $('#orderAdd_add_describe').val();
         $('#orderAdd_add_model').css('display','none');
         swal({
             title: "添加成功！",
