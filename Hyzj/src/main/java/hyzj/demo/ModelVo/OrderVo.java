@@ -8,7 +8,7 @@ public class OrderVo {
     private orders t_orders;
     private receiver t_receiver;
     private MallUser t_mallUser;
-    private offeCoupon offecoupon;
+    private CouponType coupon;
 
     public orders getT_orders() {
         return t_orders;
@@ -34,12 +34,12 @@ public class OrderVo {
         this.t_mallUser = t_mallUser;
     }
 
-    public offeCoupon getOffecoupon() {
-        return offecoupon;
+    public CouponType getCoupon() {
+        return coupon;
     }
 
-    public void setOffecoupon(offeCoupon offeCoupon1) {
-        this.offecoupon = offeCoupon1;
+    public void setCoupon(CouponType coupon) {
+        this.coupon = coupon;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class OrderVo {
                 "t_orders=" + t_orders +
                 ", t_receiver=" + t_receiver +
                 ", t_mallUser=" + t_mallUser +
-                ", offecoupon=" + offecoupon +
+                ", coupon=" + coupon +
                 '}';
     }
 

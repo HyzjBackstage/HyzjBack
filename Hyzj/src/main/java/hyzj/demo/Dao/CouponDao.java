@@ -79,6 +79,9 @@ public interface CouponDao {
     @Select("select * from coupon where Co_id = #{0}")
     CouponType loadById(@Param("0") String Co_id);
 
+    @Select("select * from coupon where Co_id = #{0}")
+    CouponType loadByid2(@Param("0") String Co_id);
+
 
     //-----------------------发放优惠券
     //发放优惠券

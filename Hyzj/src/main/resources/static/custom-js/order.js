@@ -137,9 +137,12 @@ $(document).ready(function () {
 
     function offecouponIsNull(offecoupon) {
         if (offecoupon != null) {
-            return offecoupon;
+            if (offecoupon.type == "1") 
+                return "优惠"+offecoupon.discount+"折";
+            if (offecoupon.type == "2")
+                return "优惠"+offecoupon.amount+"元";
         }else{
-            return " ";
+            return "未使用优惠卷";
         }
     }
 
@@ -159,9 +162,9 @@ $(document).ready(function () {
 
                 var time = itm.order_time;
                 var Exstatus = ExchangeStatus(itm.t_orders.status);
-                var offecoupon = offecouponIsNull(itm.offecoupon.offe_user);
+                var offecoupon = offecouponIsNull(itm.coupon);
 
-                console.log(offecoupon);
+                // console.log(JSON.stringify(itm,null,4));
 
                 table.fnAddData([
                     itm.t_orders.o_id,
@@ -177,7 +180,7 @@ $(document).ready(function () {
             }
         },
         error: function (data) {
-            console.log(data);
+            // console.log(data);
             alert("数据获取失败 ！");
             swal({
                 title: "数据获取失败！",
@@ -243,7 +246,7 @@ $(document).ready(function () {
 
     //通过时间查找查看
     $("#seachByTime").click(function (e) {
-
+        $("#loading-order").css('display', 'black');
         $.ajax({
             async: false,
             type: "POST",
@@ -263,7 +266,7 @@ $(document).ready(function () {
                             itm.t_orders.order_time,
                             itm.t_receiver.name,
                             itm.t_mallUser.name,
-                            itm.offecoupon.offe_user,
+                            offecouponIsNull(itm.coupon),
                             itm.t_orders.price,
                             Exstatus,
                             itm.t_orders.self_lifting,
@@ -274,6 +277,7 @@ $(document).ready(function () {
                 if (data == null) {
                     table.dataTable().fnClearTable();
                 }
+                $("#loading-order").css('display', 'none');
             },
             error: function (data) {
                 console.log(data);
@@ -288,14 +292,16 @@ $(document).ready(function () {
                     confirmButtonClass: "btn-danger",
                     confirmButtonText: "OK",
                 });
+                $("#loading-order").css('display', 'none');
                 return;
             }
         });
+        $("#loading-order").css('display', 'none');
     });
 
     //通过订单号
     $("#seachByid").click(function (e) {
-
+        $("#loading-order").css('display', 'block');
         var seachOrder = {};
         seachOrder.o_id = $("#seachValue").val();
         $.ajax({
@@ -316,7 +322,7 @@ $(document).ready(function () {
                         itm.t_orders.order_time,
                         itm.t_receiver.name,
                         itm.t_mallUser.name,
-                        itm.offecoupon.offe_user,
+                        offecouponIsNull(itm.coupon),
                         itm.t_orders.price,
                         Exstatus,
                         itm.t_orders.self_lifting,
@@ -327,6 +333,7 @@ $(document).ready(function () {
                 if (data == null) {
                     table.dataTable().fnClearTable();
                 }
+                $("#loading-order").css('display', 'none');
             },
             error: function (data) {
                 console.log(data);
@@ -341,6 +348,7 @@ $(document).ready(function () {
                     confirmButtonClass: "btn-danger",
                     confirmButtonText: "OK",
                 });
+                $("#loading-order").css('display', 'none');
                 return;
             }
         });

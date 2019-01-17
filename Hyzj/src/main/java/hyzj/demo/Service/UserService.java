@@ -154,6 +154,7 @@ public class UserService {
                 uvo.setMenuVos(menuVos);
                 System.out.println(uvo);
                 session.setAttribute("UserVo", uvo);
+
                 //成功
                 return "1";
             } else {

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Service
-public class CookiesService {
+public class CookiesService<T> {
 
     public boolean saveCookies(String MID,  HttpServletResponse response, HttpServletRequest request) {
         try{
@@ -48,5 +48,22 @@ public class CookiesService {
         }
 
         return true;
+    }
+
+
+    public  T printCookies(HttpServletRequest request,String cookiesName){
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return null;
+        } else {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(cookiesName)) {
+
+                    return (T)cookie.getValue();
+                }
+                return null;
+            }
+            return null;
+        }
     }
 }

@@ -7,7 +7,7 @@ public class offeCoupon implements Serializable{
     private String OFid;
     private String offe_user;
     private String Receiver;
-    private String CO_id;
+    private String COid;
     private String pickTime;
     private String state;
     private String useTime;
@@ -36,12 +36,12 @@ public class offeCoupon implements Serializable{
         Receiver = receiver;
     }
 
-    public String getCO_id() {
-        return CO_id;
+    public String getCOid() {
+        return COid;
     }
 
-    public void setCO_id(String CO_id) {
-        this.CO_id = CO_id;
+    public void setCOid(String COid) {
+        this.COid = COid;
     }
 
     public String getPickTime() {
@@ -74,7 +74,7 @@ public class offeCoupon implements Serializable{
                 "OFid='" + OFid + '\'' +
                 ", offe_user='" + offe_user + '\'' +
                 ", Receiver='" + Receiver + '\'' +
-                ", CO_id='" + CO_id + '\'' +
+                ", CO_id='" + COid + '\'' +
                 ", pickTime='" + pickTime + '\'' +
                 ", state='" + state + '\'' +
                 ", useTime='" + useTime + '\'' +
