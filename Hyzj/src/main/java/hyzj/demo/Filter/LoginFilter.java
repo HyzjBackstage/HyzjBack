@@ -35,8 +35,8 @@ public class LoginFilter implements Filter {
         //访问除login.jsp（登录页面）和验证码servlet之外的jsp/servlet都要进行验证
         if (
 
-                requestURI.contains("/mallback")
-//                requestURI.contains("/")
+                requestURI.contains("/")
+//                &&  requestURI.contains("/mallback")
                 &&  requestURI.contains("/issue")
                 && !requestURI.contains("/404.html")
                 && !requestURI.contains("/login.html")
