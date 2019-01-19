@@ -130,7 +130,7 @@ $(document).ready(function(){
     function loadByOrder(id) {
         var param = {};
         param.o_id = ''+id;
-        console.log(param.o_id);
+        // console.log(param.o_id);
         $.ajax({
             async: false,
             type: "POST",
@@ -149,12 +149,17 @@ $(document).ready(function(){
                 // var status = orderStatus(showdata.t_orders.status);
                 $("#order_status").val(showdata.t_orders.status);
 
-                if(showdata.t_logistics_company.lc_id!=null || showdata.t_logistics_company.lc_id!=''){
+                if(showdata.t_logistics_company != null ){
                     $("#express_name").val(showdata.t_logistics_company.lc_id);
+                }else {
+                    $("#express_name").val("kong");
+                }
+                if (showdata.t_logistics == null){
+                    $("#express_id").val("");
+                }else {
+                    $("#express_id").val(showdata.t_logistics.shipment_number);
                 }
 
-                $("#express_id").val('');
-                $("#express_id").val(showdata.t_logistics.shipment_number);
 
             },
             error:function (data) {

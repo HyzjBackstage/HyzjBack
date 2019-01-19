@@ -4,6 +4,10 @@
 
 $(document).ready(function () {
 
+    //上下文路径问题
+    var pathName = window.document.location.pathname;
+    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+    // alert(projectName);
     $.extend($.fn.dataTable.defaults, {
         searching: false
     });
@@ -145,13 +149,13 @@ $(document).ready(function () {
             return "未使用优惠卷";
         }
     }
-
+    // console.log("相对路径："+projectName);
     //查看全部订单
     var params = {};
     $.ajax({
         async: false,
         type: "POST",
-        url: "../order/list",       //注意路径
+        url: projectName+"/order/list",       //注意路径
         data: params,
         dataType: "json",
         success: function (data) {
@@ -180,7 +184,7 @@ $(document).ready(function () {
             }
         },
         error: function (data) {
-            // console.log(data);
+           JSON.stringify(data,null,4);
             alert("数据获取失败 ！");
             swal({
                 title: "数据获取失败！",
@@ -250,7 +254,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../order/seachByTime",//注意路径
+            url: projectName+"/order/seachByTime",//注意路径
             data: time,
             dataType: "json",
             success: function (data) {
@@ -307,7 +311,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             type: "POST",
-            url: "../order/seachById",//注意路径
+            url: projectName+"/order/seachById",//注意路径
             data: seachOrder,
             dataType: "json",
             success: function (data) {
@@ -385,7 +389,7 @@ $(document).ready(function () {
             $.ajax({
                 async: false,
                 type: "POST",
-                url: "../order/delete",//注意路径
+                url: projectName+"/order/delete",//注意路径
                 data: params,
                 dataType: "json",
                 success: function (data) {
