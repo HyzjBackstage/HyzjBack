@@ -39,7 +39,7 @@ public class PlatfromUserContrroller {
      */
     @RequestMapping("/addUser")
     @ResponseBody
-    public boolean addPlatToMall(String phone,String password,String p_id,String nickname,String name,
+    public String addPlatToMall(String phone,String password,String p_id,String nickname,String name,
                                  String id_card,int invest_amount,int invest_stock){
         return platfromUserService.addPlatToMall(phone,password,p_id,nickname,name,id_card,
                 invest_amount,invest_stock);

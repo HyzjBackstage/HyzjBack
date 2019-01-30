@@ -249,7 +249,7 @@ $(document).ready(function () {
         param.id_card = $("#user_edit_ID").val();
         param.r_id = $("#user_edit_role").val();
         param.password = $('#user_edit_password').val();
-        if(param.m_id == '' || param.name==''||param.id_card==''||param.phone==''||param.r_id==''|| param.password ==''){
+        if(param.m_id == '' || param.name==''||param.phone==''||param.r_id==''|| param.password ==''){
             swal({
                 title: "不能为空！",
                 text: "",

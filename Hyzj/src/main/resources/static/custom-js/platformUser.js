@@ -57,7 +57,7 @@ $(document).ready(function () {
             },
             error:function (data) {
                 swal({
-                    title: "该手机号没有注册信息！",
+                    title: "该手机号没有在平台注册信息！",
                     text: "",
                     type: "error",
                     allowOutsideClick: true,
@@ -125,7 +125,7 @@ $(document).ready(function () {
      */
     $("#btn_add_platToMall").click(function(e){
 
-        var delok = true;
+        var delok ;
         var params={};
         params.phone = $("#platToMall_phone").val();
         params.password =$('#platToMall_password').val();
@@ -148,13 +148,26 @@ $(document).ready(function () {
             error: function (data) {
                 console.log(JSON.stringify(data,null,4));
 
-                delok = false;
+                delok = "2";
             }
         });
-        if (!delok) {
+        if (delok == "2" ) {
 
             swal({
                 title: "添加失败！",
+                text: "",
+                type: "error",
+                allowOutsideClick: true,
+                showConfirmButton: true,
+                showCancelButton: false,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+        else if (delok == "3") {
+            swal({
+                title: "未在商城注册！",
                 text: "",
                 type: "error",
                 allowOutsideClick: true,

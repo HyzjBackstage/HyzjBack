@@ -120,8 +120,8 @@ public interface MallUserDao {
      * 平台的信息迁移过来之后，原来商城的信息也迁移成功，把原来的商城用户id注销（手机帐号+logout,标记该帐号已注销）
      * @param platphone
      */
-    @Update("update mall_user set phone = platphone+'logout' where phone = #{0}")
-    boolean logOutMallUser(String platphone);
+    @Update("update mall_user set phone = 'logout' where phone = #{0}")
+    boolean logOutMallUser(@Param("0") String platphone);
 
     /**
      * 通过手机号查询
@@ -130,4 +130,8 @@ public interface MallUserDao {
      */
     @Select("select * from mall_user where phone = #{0}")
     MallUser searchByPhone(@Param("0") String single_phone);
+
+    //通过手机号修改mid
+    @Update("update mall_user set M_id = #{2},R_id = #{1},nickname = #{3} where phone = #{0}")
+    boolean updateMidridByPhoen(@Param("0") String phone,@Param("1") String rid, @Param("2") String p_id,@Param("3") String nkname);
 }

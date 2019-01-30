@@ -2,8 +2,11 @@ package hyzj.demo.Service;
 
 import hyzj.demo.Dao.AgentDao;
 import hyzj.demo.Dao.MallUserDao;
+import hyzj.demo.Dao.PlatformUserDao;
+import hyzj.demo.Dao.ProjectWalletDao;
 import hyzj.demo.Exception.DataLinkException;
 import hyzj.demo.Model.MallUser;
+import hyzj.demo.Model.Platform_user;
 import hyzj.demo.Utils.CodeUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +25,13 @@ public class MallUserService {
 
     @Resource
     AgentDao agentDao;
+
+    @Resource
+    ProjectWalletDao projectWalletDao;
+
+    @Resource
+    PlatformUserDao platformUserDao;
+
     /**
      * 显示所有用户
      *
@@ -41,8 +51,9 @@ public class MallUserService {
      * @param r_id
      * @return
      */
+    @Transactional
     public boolean Update(String m_id, String name, String id_card, String phone, String r_id, String password) {
-        System.out.println("m_id:" + m_id + "id_card:" + id_card + "phone:" + phone + "r_id:" + r_id);
+//        System.out.println("m_id:" + m_id + "id_card:" + id_card + "phone:" + phone + "r_id:" + r_id);
         return mallUserDao.Update(m_id, name, id_card, phone, r_id, password);
     }
 
@@ -62,9 +73,9 @@ public class MallUserService {
             if (agentDao.loadByMid(m_id) != null) {
                 agentDao.deleteAgent(m_id);
             }
-            System.out.println("123456:"+mallUser.getSC_id());
+//            System.out.println("123456:"+mallUser.getSC_id());
             if (mallUserDao.Delete(m_id)) {
-                return   mallUserDao.deleteCartBySid(mallUser.getSC_id());
+                return mallUserDao.deleteCartBySid(mallUser.getSC_id());
             } else {
                 return false;
             }

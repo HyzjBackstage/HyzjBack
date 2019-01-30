@@ -5,6 +5,7 @@ import hyzj.demo.Model.MallUser;
 import hyzj.demo.Model.Platform_user;
 import hyzj.demo.Utils.TimeUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -47,7 +48,8 @@ public class PlatfromUserService {
      * @param id_card
      * @return
      */
-    public boolean addPlatToMall(String phone,String password,String p_id,String nickname,
+    @Transactional
+    public String addPlatToMall(String phone,String password,String p_id,String nickname,
                                  String name,String id_card,int invest_amount,int invest_stock) {
         String Platphone = phone;
         boolean checkPhone_1 = mallUserDao.checkPhone(Platphone);
@@ -78,13 +80,13 @@ public class PlatfromUserService {
 
                 System.out.println("该手机号没有在商城注册过");
                 //给新用户生成购物车id，r_id默认为投资人
-                SC_id = "SC" + addTime + phone;
+                /*SC_id = "SC" + addTime + phone;
                 //生成投资表id
                 invest_id = "Inv" + addTime + p_id + phone;
                 //生成项目钱包表id
                 wallet_id = "Wal" + addTime + p_id + phone;
                 boolean shopCart = shoppingCartDao.insertNewCart(SC_id);
-                boolean platform = platformUserDao.addPlatToMall(phone,password,p_id,nickname,name,id_card,SC_id,addTime);
+                boolean platform = platformUserDao.addPlatToMall(phone,password,p_id,"投资人",name,id_card,SC_id,addTime);
 
                 boolean Invester = projectInvestDao.addInvester(invest_id,p_id,project_id,1,name,invest_amount,addTime,invest_stock);
                 boolean InvesterWallet = projectWalletDao.addInvesterWallet(wallet_id,p_id,project_id,wallet_amount);
@@ -94,8 +96,8 @@ public class PlatfromUserService {
                     return true;
                 }else {
                     return false;
-                }
-
+                }*/
+                return "3" ;
             }else{
 
                 System.out.println("该手机号已注册过（mall_user表中已有该手机号）");
@@ -105,20 +107,25 @@ public class PlatfromUserService {
                 //生成项目钱包表id
                 wallet_id = "Wal" + addTime + p_id + phone;
 
-                MallUser malluser = mallUserDao.loadByPhone(Platphone);
-                SC_id = malluser.getSC_id();
-                boolean b1 = platformUserDao.addPlatToMall(phone,password,p_id,nickname,name,id_card,SC_id,addTime);
-                boolean b2 = mallUserDao.logOutMallUser(Platphone);
+//                MallUser malluser = mallUserDao.loadByPhone(Platphone);
+
+                mallUserDao.updateMidridByPhoen(phone,"2",p_id,"投资人");
+
+
+//                SC_id = malluser.getSC_id();
+//                boolean b2 = mallUserDao.logOutMallUser(Platphone);
+//                boolean b1 = platformUserDao.addPlatToMall(phone,password,p_id,"投资人",name,id_card,SC_id,addTime);
+
 
                 boolean Invester = projectInvestDao.addInvester(invest_id, p_id, project_id, 1, name, invest_amount, addTime, invest_stock);
                 boolean InvesterWallet = projectWalletDao.addInvesterWallet(wallet_id,p_id,project_id,wallet_amount);
 
-
-                if (b1&&b2&&Invester&&InvesterWallet == true){
-                    return true;
-                }else {
-                    return false;
+                if (Invester|| InvesterWallet ){
+                    return "2";
                 }
+
+                return "1";
+
             }
 
         }catch (Exception e){
@@ -134,7 +141,7 @@ public class PlatfromUserService {
      * @return
      */
     public boolean checkPhone(String platPhone) {
-        System.out.println("checkPhone:" + mallUserDao.checkPhone(platPhone));
+//        System.out.println("checkPhone:" + mallUserDao.checkPhone(platPhone));
 
         return mallUserDao.checkPhone(platPhone);
     }
