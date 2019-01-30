@@ -113,7 +113,7 @@ function collectCoupn(phoneNum) {
 
 //回到商城
 function backToShop() {
-	window.location.href = "http://haoduodian.trunch.cn/mall/index"
+	window.location.href = "http://nchhr.com/mall"
 }
 
 //网页初始化
