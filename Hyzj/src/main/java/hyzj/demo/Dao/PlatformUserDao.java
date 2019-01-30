@@ -4,6 +4,7 @@ import hyzj.demo.Model.Platform_user;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface PlatformUserDao {
 
@@ -31,4 +32,7 @@ public interface PlatformUserDao {
     boolean addPlatToMall(@Param("0") String phone, @Param("1") String password, @Param("2") String p_id,
                           @Param("3") String nickname, @Param("4") String name, @Param("5") String id_card,
                           @Param("6") String SC_id, @Param("7") String addTime);
+
+    @Update("update platform_user set nickname = #{0} where P_id = #{1}")
+    boolean updateNickname(@Param("0") String nickname,@Param("1") String pid);
 }

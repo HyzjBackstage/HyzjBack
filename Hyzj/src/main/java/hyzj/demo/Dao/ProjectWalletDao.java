@@ -11,4 +11,7 @@ public interface ProjectWalletDao {
 
     @Insert("insert into project_wallet values(#{0},#{1},#{2},#{3})")
     boolean addInvesterWallet(@Param("0") String wallet_id,@Param("1")String p_id, @Param("2") String project_id, @Param("3") String wallet_amount);
+
+    @Select("select count(user_id) from project_wallet where user_id = #{0}")
+    int checkmid(@Param("0") String p_id);
 }

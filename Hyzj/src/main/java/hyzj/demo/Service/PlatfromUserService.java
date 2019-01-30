@@ -103,9 +103,9 @@ public class PlatfromUserService {
                 System.out.println("该手机号已注册过（mall_user表中已有该手机号）");
 
                 //生成投资表id
-                invest_id = "Inv" + addTime + p_id + phone;
+                invest_id = "Inv" + p_id + phone;
                 //生成项目钱包表id
-                wallet_id = "Wal" + addTime + p_id + phone;
+                wallet_id = "Wal" + p_id + phone;
 
 //                MallUser malluser = mallUserDao.loadByPhone(Platphone);
 
@@ -115,15 +115,21 @@ public class PlatfromUserService {
 //                SC_id = malluser.getSC_id();
 //                boolean b2 = mallUserDao.logOutMallUser(Platphone);
 //                boolean b1 = platformUserDao.addPlatToMall(phone,password,p_id,"投资人",name,id_card,SC_id,addTime);
-
-
-                boolean Invester = projectInvestDao.addInvester(invest_id, p_id, project_id, 1, name, invest_amount, addTime, invest_stock);
-                boolean InvesterWallet = projectWalletDao.addInvesterWallet(wallet_id,p_id,project_id,wallet_amount);
-
-                if (Invester|| InvesterWallet ){
-                    return "2";
+                ;
+                platformUserDao.updateNickname("投资人",p_id);
+                boolean Invester = false, InvesterWallet = false;
+                System.out.println("123"+projectInvestDao.checkmid(p_id));
+                if (projectInvestDao.checkmid(p_id) < 1) {
+                     Invester = projectInvestDao.addInvester(invest_id, p_id, project_id, 1, name, invest_amount, addTime, invest_stock);
                 }
 
+                if (projectWalletDao.checkmid(p_id) < 1){
+                     InvesterWallet = projectWalletDao.addInvesterWallet(wallet_id, p_id, project_id, wallet_amount);
+                }
+
+                if (Invester && InvesterWallet){
+                    return "2";
+                }
                 return "1";
 
             }
