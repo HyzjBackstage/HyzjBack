@@ -63,7 +63,7 @@ public class CouponController {
 
     @RequestMapping("/amountupdate")
     @ResponseBody
-    public R_data updateAmount(int cid, int amount, String strat, String end, String condition) throws Exception {
+    public R_data updateAmount(String cid, String amount, String strat, String end, String condition) throws Exception {
         return ResultUtils.success(couponService.updateAmount(cid, amount, strat, end, condition), ExceptionEnum.SUCCESS);
     }
     @RequestMapping("/amountdelete")

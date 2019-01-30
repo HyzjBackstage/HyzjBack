@@ -89,9 +89,9 @@ public class CouponService {
         }
     }
 
-    public boolean updateAmount(int cid, int amount, String strat, String end, String condition) {
+    public boolean updateAmount(String cid, String amount, String strat, String end, String condition) {
         try {
-            return couponDao.updateAmount(String.valueOf(cid), String.valueOf(amount), strat, end, condition);
+            return couponDao.updateAmount(cid, amount, strat, end, condition);
         } catch (Exception e) {
             throw new DataLinkException(e, ExceptionEnum.DATALINK_Exception);
 
